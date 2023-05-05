@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class menu extends Model
 {
     use HasFactory;
+
+    public function getmenu()
+    {
+        return $this->belongsTo(store::class);
+    }
+    
+    public function getFood(){
+        return $this->hasMany(food::class);
+    }
 }
