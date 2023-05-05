@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class review extends Model
 {
     use HasFactory;
+    public function getStore(){
+        return $this->belongsTo(store::class);
+    }
+    public function getUser(){
+        return$this->belongsTo(User::class);
+    }
 }

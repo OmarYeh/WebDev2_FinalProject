@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class order extends Model
 {
     use HasFactory;
+    public function getUser(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function getFood(){
+        return $this->hasMany(basketItem::class);
+    }
 }
