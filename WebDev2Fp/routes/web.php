@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
 Route::get('home', function(){
     return view('home');
 });
+Route::get('search',[HomeController::class,'search'])->name('home.search');
 
 require __DIR__.'/auth.php';
 
