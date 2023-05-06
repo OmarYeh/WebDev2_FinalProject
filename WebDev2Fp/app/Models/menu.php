@@ -9,11 +9,11 @@ class menu extends Model
 {
     use HasFactory;
 
-    public function getmenu()
+    public function getstore()
     {
         return $this->belongsTo(store::class);
     }
-    
+
     public function getFood(){
         return $this->hasMany(food::class);
     }

@@ -12,13 +12,16 @@
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/recoleta" rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <style>
         body{
-            font-family: 'Gilroy','Helvetica','Arial','sans-serif';
+            /*font-family: 'Gilroy','Helvetica','Arial','sans-serif';*/
+            font-family: Satoshi;
             font-size: 14px;
             line-height: 1.42857143;
             color: #333;
@@ -62,7 +65,7 @@
         }
         .titleimagebox{
             text-align: center;
-            width: 365px;
+            width: 450px;
             font-size: 48px;
             line-height: 58px;
             font-weight: 700;
@@ -114,7 +117,7 @@
             transition: background 0.22s ease 0s;
             position: relative;
             color: rgb(255, 255, 255);
-            background: rgb(236, 32, 68);
+            background: #e55;
             cursor: pointer;
             margin: 0px;
             display: flex;
@@ -133,7 +136,7 @@
             height: 42px;
         }
         .buttoninput:hover{
-            background: rgb(255, 60, 100);
+            background: #c83535;
             box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
         }
         .fjClFW{
@@ -144,7 +147,115 @@
             padding-left: 4px;
             flex-shrink: 0;
         }
+
+        .cuisinecat {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 76%;
+            margin-left: calc((100% - 76%)/2);
+        }
+        .buttonrow {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .buttonforcat {
+            flex-basis: calc(100% - 89%);
+            flex-grow: 1;
+            background: unset;
+            border: 1px solid rgb(202, 202, 202);
+            padding: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: box-shadow 0.11s ease-in-out 0s;
+            font-size: 18px;
+            background: #e55;
+            color: white;
+        }
+
+        .buttonforcat:hover {
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+            background:#c73535;
+        }
+        .productshowcard{
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            width: 95%;
+            margin-left: calc((100% - 95%)/2);
+            margin-top: 100px;
+        }
+
+        .dishesrow{
+            display:flex;
+            gap:16px;
+            overflow-x: hidden;
+
+
+        }
+        #left-button,
+        #right-button {
+            background-color: #ffffff;
+            border: none;
+            color: #000000;
+            font-size: 30px;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+
+        #left-button:hover,
+        #right-button:hover {
+            background-color: #000000;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .productinfo{
+            display: -webkit-inline-box;
+            gap: 100px;
+            margin-top:10px;
+            font-size: 21px;
+        }
+        .imagedish:hover{
+            cursor:pointer;
+        }
+        .imagedishimg:hover{
+            box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
+        }
+        .advert{
+            margin-top: 150px;
+            display: flex;
+            gap: 70px;
+        }
+        .advertttext{
+            max-width: 600px;
+        }
+        .storeinfo{
+            display: flex;
+            gap: 12px;
+            margin-top:10px;
+            font-size: 21px;
+            margin-left: 24px;
+        }
+
     </style>
+    <script type="text/javascript">
+        const dishesRow = document.querySelector('.dishesrow');
+        const leftButton = document.querySelector('#left-button');
+        const rightButton = document.querySelector('#right-button');
+        const scrollStep = 300;
+
+        leftButton.addEventListener('click', () => {
+            dishesRow.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+        });
+
+        rightButton.addEventListener('click', () => {
+            dishesRow.scrollBy({ left: scrollStep, behavior: 'smooth' });
+        });
+    </script>
 </head>
 <body>
     <div id="app">
@@ -202,6 +313,22 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <footer>
+            <div class="container">
+                <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                    <p class="col-md-4 mb-0 text-body-secondary">© 2023 Company, Inc</p>
+                    <img src="https://img.icons8.com/ios/50/null/kawaii-sushi.png" style="height:50px; width:50px;"/>
+                    <ul class="nav col-md-4 justify-content-end">
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Home</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Features</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Pricing</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">FAQs</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">About</a></li>
+                    </ul>
+                </footer>
+            </div>
+        </footer>
     </div>
 </body>
 </html>
