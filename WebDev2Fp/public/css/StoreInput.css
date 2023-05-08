@@ -1,0 +1,93 @@
+
+.Ricontainer{
+    margin:auto;
+
+}
+
+.Ricontainer .formRs{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+.Ricontainer .formRs form{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+}
+.Ricontainer .formRs form input{
+    width: 501px;
+    height: 40px;
+    padding:9px; 
+    font-family: "Gilroy", "Helvetica", "Arial", "sans-serif";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    border-style: hidden;
+
+    border-radius: 8px;
+    border: 1px solid rgb(184, 184, 184);
+    cursor: text;
+
+}
+.Ricontainer .formRs form input::placeholder{
+    color: rgb(149, 149, 149);
+}
+.Ricontainer .formRs form textarea{
+    width: 501px;
+    height: 85px;
+    padding:9px;
+
+    font-family: "Gilroy", "Helvetica", "Arial", "sans-serif";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    border-style: hidden;
+    border-radius: 8px;
+    border: 1px solid rgb(184, 184, 184);
+    cursor: text;
+  
+}
+.Ricontainer .formRs form textarea:focus,.Ricontainer .formRs form input:focus{
+    outline:none;
+}
+
+.Ricontainer .formRs form button{
+    align-self: center;
+    outline: none;
+    border-radius: 8px;
+    background: #e55;
+    border: none;
+    border: medium none;
+    font-family: "Gilroy", "Helvetica", "Arial", "sans-serif" !important;
+    font-style: normal;
+    line-height: 16px;
+    font-weight: normal;
+    cursor: pointer;
+    font-size: 16px;
+    height: 42px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    -moz-box-pack: center;
+    justify-content: center;
+    -moz-box-align: center;
+    align-items: center;
+}
+
+.Ricontainer .formRs form button:hover{
+    background: #c83535;
+    box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.5);
+}
+.Ricontainer .formRs form label{
+
+    font-size: 17px;
+    line-height: 1.42857143;
+}
+
+
