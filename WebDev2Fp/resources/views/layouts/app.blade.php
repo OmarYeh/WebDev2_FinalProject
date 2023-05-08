@@ -7,7 +7,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title')</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -242,6 +242,8 @@
         }
 
     </style>
+    @yield('css')
+
     <script type="text/javascript">
         const dishesRow = document.querySelector('.dishesrow');
         const leftButton = document.querySelector('#left-button');
@@ -331,4 +333,5 @@
         </footer>
     </div>
 </body>
+@yield('js')
 </html>
