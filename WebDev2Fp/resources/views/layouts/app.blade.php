@@ -243,6 +243,7 @@
 
     </style>
     @yield('css')
+
     <script type="text/javascript">
         const dishesRow = document.querySelector('.dishesrow');
         const leftButton = document.querySelector('#left-button');
