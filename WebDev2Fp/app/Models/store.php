@@ -18,4 +18,8 @@ class store extends Model
     public function getReviews(){
         return $this->hasMany(review::class);
     }
+
+    public function getUser(){
+        return $this->belongsTo(User::class);
+    }
 }

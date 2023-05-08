@@ -13,4 +13,8 @@ class storeController extends Controller
     public function RegisterStore(){
         return view('RegisterStore');
     }
+
+    public function store(Request $requset){
+        
+    }
 }
