@@ -163,6 +163,7 @@
         }
 
         .buttonforcat {
+            text-decoration: none;
             flex-basis: calc(100% - 89%);
             flex-grow: 1;
             background: unset;
@@ -179,6 +180,7 @@
         .buttonforcat:hover {
             box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.25);
             background:#c73535;
+            color:white;
         }
         .productshowcard{
             display: grid;
@@ -194,11 +196,14 @@
             display:flex;
             gap:16px;
             overflow-x: hidden;
-
-
         }
-        #left-button,
-        #right-button {
+        .dishesrow2{
+            display:flex;
+            gap:16px;
+            overflow-x: hidden;
+        }
+        .left-button,
+        .right-button {
             background-color: #ffffff;
             border: none;
             color: #000000;
@@ -207,8 +212,24 @@
             margin: 0 10px;
         }
 
-        #left-button:hover,
-        #right-button:hover {
+        .left-button:hover,
+        .right-button:hover {
+            background-color: #000000;
+            color: #ffffff;
+            cursor: pointer;
+        }
+        .left-button2,
+        .right-button2 {
+            background-color: #ffffff;
+            border: none;
+            color: #000000;
+            font-size: 30px;
+            padding: 10px 20px;
+            margin: 0 10px;
+        }
+
+        .left-button2:hover,
+        .right-button2:hover {
             background-color: #000000;
             color: #ffffff;
             cursor: pointer;
@@ -235,7 +256,7 @@
         }
         .storeinfo{
             display: flex;
-            gap: 12px;
+            gap: 67px;
             margin-top:10px;
             font-size: 21px;
             margin-left: 24px;
@@ -245,18 +266,74 @@
     @yield('css')
 
     <script type="text/javascript">
-        const dishesRow = document.querySelector('.dishesrow');
-        const leftButton = document.querySelector('#left-button');
-        const rightButton = document.querySelector('#right-button');
-        const scrollStep = 300;
 
-        leftButton.addEventListener('click', () => {
-            dishesRow.scrollBy({ left: -scrollStep, behavior: 'smooth' });
+
+        //for first dishes row.
+        document.addEventListener("DOMContentLoaded", function (event) {
+            const btnleft = document.querySelectorAll(".left-button");
+            if (btnleft) {
+                btnleft.forEach((ele, index) => {
+                    ele.addEventListener('click', () => {
+                        var container = document.querySelectorAll(".dishesrow");
+                        const scrollPosition = container[index].scrollLeft - 200;
+                        console.log(scrollPosition);
+                        container[index].scroll({ left: scrollPosition , behavior: "smooth" });
+                        //container[index].scrollLeft = scrollPosition;
+                    });
+                });
+            }
+            const btnRigth = document.querySelectorAll(".right-button");
+            if (btnRigth) {
+                btnRigth.forEach((ele, index) => {
+                    ele.addEventListener('click', () => {
+                        var container = document.querySelectorAll(".dishesrow");
+                        console.log(index, container, container[index]);
+                        const scrollPosition = container[index].scrollLeft + 200;
+
+                        container[index].scroll({ left: scrollPosition, behavior: "smooth" });
+
+                    });
+                });
+            }
         });
 
-        rightButton.addEventListener('click', () => {
-            dishesRow.scrollBy({ left: scrollStep, behavior: 'smooth' });
+        function scrollRight() {
+            var container = document.getElementsByClassName(".dishesrow");
+            container[0].scroll({ left: 200, behavior: "smooth" });
+        }
+    //for second dishes row
+        document.addEventListener("DOMContentLoaded", function (event) {
+            const btnleft = document.querySelectorAll(".left-button2");
+            if (btnleft) {
+                btnleft.forEach((ele, index) => {
+                    ele.addEventListener('click', () => {
+                        var container = document.querySelectorAll(".dishesrow2");
+                        const scrollPosition = container[index].scrollLeft - 200;
+                        console.log(scrollPosition);
+                        container[index].scroll({ left: scrollPosition , behavior: "smooth" });
+                        //container[index].scrollLeft = scrollPosition;
+                    });
+                });
+            }
+            const btnRigth = document.querySelectorAll(".right-button2");
+            if (btnRigth) {
+                btnRigth.forEach((ele, index) => {
+                    ele.addEventListener('click', () => {
+                        var container = document.querySelectorAll(".dishesrow2");
+                        console.log(index, container, container[index]);
+                        const scrollPosition = container[index].scrollLeft + 200;
+
+                        container[index].scroll({ left: scrollPosition, behavior: "smooth" });
+
+                    });
+                });
+            }
         });
+
+        function scrollRight() {
+            var container = document.getElementsByClassName(".dishesrow2");
+            container[0].scroll({ left: 200, behavior: "smooth" });
+        }
     </script>
 </head>
 <body>

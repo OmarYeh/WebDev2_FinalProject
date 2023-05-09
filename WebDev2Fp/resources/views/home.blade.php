@@ -20,6 +20,12 @@
         </div>
         <p style="font-size: 26px;margin-bottom: 38px;margin-top: 8px;font-weight: 700;color: rgb(56, 56, 56);">Choose your cuisine of choice.</p>
         <div class="buttonrow">
+            @foreach($cuisine as $obj)
+                <a  href="{{Route('cuisine',['id'=>$obj->id])}}"class="buttonforcat">
+                    <p style="margin-bottom: 0;">{{$obj->name}}</p>
+                </a>
+            @endforeach
+
             <button class="buttonforcat">
                 <p style="margin-bottom: 0;">Mediterannian</p>
             </button>
@@ -38,31 +44,7 @@
             <button class="buttonforcat">
                 <p style="margin-bottom: 0;">Greek</p>
             </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">name</p>
-            </button><button class="buttonforcat">
-                <p style="margin-bottom: 0;">name</p>
-            </button><button class="buttonforcat">
-                <p style="margin-bottom: 0;">name</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">name</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">name</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">name</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">name</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">name</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">name</p>
-            </button>
+
         </div>
     </div>
     <div class="productshowcard">
@@ -71,8 +53,19 @@
         </div>
         <p style="font-size: 26px;margin-bottom: 45px;margin-top: 8px;font-weight: 700;color: rgb(56, 56, 56);">Top Dishes of the Day.</p>
         <div style="display: flex;overflow-x: hidden;">
-            <button id="left-button">&#8249;</button>
+            <button class="left-button">&#8249;</button>
             <div class="dishesrow">
+                @foreach($food as $obj)
+                    <div class="imagedish">
+                        <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400;">
+                            <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="width:300px; height:250px; border-radius: 18px;margin-left: 0px;" />
+                            <div class="productinfo">
+                                <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
+                                <p style="font-size: 24px;">${{$obj->price}}</p>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
 
                 <div class="imagedish">
                     <a >
@@ -139,7 +132,7 @@
                 </div>
 
             </div>
-        <button id="right-button">&#8250;</button>
+        <button class="right-button">&#8250;</button>
         </div>
     </div>
 
@@ -159,8 +152,20 @@
         </div>
         <p style="font-size: 26px;margin-bottom: 45px;margin-top: 8px;font-weight: 700;color: rgb(56, 56, 56);">Shops Around You.</p>
         <div style="display: flex;overflow-x: hidden;">
-            <button id="left-button">&#8249;</button>
-            <div class="dishesrow">
+            <button class="left-button2">&#8249;</button>
+            <div class="dishesrow2">
+                @foreach($store as $obj)
+                    <div class="imagedish">
+                        <a href="{{Route('store',['id'=>$obj->id])}}" style="text-decoration: none;color: black;font-weight: 400;">
+                            <img class="imagedishimg"src="{{asset($obj->imgsrc)}}" style="width:300px; height:250px; border-radius: 18px;margin-left: 0px;" />
+                            <div class="storeinfo">
+                                <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->storeName}}</p>
+
+                                <p style="font-size: 20px;">{{$obj->Location}}</p>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
 
                 <div class="imagedish">
                     <a >
@@ -229,7 +234,7 @@
                 </div>
 
             </div>
-            <button id="right-button">&#8250;</button>
+            <button class="right-button2">&#8250;</button>
         </div>
     </div>
 

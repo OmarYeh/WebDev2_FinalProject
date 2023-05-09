@@ -25,18 +25,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $food=food::all();
+        $cuisine=cuisine::all();
+        $store=store::all();
+        return view('home')->with(["food"=>$food,"cuisine"=>$cuisine,"store"=>$store]);
     }
 
     public function search(Request $request){
-        $query = $request->input('query');
-        $food = food::where('name', 'LIKE', '%'.$query.'%')->get();
-        $store = store::where('name', 'LIKE', '%'.$query.'%')->get();
-        return view('search', compact('food', 'store'));
+        $food = food::where('name', 'LIKE', '%'.$request->search.'%')->get();
+        $store = store::where('name', 'LIKE', '%'.$request->search.'%')->get();
+        return view('search')->with(["food"=>$food,"store"=>$store]);
     }
 
-    public function GetCuisines($id,Request $request){
-        $query = $request->
-        $cuisine = cuisine::where('name', 'LIKE', '%'.$query.'%')->get();
+    public function foodinfo($id){
+        $data=food::find($id);
+        return view('food')->with("food",$data);
     }
+
+    public function cuisineinfo($id){
+        $data=cuisine::find($id);
+        return view('cuisine')->with("cuisine",$data);
+    }
+    public function storeinfo($id){
+        $data=store::find($id);
+        return view('store')->with("store",$data);
+    }
+
 }
