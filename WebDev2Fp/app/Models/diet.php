@@ -12,4 +12,8 @@ class diet extends Model
     public function getCuisine(){
         return $this->hasMany(cuisine::class);
     }
+
+    public function getFood(){
+        return $this->hasMany(food::class);
+    }
 }

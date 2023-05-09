@@ -10,7 +10,7 @@ class basket extends Model
     use HasFactory;
     public function getUser()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','id');
     }
     
     public function getbasketItem(){

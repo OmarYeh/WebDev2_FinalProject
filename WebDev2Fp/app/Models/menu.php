@@ -11,7 +11,7 @@ class menu extends Model
 
     public function getstore()
     {
-        return $this->belongsTo(store::class);
+        return $this->belongsTo(store::class,'store_id','id');
     }
 
     public function getFood(){
