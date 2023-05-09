@@ -13,6 +13,6 @@ class cuisine extends Model
     }
 
     public function getDiet(){
-        return $this->belongsTo(diet::class);
+        return $this->belongsTo(diet::class,'diet_id','id');
     }
 }

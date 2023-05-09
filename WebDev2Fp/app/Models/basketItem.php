@@ -9,14 +9,14 @@ class basketItem extends Model
 {
     use HasFactory;
     public function getbasket(){
-        return $this->belongsTo(basket::class);
+        return $this->belongsTo(basket::class,'basket_id','id');
     }
 
     public function getfood(){
-        return $this->belongsTo(food::class);
+        return $this->belongsTo(food::class,'food_id','id');
     }
 
     public function getOrder(){
-        return $this->belongsTo(order::class);
+        return $this->belongsTo(order::class,'order_id','id');
     }
 }

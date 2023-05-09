@@ -20,6 +20,14 @@ class store extends Model
     }
 
     public function getUser(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','id');
+    }
+
+    public function getCuisine(){
+        return $this->belongsTo(cuisine::class,'cuisine_id','id');
+    }
+
+    public function getDiet(){
+        return $this->belongsTo(diet::class,'diet_id','id');
     }
 }

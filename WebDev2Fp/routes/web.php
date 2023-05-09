@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 
 use App\Http\Controllers\storeController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CuisineController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('home',[HomeController::class,'index'])->name('home');
+Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('search',[HomeController::class,'search'])->name('home.search');
 Route::get('food/{id}',[HomeController::class,'foodinfo'])->name('food');
 Route::get('cuisine/{id}',[HomeController::class,'cuisineinfo'])->name('cuisine');
 Route::get('store/{id}',[HomeController::class,'storeinfo'])->name('store');
-
+Route::get('cuisine',[CuisineController::class,'AllCuisines'])->name('Allcusisnes');
 Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
