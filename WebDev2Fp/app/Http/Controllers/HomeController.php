@@ -36,7 +36,9 @@ class HomeController extends Controller
 
     public function foodinfo($id){
         $data=food::find($id);
-        return view('food')->with("food",$data);
+        $alldata=food::all();
+        $cuisine = cuisine::find($data->cuisine_id);
+        return view('food')->with(["food"=>$data,"cuisine"=>$cuisine,"alldata"=>$alldata]);
     }
 
     public function cuisineinfo($id){
