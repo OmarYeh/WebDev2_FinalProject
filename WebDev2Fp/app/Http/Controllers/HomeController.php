@@ -22,7 +22,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $food=food::all();
+        $food=food::with('getMenu.getstore')->get();
         $cuisine=cuisine::all();
         $store=store::all();
         return view('home')->with(["food"=>$food,"cuisine"=>$cuisine,"store"=>$store]);
