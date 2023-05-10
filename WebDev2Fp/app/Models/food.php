@@ -11,9 +11,8 @@ class food extends Model
     
     public function getMenu(){
         return $this->belongsTo(menu::class,'menu_id','id');
-    }
-
-
+    } 
+    
     public function getCuisine(){
         return $this->belongsTo(cuisine::class,'cuisine_id','id');
     }

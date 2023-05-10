@@ -1,5 +1,8 @@
 @extends('layouts.app')
-@section('title','Home')
+@section('title', 'Home')
+@section('css')
+<link href="{{ asset('css/homefoodpage.css') }}" rel="stylesheet">
+@endsection
 
 @section('content')
 
@@ -23,8 +26,9 @@
         <p style="font-size: 26px;margin-bottom: 38px;margin-top: 8px;font-weight: 700;color: rgb(56, 56, 56);">Choose your cuisine of choice.</p>
         <div class="buttonrow">
             @foreach($cuisine as $obj)
-                <a  href="{{Route('cuisine',['id'=>$obj->id])}}"class="buttonforcat">
-                    <p style="margin-bottom: 0;">{{$obj->name}}</p>
+                <a  href="{{Route('cuisine',['id'=>$obj->id])}}"class="buttonforcat" style="display:flex;align-items: center;">
+                   <img src="{{$obj->Icon}}" style="height: 49px;margin-right: 8px; ">
+                    <p style="margin-bottom: 0;font-weight: 700;">{{$obj->name}}</p>
                 </a>
             @endforeach
 
@@ -56,19 +60,18 @@
         <p style="font-size: 26px;margin-bottom: 45px;margin-top: 8px;font-weight: 700;color: rgb(56, 56, 56);">Top Dishes of the Day.</p>
         <div style="display: flex;overflow-x: hidden;">
             <button class="left-button">&#8249;</button>
-            <div class="dishesrow">
-                @foreach($food as $obj)
-               
-                    <div class="imagedish">
-                        <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400;">
-                            <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="width:300px; height:250px; border-radius: 18px;margin-left: 0px;" />
-                            <div class="productinfo">
-                                <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
-                                {{$obj->getMenu->getstore->storeName}}
-                                <p style="font-size: 24px;">${{$obj->price}}</p>
-                            </div>
-                        </a>
-                    </div>
+            <div class="dishesrow" style="padding-left: 13px;">
+                @foreach($food as $obj)  
+                      <div class="imagedish" >
+                                <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400; ">
+                                    <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="" />
+                                    <div class="productinfo">
+                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
+                                            <p>{{$obj->store_id->name}}</p>
+                                            <p style="font-size: 24px;">${{$obj->price}}</p>
+                                        </div>
+                                </a>
+                            </div>                     
                 @endforeach
 
                 <div class="imagedish">
@@ -150,6 +153,98 @@
             <p style="font-size: 29px; font-weight: 300;">With us you will grow further and bigger as a human. we will make sure to provide you with the best service possible and with the highest quality of food.</p>
         </div>
     </div>
+    <div class="productshowcard">
+        <div class="searchicon">
+            <img src="https://img.icons8.com/bubbles/100/tax.png" style="width: 90px;height: 90px;"/>
+        </div>
+        <p style="font-size: 26px;margin-bottom: 45px;margin-top: 8px;font-weight: 700;color: rgb(56, 56, 56);">Offers of the week.</p>
+        <div style="display: flex;overflow-x: hidden;">
+            <button class="left-button">&#8249;</button>
+            <div class="dishesrow" style="padding-left: 13px;">
+                @foreach($food as $obj)  
+                      <div class="imagedish" >
+                                <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400; ">
+                                    <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="" />
+                                    <div class="productinfo" style="gap: 50px;">
+                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
+                                            <p>{{$obj->store_id->name}}</p>
+                                            <p style="font-size: 30px; color:red;text-decoration: line-through;margin-right: -33px;">$ old {{$obj->price}}</p>
+                                            <p style="font-size: 24px; color:green">${{$obj->price}}</p>
+                                            
+                                        </div>
+                                </a>
+                            </div>                     
+                @endforeach
+
+                <div class="imagedish">
+                    <a >
+                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
+                        <div class="productinfo" style="gap: 50px;">
+                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
+                            <p style="color:red;text-decoration: line-through;margin-right: -33px;">$50</p>
+                            <p style="color:green">$40</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="imagedish">
+                    <a >
+                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
+                        <div class="productinfo">
+                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
+                            <p>$50</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="imagedish">
+                    <a >
+                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
+                        <div class="productinfo">
+                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
+                            <p>$50</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="imagedish">
+                    <a >
+                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
+                        <div class="productinfo">
+                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
+                            <p>$50</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="imagedish">
+                    <a >
+                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
+                        <div class="productinfo">
+                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
+                            <p>$50</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="imagedish">
+                    <a >
+                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
+                        <div class="productinfo">
+                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
+                            <p>$50</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="imagedish">
+                    <a >
+                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
+                        <div class="productinfo">
+                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
+                            <p>$50</p>
+                        </div>
+                    </a>
+                </div>
+
+            </div>
+        <button class="right-button">&#8250;</button>
+        </div>
+    </div>
 
     <div class="productshowcard" style="margin-top:150px;">
         <div class="searchicon">
@@ -158,7 +253,7 @@
         <p style="font-size: 26px;margin-bottom: 45px;margin-top: 8px;font-weight: 700;color: rgb(56, 56, 56);">Shops Around You.</p>
         <div style="display: flex;overflow-x: hidden;">
             <button class="left-button2">&#8249;</button>
-            <div class="dishesrow2">
+            <div class="dishesrow2" style="padding-left: 13px;">
                 @foreach($store as $obj)
                     <div class="imagedish">
                         <a href="{{Route('store',['id'=>$obj->id])}}" style="text-decoration: none;color: black;font-weight: 400;">

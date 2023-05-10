@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\food;
 use App\Models\store;
 use App\Models\cuisine;
+use App\Models\menu;
+
 class HomeController extends Controller
 {
     /**
@@ -21,17 +23,17 @@ class HomeController extends Controller
      * @return \Illuminate\Contracts\Support\Renderable
      */
     public function index()
-    {
-        $food=food::with('getMenu.getstore')->get();
+    {  
+        $menu=menu::all();
+        $food=food::all();
         $cuisine=cuisine::all();
         $store=store::all();
-        return view('home')->with(["food"=>$food,"cuisine"=>$cuisine,"store"=>$store]);
+        return view('home')->with(["food"=>$food,"cuisine"=>$cuisine,"store"=>$store,"menu"=>$menu]);
     }
 
     public function search(Request $request){
         $food = food::where('name', 'LIKE', '%'.$request->search.'%')->get();
-        $store = store::where('name', 'LIKE', '%'.$request->search.'%')->get();
-        return view('search')->with(["food"=>$food,"store"=>$store]);
+        return view('search')->with(["food"=>$food]);
     }
 
     public function foodinfo($id){
