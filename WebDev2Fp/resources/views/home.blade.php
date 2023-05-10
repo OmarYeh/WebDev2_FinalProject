@@ -63,11 +63,11 @@
             <div class="dishesrow" style="padding-left: 13px;">
                 @foreach($food as $obj)  
                       <div class="imagedish" >
-                                <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400; ">
+                                <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400; text-decoration: none;">
                                     <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="" />
-                                    <div class="productinfo">
+                                    <div class="productinfo" style="gap: 40px;display: flex;align-items: center;">
                                             <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
-                                            <p>{{$obj->store_id->name}}</p>
+                                            <p style="font-weight:300;">{{$obj->getStore->storeName}}</p>
                                             <p style="font-size: 24px;">${{$obj->price}}</p>
                                         </div>
                                 </a>
@@ -163,12 +163,12 @@
             <div class="dishesrow" style="padding-left: 13px;">
                 @foreach($food as $obj)  
                       <div class="imagedish" >
-                                <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400; ">
+                                <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400;text-decoration: none; ">
                                     <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="" />
-                                    <div class="productinfo" style="gap: 50px;">
+                                    <div class="productinfo" style="gap: 22px;display: flex;align-items: center;">
                                             <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
-                                            <p>{{$obj->store_id->name}}</p>
-                                            <p style="font-size: 30px; color:red;text-decoration: line-through;margin-right: -33px;">$ old {{$obj->price}}</p>
+                                            <p style="font-weight:300;">{{$obj->getStore->storeName}}</p>
+                                            <p style="font-size: 24px; color:red;text-decoration: line-through;margin-right: -10px;">${{$obj->price}}</p>
                                             <p style="font-size: 24px; color:green">${{$obj->price}}</p>
                                             
                                         </div>

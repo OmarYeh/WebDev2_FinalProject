@@ -28,6 +28,7 @@ class HomeController extends Controller
         $food=food::all();
         $cuisine=cuisine::all();
         $store=store::all();
+        
         return view('home')->with(["food"=>$food,"cuisine"=>$cuisine,"store"=>$store,"menu"=>$menu]);
     }
 
