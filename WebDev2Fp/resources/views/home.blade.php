@@ -75,6 +75,7 @@
                 @endforeach
 
                 <div class="imagedish">
+                    
                     <a >
                         <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
                         <div class="productinfo">

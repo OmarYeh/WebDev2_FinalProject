@@ -27,4 +27,8 @@ class store extends Model
         return $this->belongsTo(cuisine::class,'cuisine_id','id');
     }
 
+    public function getFoods(){
+        return $this->hasMany(food::class);
+    }
+
 }
