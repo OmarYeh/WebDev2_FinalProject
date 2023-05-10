@@ -22,14 +22,15 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('search',[HomeController::class,'search'])->name('home.search');
 Route::get('food/{id}',[HomeController::class,'foodinfo'])->name('food');
 Route::get('cuisine/{id}',[HomeController::class,'cuisineinfo'])->name('cuisine');
-Route::get('store/{id}',[HomeController::class,'storeinfo'])->name('store');
+Route::get('store/{id}',[storeController::class,'index'])->name('store');
 Route::get('cuisine',[CuisineController::class,'AllCuisines'])->name('Allcusisnes');
+Route::get('cuisine/store/{id}',[storeController::class,'storeinfo'])->name('storeC');
 Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware(['auth','verified'])->group(function () {
-    //Route::get('AddStore', [storeController::class, 'RegisterStore'])->name('RstoreInput');
-
+    Route::get('AddStore', [storeController::class, 'RegisterStore'])->name('RstoreInput');
+    Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
 });
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -37,9 +38,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-
-
-Route::get('AddStore', [storeController::class, 'RegisterStore'])->name('RstoreInput');
 
 require __DIR__.'/auth.php';
 

@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\userroles;
+use App\Models\role;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -42,7 +44,7 @@ class RegisteredUserController extends Controller
             'birthday' => ['required', 'date', 'before_or_equal:' . now()->subYears(10)->format('Y-m-d')],
             'gender' => ['required'],
             'password' => ['required', 'string', 'min:8','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/','max:16', 'confirmed'],
-            'phonenumber' =>['required','integer'],
+            'phonenumber' =>['required','numeric'],
         ]);
         $birthday = new DateTime($request->birthday);
         $today = new DateTime();
@@ -58,6 +60,11 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
+        $userroles = new userroles();
+        $userroles->user_id = $user->id;
+        $role = role::where('name','Client')->first();
+        $userroles->role_id = $role->id;
+        $userroles->save();
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);

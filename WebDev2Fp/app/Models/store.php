@@ -27,7 +27,4 @@ class store extends Model
         return $this->belongsTo(cuisine::class,'cuisine_id','id');
     }
 
-    public function getDiet(){
-        return $this->belongsTo(diet::class,'diet_id','id');
-    }
 }
