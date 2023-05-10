@@ -1,83 +1,68 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="eng">
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+<Head>
+    <meta charset="utf-8">
+    <title>Register</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="stylesheet" href="{{ asset('css/styleRL.css') }}">
+</Head>
+<body>
+    <form method="POST" action="{{ route('register') }}">
+        @csrf
+        <input  type="text" name="name" placeholder="ex: Hussein Hammour, Hares Saade" value="{{old('name')}}" />
+                @if ($errors->has('name'))
+                 <span class="Error-msg" role="alert">
+                           <strong>{{ $errors->first('name') }}</strong>
+                 </span>
+                @endif
+                <input class="email" type="email" name="email" placeholder="Email" value="{{old('email')}}"/>
+                @if ($errors->has('email'))
+                 <span class="Error-msg" role="alert">
+                           <strong>{{ $errors->first('email') }}</strong>
+                 </span>
+                @endif  
+                <input  type="password" name="password" placeholder="Password" />
+                @if ($errors->has('password'))
+                 <span class="Error-msg" role="alert">
+                           <strong>{{ $errors->first('password') }}</strong>
+                 </span>
+                @endif
+                <input name="password_confirmation" class="cpass" type="password" placeholder="Confirm Password" />
+                @if ($errors->has('password_confirmation'))
+                 <span class="Error-msg" role="alert">
+                           <strong>{{ $errors->first('password_confirmation') }}</strong>
+                 </span>
+                 @endif
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
-                        @csrf
+                 <input type="date" id="birthday" name="birthday" value="{{old('birthday')}}">
+                @if ($errors->has('birthday'))
+                 <span class="Error-msg" role="alert">
+                           <strong>{{ $errors->first('birthday') }}</strong>
+                 </span>
+                @endif
 
-                        <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
+                <input type="radio" id="Male" name="gender" value="Male">
+                      <label for="Male">Male</label>
+                      <input type="radio" id="Female" name="gender" value="Female">
+                      <label for="Female">Female</label>
+                      <input type="radio" id="PreferN" name="gender" value="null">
+                      <label for="PreferN">Perfer not</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}"  autocomplete="name" autofocus>
+                    @if ($errors->has('gender'))
+                 <span class="Error-msg" role="alert">
+                           <strong>{{ $errors->first('gender') }}</strong>
+                 </span>
+                @endif
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+                <input type="text" name="phonenumber" value="{{old('phonenumber')}}">
+                @if($errors->has('phonenumber'))
+                <span class="Error-msg" role="alert">
+                           <strong>{{ $errors->first('phonenumber') }}</strong>
+                 </span>
+                @endif
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}"  autocomplete="email">
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password"  autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Confirm Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control @error('password_confirm) is-invalid @enderror" name="password_confirm"  autocomplete="new-password">
-
-                                @error('password_confirm')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+                <button type="submit">Register</button>
+    </form>
+</body>
+</html>

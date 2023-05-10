@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
-
+use DateTime;
 class RegisteredUserController extends Controller
 {
     /**
@@ -32,16 +32,28 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required',  Rules\Password::defaults()],
-            'password_confirm' => ['required','same:password' ],
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                'unique:users',
+            ],
+            'birthday' => ['required', 'date', 'before_or_equal:' . now()->subYears(10)->format('Y-m-d')],
+            'gender' => ['required'],
+            'password' => ['required', 'string', 'min:8','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,16}$/','max:16', 'confirmed'],
+            'phonenumber' =>['required','integer'],
         ]);
-
+        $birthday = new DateTime($request->birthday);
+        $today = new DateTime();
+        $age = $today->diff($birthday)->y;
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            
+            'Gender' =>$request->gender,
+            'Age' =>$age,
+            'phone_number'=>$request->phonenumber
         ]);
 
         event(new Registered($user));
