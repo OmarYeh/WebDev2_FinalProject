@@ -58,11 +58,13 @@
             <button class="left-button">&#8249;</button>
             <div class="dishesrow">
                 @foreach($food as $obj)
+               
                     <div class="imagedish">
                         <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400;">
                             <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="width:300px; height:250px; border-radius: 18px;margin-left: 0px;" />
                             <div class="productinfo">
                                 <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
+                                {{$obj->getMenu->getstore->storeName}}
                                 <p style="font-size: 24px;">${{$obj->price}}</p>
                             </div>
                         </a>
@@ -70,6 +72,7 @@
                 @endforeach
 
                 <div class="imagedish">
+                    
                     <a >
                         <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
                         <div class="productinfo">
