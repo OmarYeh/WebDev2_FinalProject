@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('title', 'Food')
+@section('css')
+<link href="{{ asset('css/homefoodpage.css') }}" rel="stylesheet">
+@endsection
 @section('content')
 
     <script type="text/javascript">
