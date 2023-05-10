@@ -25,6 +25,7 @@
             font-size: 14px;
             line-height: 1.42857143;
             color: #333;
+            background-color:#fdfdf7;
         }
         input, button, select, textarea {
             font-family: inherit;
