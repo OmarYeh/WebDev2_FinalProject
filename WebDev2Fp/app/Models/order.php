@@ -12,7 +12,15 @@ class order extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
 
-    public function getFood(){
-        return $this->hasMany(basketItem::class);
+    public function getfood()
+    {
+        return $this->belongsToMany(food::class,'orderitems','order_id','food_id');
+        
+    }
+
+    public function getstore()
+    {
+        return $this->belongsTo(store::class,'store_id','id');
+        
     }
 }

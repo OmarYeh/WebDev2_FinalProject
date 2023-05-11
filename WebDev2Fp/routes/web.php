@@ -5,7 +5,9 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\storeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CuisineController;
+use App\Http\Controllers\StoreDashboardController;
 use App\Http\Controllers\BasketController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -44,6 +46,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::middleware(['auth','verified'])->group(function () {
+    Route::get('/Store/Dashboard', [StoreDashboardController::class, 'index'])->name('sdindex');
+    Route::get('/Store/Dashboard/Analytic', [StoreDashboardController::class, 'analysis'])->name('sdindexA');
+
+    Route::get('/Store/Dashboard/Menu', [StoreDashboardController::class, 'menu'])->name('sdindexMenu');
+    Route::get('/Store/Dashboard/offers', [StoreDashboardController::class, 'analysis'])->name('sdindexOfers');
+    Route::get('/Store/Dashboard/Platdejour', [StoreDashboardController::class, 'analysis'])->name('Addplatdujour');
+    Route::get('/Store/Dashboard/Orders', [StoreDashboardController::class, 'analysis'])->name('sdindexOrders');
+    Route::get('/Store/Dashboard/Delvery', [StoreDashboardController::class, 'analysis'])->name('sdindexManageDe');
+});
 
 require __DIR__.'/auth.php';
 
