@@ -16,7 +16,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 
-
 class BasketController extends Controller
 {
 
@@ -24,7 +23,8 @@ class BasketController extends Controller
     {  
         $user = Auth::user();
         $basket = basket::where('user_id',$user->id)->first();     
-        $basketitems=basketItems::where('basket_id',$basket->id);
+        $basketitems=basketItems::where('basket_id',$basket->id)->get(); 
+        
         return view('basket')->with(["basket"=>$basket,"basketitems"=>$basketitems]);
     }
 
@@ -38,7 +38,7 @@ class BasketController extends Controller
         $data->quantity=$request->input('Quantity');
         $data->food_id = $food->id;
         $data->basket_id=$basket->id;
-        $data->order_id=$order->id;
+        
         $data->save();
 
         $basket = basket::where('user_id',$user->id)->first();
@@ -51,13 +51,21 @@ class BasketController extends Controller
 
     }
 
-    public function clearbasket()
+    public function clearbasketitem()
     {
 
     }
 
-    public function updatebasket()
+    public function updatebasket($id,Request $request)
     {
+        $obj = food::find($id);
+        $basketitems=basketItems::where('food_id',$obj->id);
+        $basket=basket::where('user_id',$user->id)->first();
 
+        $basketitems->quantity = $request->input('Quantity');
+        $basketitems->food_id = $obj->id;
+        $basketitems->basket_id=$basket->id;
+        $basketitems->save();
+        return "ok";
     }
 }

@@ -9,7 +9,7 @@
 <div class="AllCuisines">
     
     @foreach($cuisines as $obj)
-    <a href="{{Route('storeC',['id'=>$obj->id])}}">
+    <a href="{{Route('cuisine',['id'=>$obj->id])}}">
         <div class="Cusi" style="background-image:url('{{$obj->imgsrc}}')">
             <p>{{$obj->name}}</p>
         </div>

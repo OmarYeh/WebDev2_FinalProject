@@ -3,25 +3,168 @@
     justify-content: center;
 }
 
-.backgroundarea{
-    background:#e55;
+.backgroundarea {
+    position: relative; /* Set the position to relative so that the child elements can be positioned relative to it */
     width: 97%;
-    border-radius: 10px;
     height: 100%;
-}
+    overflow: hidden; /* Hide the overflowing content */
+    border-radius: 10px;
+  }
+  
+  .backgroundarea::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('https://images.pexels.com/photos/1640770/pexels-photo-1640770.jpeg?cs=srgb&dl=pexels-ella-olsson-1640770.jpg&fm=jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.7; /* Set the opacity of the background image */
+    z-index: -1; /* Set the z-index to be behind the content */
+    background-position: center;
+  }
 
 .baskettitle{
-    color:white;
+    color:rgb(238, 85, 85);
     font-size: 50px;
     font-weight: 600;
     font-style: italic;
-    margin-top: 50px;
-    margin-bottom: 20px;
+    margin-bottom: 40px;
     text-align: center;
 }
 .basketitemsborder{
     background-color: white;
     border-radius: 10px;
+    width: 77%;
+    margin-bottom: 20px;
+}
+.imgiconthing{
     display: flex;
     justify-content: center;
+}
+.basbasbasbas{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.imagedish{
+    display: flex;
+    align-items: center;
+    padding: 8px;
+}
+.productinfo{
+    display: flex;
+    align-items: center;
+    gap: 84px;
+    width: 35%;
+    margin-left: 24px;
+}
+
+.quantity p {
+    font-size: 25px;
+    color: #005500;
+}
+
+.quantity {
+    display: flex;
+}
+
+.counter {
+    width: 144px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    margin-bottom: 10px;
+    border: 1px solid #005500;
+    margin-left: 20px;
+    border-radius: 21px;
+}
+
+.counter input {
+    width: 50px;
+    border: 0;
+    line-height: 40px;
+    font-size: 20px;
+    text-align: center;
+    background: #005500;
+    color: #fff;
+    appearance: none;
+    outline: 0;
+}
+
+.counter span {
+    display: block;
+    font-size: 25px;
+    padding: 0 15px;
+    cursor: pointer;
+    color: #005500;
+    user-select: none;
+}
+
+.editbutton{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.editbutton button{
+    border: none;
+    padding: 8px;
+    font-size: 20px;
+    width: 70px;
+    border-radius: 6px;
+    background: rgb(238, 85, 85);
+    color: white;
+    font-weight: 600;
+    margin: 0 13px;
+}
+
+.editbutton button:hover{
+    background: rgb(194, 56, 56);
+}
+
+.deletebutton{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.deletebutton button{
+    border: none;
+    padding: 8px;
+    font-size: 20px;
+    width: 87px;
+    border-radius: 6px;
+    background: rgb(238, 85, 85);
+    color: white;
+    font-weight: 600;
+    margin-right:13px;
+}
+
+.deletebutton button:hover{
+    background: rgb(194, 56, 56);
+}
+
+.storeitem{
+    background: rgb(238, 85, 85);
+    width: 77%;
+    align-items: center;
+    gap: 18px;
+    color:white;
+    display: flex;
+    padding: 7px;
+    border-radius: 10px;
+}
+.dadada{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.storeimg{
+    margin-left: 13px;
+    margin-top: 4px;
+}
+.storeinfo{
+    display:block;
 }

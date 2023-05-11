@@ -25,10 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('search',[HomeController::class,'search'])->name('home.search');
 Route::get('food/{id}',[HomeController::class,'foodinfo'])->name('food');
-Route::get('cuisine/{id}',[HomeController::class,'cuisineinfo'])->name('cuisine');
 Route::get('store/{id}',[storeController::class,'index'])->name('store');
 Route::get('cuisine',[CuisineController::class,'AllCuisines'])->name('Allcusisnes');
-Route::get('cuisine/store/{id}',[storeController::class,'storeinfo'])->name('storeC');
+Route::get('cuisine/{id}',[CuisineController::class,'cuisineinfo'])->name('cuisine');
 
 
 Route::get('dashboard', function () {
@@ -39,7 +38,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
     Route::get('basket',[BasketController::class,'index'])->name('basket');
     Route::post('AddBasket',[BasketController::class,'createbasket'])->name('AddBasket');
-
+    Route::post('updateBasket',[BasketController::class,'updatebasket'])->name('updateBasket');
 });
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');

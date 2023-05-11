@@ -1,0 +1,43 @@
+.testimage {
+    position: relative; /* Set the position to relative so that the child elements can be positioned relative to it */ 
+    overflow: hidden; /* Hide the overflowing content */
+    height: 300px;
+    z-index: 0;
+    display: flex;
+align-items: center;
+justify-content: center;
+  }
+  
+  .testimage::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    opacity: 0.8;
+    z-index: -1; 
+    background-position: center;
+  }
+  .cuisinename{
+    text-align: center;
+    font-size: 57px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 10px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
+  }
+  
+  .bottomsection{
+    display:flex;
+    margin-top: 50px;
+  }
+  .imagesthings{
+    margin-left: 53px;
+    display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  }
+  
