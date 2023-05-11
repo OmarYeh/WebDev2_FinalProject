@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class basket extends Model
 {
+    protected $fillable = [
+        'user_id',
+    ];
     use HasFactory;
     public function getUser()
     {
@@ -16,4 +19,10 @@ class basket extends Model
     public function getbasketItem(){
         return $this->hasMany(basketItem::class);
     }
+    
+
+    
+
+
+
 }

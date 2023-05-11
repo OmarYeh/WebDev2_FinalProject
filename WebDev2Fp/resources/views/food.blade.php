@@ -57,38 +57,35 @@
 
     <div class="main-card" style="margin-left: 83px;">
         <img src="{{asset($food->imgsrc)}}" style="width: 400px;height: 400px;border-radius: 10px;"/>
-        <form method="post" >
+        
             <div class="side-card" style="margin-left: 58px;">
                 <p class="title" style="  font-size: 53px;font-weight: 700;color:#e55">{{$food->name}}</p>
                 <p class="price" style="color: black;">${{$food->price}}</p>
                 <a href="{{Route('cuisine',['id'=>$cuisine->id])}}" style="font-size: 26px;text-decoration: none;">Cuisine: {{$cuisine->name}}</a>
-
+                <p><a href="{{Route('store',['id'=>$store->id])}}" style="font-size: 26px;text-decoration: none;">Store: {{$store->storeName}}</a></p>
                 <div class="extras" style="margin-top: 24px;">
 
-                    <div class="quantity">
-                        <p style="color:black">Quantity:</p>
-
-                        <div class="counter" style="border: 1px solid #e55;">
-                            <span class="down" onClick='decreaseCount(event, this)' style="color:#e55">-</span>
-                            <input type="text" name="Quntity" value="1" style="background:#e55">
-                            <span class="up" onClick='increaseCount(event, this)' style="color:#e55">+</span>
-                        </div>
-                    </div>
+                    
                 </div>
                 <div class="cartdiv">
-                    <button class="addtocart">
-                        <div class="pretext">
-                            <i class="fas fa-cart-plus"></i> ADD TO CART
-                        </div>
-
-                        <div class="pretext done" style="background:#e55">
-                            <div class="posttext" style="background:#e55"><i class="fas fa-check"></i> ADDED</div>
-                        </div>
-
-                    </button>
+                                        
+                <form method="post" action="{{ Route('AddBasket') }}" enctype="multipart/form-data" >
+                            @csrf    
+                            <div class="quantity">
+                                <p style="color:black">Quantity:</p>
+                                <div class="counter" style="border: 1px solid #e55;">
+                                    <span class="down" onClick='decreaseCount(event, this)' style="color:#e55">-</span>
+                                    <input type="text" name="Quantity" value="1" style="background:#e55">
+                                    <span class="up" onClick='increaseCount(event, this)' style="color:#e55">+</span>
+                                </div>
+                            </div>                       
+                            <input type="hidden" name="food_name" value="{{ $food->name }}">
+                            <button type="submit" class="buttonforadd"><i class="fas fa-cart-plus"></i> ADD TO CART</button>
+                        </form>
+                                     
                 </div>
             </div>
-        </form>
+        
         <div class="suggested" style="margin-left: 141px;">
             <p style="margin-left: 53px; font-size: 30px;color: rgb(238, 85, 85);">Suggested Items</p>
             <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center" style="padding-top: 7px !important;">
