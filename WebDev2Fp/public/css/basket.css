@@ -1,0 +1,27 @@
+.backbackgroundarea{
+    display: flex;
+    justify-content: center;
+}
+
+.backgroundarea{
+    background:#e55;
+    width: 97%;
+    border-radius: 10px;
+    height: 100%;
+}
+
+.baskettitle{
+    color:white;
+    font-size: 50px;
+    font-weight: 600;
+    font-style: italic;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.basketitemsborder{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+}
