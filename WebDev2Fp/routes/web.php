@@ -6,6 +6,7 @@ use App\Http\Controllers\storeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\StoreDashboardController;
+use App\Http\Controllers\FoodController;
 use App\Http\Controllers\BasketController;
 
 use Illuminate\Support\Facades\Route;
@@ -56,6 +57,6 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/Store/Dashboard/Orders', [StoreDashboardController::class, 'analysis'])->name('sdindexOrders');
     Route::get('/Store/Dashboard/Delvery', [StoreDashboardController::class, 'analysis'])->name('sdindexManageDe');
 });
-
+Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
 require __DIR__.'/auth.php';
 
