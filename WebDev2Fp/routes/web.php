@@ -34,8 +34,8 @@ Route::get('dashboard', function () {
 Route::middleware(['auth','verified'])->group(function () {
     Route::get('AddStore', [storeController::class, 'RegisterStore'])->name('RstoreInput');
     Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
-    Route::get('basket/{id}',[BasketController::class,'index'])->middleware(['auth', 'verified'])->name('basket');
-    Route::post('AddBasket',[BasketController::class,'createbasket'])->middleware(['auth', 'verified'])->name('AddBasket');
+    Route::get('basket',[BasketController::class,'index'])->name('basket');
+    Route::post('AddBasket',[BasketController::class,'createbasket'])->name('AddBasket');
 
 });
 Route::middleware('auth')->group(function () {
