@@ -4,6 +4,7 @@
 <link href="{{ asset('css/basket.css') }}" rel="stylesheet">
 @endsection
 @section('content')
+
 <div class="backbackgroundarea">
     <div class="backgroundarea">
         <p class="baskettitle">Your Basket:</p>
@@ -14,4 +15,5 @@
         </div>
     </div>
 </div>
+
 @endsection

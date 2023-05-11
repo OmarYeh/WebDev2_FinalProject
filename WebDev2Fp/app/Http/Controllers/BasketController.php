@@ -19,10 +19,11 @@ use Illuminate\Support\Facades\Redirect;
 
 class BasketController extends Controller
 {
+
     public function index()
     {  
         $user = Auth::user();
-        $basket = basket::where('user_id',$user->id)->first();
+        $basket = basket::where('user_id',$user->id)->first();     
         $basketitems=basketItems::where('basket_id',$basket->id);
         return view('basket')->with(["basket"=>$basket,"basketitems"=>$basketitems]);
     }
@@ -43,7 +44,10 @@ class BasketController extends Controller
         $basket = basket::where('user_id',$user->id)->first();
         $basketitems=basketItems::where('basket_id',$basket->id);
 
+
         return Redirect::route('basket');
+
+
 
     }
 
