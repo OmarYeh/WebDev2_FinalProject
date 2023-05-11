@@ -665,3 +665,17 @@ i {
 .imagedishimg:hover {
     transform: scale(1.1);
 }
+
+.buttonforadd{
+    width: 258px;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    font-size: 26px;
+    margin-top: 12px;
+    background: rgb(238, 85, 85);
+    color: white;
+}
+.buttonforadd:hover{
+    background-color: #c83535;
+}

@@ -6,6 +6,8 @@ use App\Http\Controllers\storeController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\StoreDashboardController;
+use App\Http\Controllers\BasketController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,12 +28,17 @@ Route::get('cuisine/{id}',[HomeController::class,'cuisineinfo'])->name('cuisine'
 Route::get('store/{id}',[storeController::class,'index'])->name('store');
 Route::get('cuisine',[CuisineController::class,'AllCuisines'])->name('Allcusisnes');
 Route::get('cuisine/store/{id}',[storeController::class,'storeinfo'])->name('storeC');
+
+
 Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware(['auth','verified'])->group(function () {
     Route::get('AddStore', [storeController::class, 'RegisterStore'])->name('RstoreInput');
     Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
+    Route::get('basket',[BasketController::class,'index'])->name('basket');
+    Route::post('AddBasket',[BasketController::class,'createbasket'])->name('AddBasket');
+
 });
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
