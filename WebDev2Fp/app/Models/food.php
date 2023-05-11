@@ -26,9 +26,23 @@ class food extends Model
         return $this->belongsTo(store::class,'store_id','id');
     }
 
-    public function getBakestItem(){
-        return $this->hasMany(basketItem::class);
+    public function getbaskets(){
+        return $this->belongsToMany(basket::class,'basket_items','food_id','basket_id');
     }
 
+    public function getCategory(){
+        return $this->belongsTo(category::class,'category_id','id');
+    }
+
+    public function getOffers()
+    {
+        return $this->belongsToMany(offer::class,'offerfoods','food_id','offer_id');
+        
+    }
+    public function getOrders()
+    {
+        return $this->belongsToMany(order::class,'orderitems','food_id','order_id');
+        
+    }
 
 }

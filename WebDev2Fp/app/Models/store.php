@@ -23,12 +23,21 @@ class store extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
 
+
     public function getCuisine(){
         return $this->belongsTo(cuisine::class,'cuisine_id','id');
     }
 
     public function getFoods(){
         return $this->hasMany(food::class);
+    }
+
+    public function getOffer(){
+        return $this->hasMany(offer::class);
+    }
+
+    public function getOrders(){
+        return $this->hasMany(order::class);
     }
 
 }

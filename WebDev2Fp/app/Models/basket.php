@@ -13,7 +13,7 @@ class basket extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
     
-    public function getbasketItem(){
-        return $this->hasMany(basketItem::class);
+    public function getfood(){
+        return $this->belongsToMany(food::class,'basket_items','basket_id','food_id');
     }
 }

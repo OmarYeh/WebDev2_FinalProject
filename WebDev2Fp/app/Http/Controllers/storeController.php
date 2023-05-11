@@ -13,6 +13,10 @@ class storeController extends Controller
         $store = store::find($id);
         return view('store')->with('store',$store);
     }
+    public function AllStores(){
+        $stores = store::all();
+        return view('Allstores')->with('stores',$stores);
+    }
 
     public function RegisterStore(){
         $allcuisines = cuisine::all();
@@ -46,6 +50,6 @@ class storeController extends Controller
         $menu = new menu();
         $menu->store_id = $store->id;
         $menu->save();
-        return "ok";
+        return view('store')->with('store',$store);
     }
 }
