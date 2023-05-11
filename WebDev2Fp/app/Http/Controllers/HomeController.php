@@ -52,10 +52,7 @@ class HomeController extends Controller
         return view('food')->with(["food"=>$data,"cuisine"=>$cuisine,"alldata"=>$alldata,"store"=>$store,"userId"=>$userId]);
     }
 
-    public function cuisineinfo($id){
-        $data=cuisine::find($id);
-        return view('cuisine')->with("cuisine",$data);
-    }
+    
     public function storeinfo($id){
         $data=store::find($id);
         return view('store')->with("store",$data);

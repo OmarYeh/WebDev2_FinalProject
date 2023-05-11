@@ -16,21 +16,21 @@ class FoodController extends Controller
         $allcuisine = cuisine::All();
         $alldiet = diet::All();
         $query = $request->input('query');
-    $cuisine_id = $request->input('cuisine_id');
-    $diet_id = $request->input('diet_id');
-    
-    $foods = food::where('name', 'like', '%' . $query . '%');
-    
-    if ($cuisine_id) {
-        $foods->where('cuisine_id', $cuisine_id);
-    }
-    
-    if ($diet_id) {
-        $foods->where('diet_id', $diet_id);
-    }
-    
-    $food = $foods->get();
-    
+        $cuisine_id = $request->input('cuisine_id');
+        $diet_id = $request->input('diet_id');
+        
+        $foods = food::where('name', 'like', '%' . $query . '%');
+        
+        if ($cuisine_id) {
+            $foods->where('cuisine_id', $cuisine_id);
+        }
+        
+        if ($diet_id) {
+            $foods->where('diet_id', $diet_id);
+        }
+        
+        $food = $foods->get();
+        
         return view('foodSearch')->with(['food'=>$food,'allcuisine'=>$allcuisine,'alldiet'=>$alldiet]);
     }
 }
