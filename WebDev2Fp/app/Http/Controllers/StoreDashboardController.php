@@ -5,19 +5,25 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\menu;
+use App\Models\store;
 class StoreDashboardController extends Controller
 {
     public function index(){
-        return view('dashboardStore');
+        $userid = Auth::id();
+        $store = store::where(['user_id'=>$userid])->first();
+        return view('dashboardStore')->with('store',$store);
     }
 
     public function analysis(){
-        return view('StoreDashboad.SDanalytc');
+        $userid = Auth::id();
+        $store = store::where(['user_id'=>$userid])->first();
+        return view('StoreDashboad.SDanalytc')->with('store',$store);
     }
 
     public function menu(){
-        $user = Auth::user(); 
-        return view('StoreDashboad.SDmenu')->with('user',$user );
+        $userid = Auth::id();
+        $store = store::where(['user_id'=>$userid])->first();
+        return view('StoreDashboad.SDmenu')->with('store',$store);
     }
 
     public function platdejour(){

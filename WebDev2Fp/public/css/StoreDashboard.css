@@ -1,0 +1,122 @@
+*{
+    font-family: Satoshi;
+    font-size: 17px;
+    line-height: 1.42857143;
+    border: 2px solid blue;
+
+}
+body{
+    
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    background-color:#fdfdf7;
+    color: rgb(255, 255, 255);
+}
+.left-nav{
+    flex:1;
+    display: flex;
+    flex-direction: column;
+    padding-top:50px;
+    align-items: center;
+    background-color: #e55;
+    min-height:93.4vh;
+    gap:17px;
+}
+
+.sd{
+    font-family: Satoshi;
+    margin-left: 10px;
+    width:95%;
+    text-align:center;
+    cursor: pointer;
+
+
+}
+
+.clicked{
+    background:#fdfdf7;
+    color:rgb(92, 92, 92);
+    border-top-left-radius: 15px;
+    border-bottom-left-radius: 15px;
+    border-top-right-radius: -15px;
+    border-bottom-right-radius: -15px;
+    position: relative;
+
+}
+
+.clicked::before{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 0;
+    bottom:100%;
+    background-color: #e55;
+    border-bottom-right-radius: 13px;
+    box-shadow: 0 17px 0 #fdfdf7;
+}
+
+.clicked::after{
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 0;
+    top:100%;
+    background-color: #e55;
+    border-top-right-radius: 13px;
+    box-shadow: 0 -17px 0 #fdfdf7;
+}
+
+
+.rigth-Conatiner{
+    flex:6;
+    display: flex;
+    flex-direction: column;
+    align-items:  flex-start;
+    color:rgb(92, 92, 92);
+}
+.conatiner{
+    margin: 25px 55px;
+
+}
+.header-content{
+    min-width: 1200px;
+    border-bottom: 2px solid rgb(183, 186, 189);
+    display: flex;
+    flex-direction: row;
+    justify-content: first baseline;
+    align-content: center;
+    padding-bottom: 15px;
+    gap:55px;
+}
+.storeTitle {
+    font-size: 30px;
+    font-weight: 600;
+}
+.storeloc {
+    margin-top: -20px;
+    font-size: 17px;
+    color:rgb(150, 150, 150);
+}
+#im{
+    border-radius: 50%;
+}
+
+.content{
+    display: flex;
+    flex-direction: row;
+    gap:25px
+}
+.topSell{
+    width:350px;
+    gap:15px;
+    background-color: red;
+}
+.food{
+
+    background-color: white;
+    width: 100%;
+}
