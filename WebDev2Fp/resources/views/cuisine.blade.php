@@ -45,6 +45,7 @@
             @if (isset($storeresult) && count($storeresult) > 0)
                
                         @foreach($storeresult as $storeresult)
+                            @if($storeresult->cuisine_id == $cuisine->id)
                             <div class="imagedish">
                                 <a href="{{Route('store',['id'=>$storeresult->id])}}" style="text-decoration: none;color: black;font-weight: 400;">
                                     <img class="imagedishimg"src="{{asset($storeresult->imgsrc)}}" style="width:300px; height:250px; border-radius: 18px;margin-left: 0px;" />
@@ -55,6 +56,7 @@
                                     </div>
                                 </a>
                             </div>
+                            @endif
                         @endforeach
             @elseif (isset($query))
                 <p>No results found for '{{ $query }}'</p>
