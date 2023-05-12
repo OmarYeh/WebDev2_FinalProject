@@ -65,7 +65,7 @@
                       <div class="imagedish" >
                                 <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400; text-decoration: none;">
                                     <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="" />
-                                    <div class="productinfo" style="gap: 40px;display: flex;align-items: center;">
+                                    <div class="productinfo" style="gap: 40px;display: flex;justify-content: center;align-items: center;">
                                             <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
                                             <p style="font-weight:300;">{{$obj->getMenu->getStore->storeName}}</p>
                                             <p style="font-size: 24px;">${{$obj->price}}</p>
@@ -165,7 +165,7 @@
                       <div class="imagedish" >
                                 <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400;text-decoration: none; ">
                                     <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="" />
-                                    <div class="productinfo" style="gap: 22px;display: flex;align-items: center;">
+                                    <div class="productinfo" style="gap: 22px;display: flex;justify-content: center;align-items: center;">
                                             <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
                                             <p style="font-weight:300;">{{$obj->getMenu->getStore->storeName}}</p>
                                             <p style="font-size: 24px; color:red;text-decoration: line-through;margin-right: -10px;">${{$obj->price}}</p>

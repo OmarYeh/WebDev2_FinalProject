@@ -36,8 +36,9 @@
                         @endforeach
                     </select>
                 </div>
-                
-                <button type="submit" class="btn" style="height: 13%;background: white;font-size: 20px;font-weight: 500;">Search</button>
+                <div style="display:flex; justify-content:center">
+                <button type="submit" class="btn" style="height: 50px;background: white;font-size: 20px;font-weight: 500;">Search</button>
+                </div>
             </form>
         </div>
         
