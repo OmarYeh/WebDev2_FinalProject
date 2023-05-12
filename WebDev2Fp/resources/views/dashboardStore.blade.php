@@ -43,7 +43,7 @@
                     </div>
                     <div class="topSell">
                       <h1>Top Sellers:</h1>
-                        @foreach($store->getFoods  as $key =>  $obj)
+                        @foreach($menu->getFood  as $key =>  $obj)
                         @if($key < 3 )
                         <div class="food">
                           <div style="padding-top:15px">

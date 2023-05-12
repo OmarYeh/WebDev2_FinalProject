@@ -1,17 +1,32 @@
 
-.Ricontainer{
-    margin:auto;
-
+body{
+    margin:0;
+    padding:0;
 }
 
+main {
+    background-image: url('https://media-cldnry.s-nbcnews.com/image/upload/newscms/2020_14/1554845/takeout-food-covid19-today-square-200403.jpg');
+    background-repeat: no-repeat;
+    background-size: fill;
+    image-rendering: auto;
+}
+.Ricontainer{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding:15px;
+}
 .Ricontainer .formRs{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-
     margin-top: 25px;
     margin-bottom: 25px;
+    width: 37%;
+    padding:25px;
+    border-radius: 17px;
+    background-color: #fdfdf7;
 }
 .Ricontainer .formRs form{
     align-self: center;
@@ -109,4 +124,19 @@
 .Ricontainer .formRs form select option:hover{
     background-color: bisque;
 }
+
+.astext{
+    margin-top: 205px;
+    margin-right: 200px;
+    width: 500px;
+    color:rgb(34, 34, 34);
+    font-size: 25px;
+}
+
+#headt{
+    color:black;
+    font-size: 55px;
+    font-weight: 700;
+}
+
 
