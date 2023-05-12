@@ -34,15 +34,18 @@
         <tr>
         @foreach ($menui as $m)
           <tr class="tableRow">
-          <form method="post" action="{{ Route('AddBasket') }}" enctype="multipart/form-data" >
-           @csrf
+          
+           
           <td><img src="https://tse1.mm.bing.net/th?id=OIP._WjnMeA1HRawZ79RotSgpQHaE8&pid=Api&P=0" class="menuImg" /></td>
             <td><a href="{{Route('food',$m->id)}}" class="name">{{ $m->name }}</a></td>
             <td>{{ $m->price}}$</td>
-            <input type="hidden" name="food_name" value="{{ $m->name }}">
-            <input type="hidden" name="Quantity" value="1">
-            <td ><button type="submit" class="orderbtn" >Add</button></td>
-          </form>
+            <td ><form method="post" action="{{ Route('AddBasket') }}" enctype="multipart/form-data" >
+          @csrf
+          <input type="hidden" name="food_name" value="{{ $m->name }}">
+          <input type="hidden" name="Quantity" value="1">
+          <button type="submit" class="orderbtn" >Add</button>
+        </form></td>
+          
           </tr>
           
         @endforeach
