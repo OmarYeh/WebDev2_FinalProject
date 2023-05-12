@@ -4,7 +4,11 @@
 <link href="{{ asset('css/StoreInput.css') }}" rel="stylesheet">
 @endsection
 @section('content')
-<div class="Ricontainer">
+<div class="Ricontainer" >
+    <div class="astext">
+    <p id="headt">Unlock a new revenue stream</p>
+    <p>foodies’s global platform gives you the flexibility, visibility and customer insights you need to connect with more customers. Partner with us today.</p>
+    </div>
     <div class="formRs">
     <form method="post" action="{{Route('storeCook')}}" enctype="multipart/form-data">
         @csrf
