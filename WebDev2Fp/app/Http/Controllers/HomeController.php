@@ -33,10 +33,7 @@ class HomeController extends Controller
         return view('home')->with(["food"=>$food,"cuisine"=>$cuisine,"store"=>$store,"menu"=>$menu]);
     }
 
-    public function search(Request $request){
-        $food = food::where('name', 'LIKE', '%'.$request->search.'%')->get();
-        return view('search')->with(["food"=>$food]);
-    }
+   
 
     public function foodinfo($id){
         $data=food::find($id);

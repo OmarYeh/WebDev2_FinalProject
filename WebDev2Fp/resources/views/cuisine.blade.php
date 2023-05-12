@@ -41,7 +41,7 @@
             </form>
         </div>
         
-        <div class="imagesthings">
+        <div class="imagesthings" style="height: 100%;">
             @if (isset($storeresult) && count($storeresult) > 0)
                
                         @foreach($storeresult as $storeresult)

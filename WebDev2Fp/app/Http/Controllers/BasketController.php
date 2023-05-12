@@ -53,9 +53,15 @@ class BasketController extends Controller
         return Redirect::route('basket');
     }
 
-    public function clearbasketitem()
+    public function clearBasket()
     {
-        return "ok";
+        $user= Auth::user();
+        $basket = basket::where('user_id',$user->id)->first();
+        $basketitems=basketItems::where('basket_id',$basket->id)->get();
+        foreach ($basketitems as $basketItem) {
+            $basketItem->delete();
+        }
+        return Redirect::route('basket');
     }
 
     public function updatebasket($id,Request $request)
@@ -66,5 +72,16 @@ class BasketController extends Controller
         $basketitems->quantity =  $request->input('Quantity') ;
         $basketitems->save();
         return Redirect::route('basket');
+    }
+
+    public function removefromBasket($id,Request $request)
+    {
+        $user= Auth::user();
+        $basket = basket::where('user_id',$user->id)->first();
+        $basketitems=basketItems::where('food_id',$id)->where('basket_id',$basket->id)->first();
+        $basketitems->delete();
+        return Redirect::route('basket');
+        
+
     }
 }
