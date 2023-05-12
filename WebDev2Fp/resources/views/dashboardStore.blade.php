@@ -42,11 +42,22 @@
                     <canvas id="plays-chart">
                     </div>
                     <div class="topSell">
+                      <h1>Top Sellers:</h1>
                         @foreach($store->getFoods  as $key =>  $obj)
                         @if($key < 3 )
                         <div class="food">
+                          <div style="padding-top:15px">
+                          <img src="{{asset($obj->imgsrc)}}" width="50px" height="50px"/>
+                          </div>
+                          <div>
                             <p>{{$obj->name}}</p>
-                        <div>
+                            <p class="price">{{$obj->price}}$</p>
+                          </div>
+                          <div>
+                            <p>Orders:</p>
+                            <p class="price">{{$obj->getOrders()->count()}}</p>
+                          </div>
+                        </div>
                             @else
                             @break
                             @endif

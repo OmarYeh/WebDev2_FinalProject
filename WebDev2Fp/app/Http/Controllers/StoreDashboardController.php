@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\menu;
 use App\Models\store;
+use App\Models\food;
 class StoreDashboardController extends Controller
 {
     public function index(){
         $userid = Auth::id();
         $store = store::where(['user_id'=>$userid])->first();
-        return view('dashboardStore')->with('store',$store);
+        return view('dashboardStore')->with(['store'=>$store]);
     }
 
     public function analysis(){

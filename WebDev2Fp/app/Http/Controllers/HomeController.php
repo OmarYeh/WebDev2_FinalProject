@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\food;
 use App\Models\store;
@@ -17,10 +17,6 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
     /**
      * Show the application dashboard.
@@ -33,8 +29,7 @@ class HomeController extends Controller
         $food=food::all();
         $cuisine=cuisine::all();
         $store=store::all();
-        $userId = auth()->id();
-        $basket = Basket::where('user_id', $userId)->firstOrCreate(['user_id' => $userId]);
+       
         return view('home')->with(["food"=>$food,"cuisine"=>$cuisine,"store"=>$store,"menu"=>$menu]);
     }
 

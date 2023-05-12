@@ -22,9 +22,6 @@ class food extends Model
         return $this->belongsTo(diet::class,'diet_id','id');
     }
 
-    public function getStore(){
-        return $this->belongsTo(store::class,'store_id','id');
-    }
 
     public function getbaskets(){
         return $this->belongsToMany(basket::class,'basket_items','food_id','basket_id');
@@ -44,5 +41,7 @@ class food extends Model
         return $this->belongsToMany(order::class,'orderitems','food_id','order_id');
         
     }
+
+
 
 }

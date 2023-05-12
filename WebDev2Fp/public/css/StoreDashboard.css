@@ -2,7 +2,6 @@
     font-family: Satoshi;
     font-size: 17px;
     line-height: 1.42857143;
-    border: 2px solid blue;
 
 }
 body{
@@ -106,17 +105,31 @@ body{
 }
 
 .content{
+    margin-top: 35px;
     display: flex;
     flex-direction: row;
-    gap:25px
+    gap:25px;
+    height: 65vh;
 }
 .topSell{
+    margin-top: 15px;
+    border-left: 2px solid rgb(221, 222, 223);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     width:350px;
-    gap:15px;
-    background-color: red;
+    gap:25px;
+
 }
 .food{
-
+ display: flex;
+ padding-left: 15px;
+    gap:25px;
     background-color: white;
-    width: 100%;
+    width: 90%;
+}
+
+.price{
+    font-size: 14px;
+    margin-top: -15px;
 }
