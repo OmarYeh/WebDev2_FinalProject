@@ -8,7 +8,7 @@ use App\Http\Controllers\CuisineController;
 use App\Http\Controllers\StoreDashboardController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\BasketController;
-
+use App\Http\Controllers\ReviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -57,5 +57,6 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/Store/Dashboard/Delvery', [StoreDashboardController::class, 'analysis'])->name('sdindexManageDe');
 });
 Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
+Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');
 require __DIR__.'/auth.php';
 
