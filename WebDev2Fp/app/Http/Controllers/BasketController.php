@@ -23,9 +23,8 @@ class BasketController extends Controller
     {  
         $user = Auth::user();
         $basket = basket::where('user_id',$user->id)->first();     
-        $basketitems=basketItems::where('basket_id',$basket->id)->get(); 
         
-        return view('basket')->with(["basket"=>$basket,"basketitems"=>$basketitems]);
+        return view('basket')->with(["basket"=>$basket]);
     }
 
     public function createbasket(Request $request)

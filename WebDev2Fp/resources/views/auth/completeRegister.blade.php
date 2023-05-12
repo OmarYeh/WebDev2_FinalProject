@@ -3,39 +3,14 @@
 
 <Head>
     <meta charset="utf-8">
-    <title>Register</title>
+    <title> complete Register</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ asset('css/styleRL.css') }}">
 </Head>
 <body>
-    <a href="{{route('sociallogin',['provider'=>'google'])}}">register with google</a>
-    <form method="POST" action="{{ route('register') }}">
+    <form method="POST" action="{{ route('storeSProfile') }}">
         @csrf
-        <input  type="text" name="name" placeholder="ex: Hussein Hammour, Hares Saade" value="{{old('name')}}" />
-                @if ($errors->has('name'))
-                 <span class="Error-msg" role="alert">
-                           <strong>{{ $errors->first('name') }}</strong>
-                 </span>
-                @endif
-                <input class="email" type="email" name="email" placeholder="Email" value="{{old('email')}}"/>
-                @if ($errors->has('email'))
-                 <span class="Error-msg" role="alert">
-                           <strong>{{ $errors->first('email') }}</strong>
-                 </span>
-                @endif  
-                <input  type="password" name="password" placeholder="Password" />
-                @if ($errors->has('password'))
-                 <span class="Error-msg" role="alert">
-                           <strong>{{ $errors->first('password') }}</strong>
-                 </span>
-                @endif
-                <input name="password_confirmation" class="cpass" type="password" placeholder="Confirm Password" />
-                @if ($errors->has('password_confirmation'))
-                 <span class="Error-msg" role="alert">
-                           <strong>{{ $errors->first('password_confirmation') }}</strong>
-                 </span>
-                 @endif
-
+       
                  <input type="date" id="birthday" name="birthday" value="{{old('birthday')}}">
                 @if ($errors->has('birthday'))
                  <span class="Error-msg" role="alert">

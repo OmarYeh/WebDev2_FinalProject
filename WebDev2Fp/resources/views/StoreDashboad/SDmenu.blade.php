@@ -1,6 +1,6 @@
 <section>
 <div class="allfoods">
-<p>{{ auth()->user()->getStore()->storeName }}</p>
+<p>{{ $store->storeName }}</p>
 
 </div>
 </section>
