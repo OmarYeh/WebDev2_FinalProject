@@ -12,6 +12,7 @@ use Illuminate\View\View;
 
 class FoodController extends Controller
 {
+    
     public function searchFood(Request $request) {
         $allcuisine = cuisine::All();
         $alldiet = diet::All();

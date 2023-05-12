@@ -50,15 +50,15 @@
 <div class="backbackgroundarea">
     <div class="backgroundarea">     
         <div class="imgiconthing">
-            <img src="https://img.icons8.com/plasticine/100/shopping-basket-2.png" alt="shopping-basket-2" style="width: 90px;height: 90px;margin-top: 54px;"/>
+            <img src="https://img.icons8.com/clouds/100/shopping-basket-2.png"  alt="shopping-basket-2" style="width: 100px;height: 100px;margin-top: 54px;"/>
         </div>    
-        <p class="baskettitle">Your Basket:</p>
+        <p class="baskettitle" style="text-align: center;font-style: normal;font-size: 57px;font-weight: 500;color: white;letter-spacing: 4px;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);">Your Basket:</p>
         
         @foreach($orderedfood as $menu)
-
+            
             @foreach($menu as $obj)
                 @if ($loop->first)
-                <div class="dadada" style="margin-top:20px">
+                <div class="dadada" style="">
                     <div class="storeitem" style="border-radius: 10px 10px 0px 0px;">
                                 <div class="storeimg">
                                     <img src="{{asset($obj->getMenu->getStore->imgsrc)}}" style="width:100px;border-radius: 14px;height:100px;">
@@ -72,7 +72,7 @@
                 
                 @endif
                 @if ($loop->last)
-                    <div class="basbasbasbas">
+                    <div class="basbasbasbas" style="margin-bottom: 50px;">
                         <div class="basketitemsborder" style="margin-bottom: 0;border-radius: 0px 0px 10px 10px;">
                             
                             <div class="basketitems">
@@ -97,9 +97,10 @@
                                                 <button type="submit">Edit</button>
                                             </div>
                                         </form>
-                                        <form method="post" action="" enctype="multipart/form-data">
-                                        <div class="deletebutton">
-                                                <button type="submit">Remove</button>
+                                        <form method="post" action="{{Route('removefromBasket', ['id'=>$obj->id]) }}">
+                                            @csrf
+                                            <div class="deletebutton">
+                                                    <button type="submit">Remove</button>
                                             </div>
                                         </form>                    
                                     </div>
@@ -132,11 +133,12 @@
                                                     <button type="submit">Edit</button>
                                                 </div>
                                             </form>
-                                            <form method="post" action="" enctype="multipart/form-data">
-                                            <div class="deletebutton">
-                                                    <button type="submit">Remove</button>
+                                            <form method="post" action="{{Route('removefromBasket', ['id'=>$obj->id]) }}">
+                                                @csrf
+                                                <div class="deletebutton">
+                                                        <button type="submit">Remove</button>
                                                 </div>
-                                            </form>                    
+                                            </form>                   
                                         </div>
                                     </div>
                             </div>
@@ -145,8 +147,21 @@
                     
                 
             @endforeach
+           
         @endforeach
-       
+
+        <!--THIS HERE IS FOR CLEARING ALL ITEMS FROM BASKET-->
+        <form method="post" action="{{Route('clearBasket') }}">
+            @csrf
+            <div class="clearbutton"><button>Clear</button></div>
+        </form>
+
+        <!--THIS HERE IS FOR CHECKOUT-->
+        <form method="get" action="">
+            <div class="checkoutbutton">
+                    <button>Checkout</button>
+            </div>
+        </form>
     </div>
 </div>
 
