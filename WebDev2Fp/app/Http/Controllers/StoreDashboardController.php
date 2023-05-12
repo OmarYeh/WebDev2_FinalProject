@@ -12,7 +12,8 @@ class StoreDashboardController extends Controller
     public function index(){
         $userid = Auth::id();
         $store = store::where(['user_id'=>$userid])->first();
-        return view('dashboardStore')->with(['store'=>$store]);
+        $menu =$store->getMenu;
+        return view('dashboardStore')->with(['store'=>$store,'menu'=>$menu]);
     }
 
     public function analysis(){

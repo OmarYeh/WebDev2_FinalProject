@@ -67,7 +67,7 @@
                                     <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="" />
                                     <div class="productinfo" style="gap: 40px;display: flex;align-items: center;">
                                             <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
-                                            <p style="font-weight:300;">{{$obj->getStore->storeName}}</p>
+                                            <p style="font-weight:300;">{{$obj->getMenu->getStore->storeName}}</p>
                                             <p style="font-size: 24px;">${{$obj->price}}</p>
                                         </div>
                                 </a>
@@ -167,7 +167,7 @@
                                     <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="" />
                                     <div class="productinfo" style="gap: 22px;display: flex;align-items: center;">
                                             <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
-                                            <p style="font-weight:300;">{{$obj->getStore->storeName}}</p>
+                                            <p style="font-weight:300;">{{$obj->getMenu->getStore->storeName}}</p>
                                             <p style="font-size: 24px; color:red;text-decoration: line-through;margin-right: -10px;">${{$obj->price}}</p>
                                             <p style="font-size: 24px; color:green">${{$obj->price}}</p>
                                             
