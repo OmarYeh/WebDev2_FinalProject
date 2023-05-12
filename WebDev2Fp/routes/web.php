@@ -23,12 +23,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/',[HomeController::class,'index'])->name('home');
-Route::get('search',[HomeController::class,'search'])->name('home.search');
 Route::get('food/{id}',[HomeController::class,'foodinfo'])->name('food');
 Route::get('store/{id}',[storeController::class,'index'])->name('store');
 Route::get('cuisine',[CuisineController::class,'AllCuisines'])->name('Allcusisnes');
 Route::get('cuisine/{id}',[CuisineController::class,'cuisineinfo'])->name('cuisine');
-
+Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
 
 Route::get('dashboard', function () {
     return view('dashboard');
@@ -39,6 +38,8 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('basket',[BasketController::class,'index'])->name('basket');
     Route::post('AddBasket',[BasketController::class,'createbasket'])->name('AddBasket');
     Route::post('updateBasket/{id}',[BasketController::class,'updatebasket'])->name('updateBasket');
+    Route::post('removefromBasket/{id}',[BasketController::class,'removefromBasket'])->name('removefromBasket');
+    Route::post('clearBasket',[BasketController::class,'clearBasket'])->name('clearBasket');
 });
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -56,6 +57,6 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('/Store/Dashboard/Orders', [StoreDashboardController::class, 'analysis'])->name('sdindexOrders');
     Route::get('/Store/Dashboard/Delvery', [StoreDashboardController::class, 'analysis'])->name('sdindexManageDe');
 });
-Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
+
 require __DIR__.'/auth.php';
 
