@@ -11,7 +11,8 @@ class storeController extends Controller
 {
     public function index($id){
         $store = store::find($id);
-        return view('store')->with('store',$store);
+        $reviews = $store->getReviews;
+        return view('store')->with('store',$store)->with('reviews',$reviews);
     }
     public function AllStores(){
         $stores = store::all();

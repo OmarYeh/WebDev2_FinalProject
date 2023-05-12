@@ -1,0 +1,254 @@
+.imgcont{
+    height: 92vh;
+    width: 100%;
+    position: relative;
+    background-image: url('https://www.mashed.com/img/gallery/mcdonalds-first-ever-mini-mac-location-is-closing-after-40-years/l-intro-1621277897.jpg');
+      background-size: cover;
+    }
+    .blackbg{
+      height: 92vh;
+      width: 100%;
+      background-color: rgba(17, 16, 16, 0.6);
+      position: absolute;
+      
+    }
+    .appear-from-top {
+      opacity: 0;
+      transform: translateY(100%);
+      animation: appear-from-top 0.5s forwards;
+    }
+    
+    @keyframes appear-from-top {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .storename, .storedesc{
+      font-size:20px;
+      color:white;
+    }
+    .storename{
+      text-transform: uppercase;
+      padding:30px 0 0 30px;
+      
+    }
+    .storedesc{
+      width: 50%;
+      min-height: fit-content;
+      max-height: 60%;
+      padding:10px 0 0 30px;
+      letter-spacing: 0.2px;
+      line-height: 33px;
+    }
+    .btns{
+      display: flex;
+      flex-direction: row;
+      width: 290px ;
+      height: 50px ;
+      margin:20px 0 0 30px;
+      justify-content: space-between;
+    }
+    #menulink{
+      height:50px;
+      width:135px;
+      background-color: #e55;
+      color: white;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    #contactlink{
+      height:50px;
+      width:135px;
+      background-color: white;
+      color: #e55;
+      font-size: 18px;;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    #contactlink:hover{
+      background-color: #e55;
+      color: white;
+      border:2px solid white;
+      border-radius: 5px;
+      transition: 0.25s;
+    }
+    #menulink:hover{
+      background-color: white;
+      color:#e55;
+      border:2px solid #e55;
+      border-radius: 5px;
+      transition: 0.25s;
+    }
+    table{
+      width:35vw;
+      height: fit-content;
+      border:1px solid #bebbbb;
+      margin:25px;
+      
+    }
+    th , td{
+      height:80px;
+      width:32%;
+      padding-left:10px;
+    }
+    .menuImg{
+      height: 48px;
+      width: 48px;
+      object-fit: cover;
+    }
+    .name{
+      text-decoration: none;
+      color:#e55;
+    }
+    .name:hover{
+      color:rgb(223, 50, 50);
+    }
+    .table-carousel {
+      overflow-x: hidden;
+      position: relative;
+      white-space: nowrap;
+    }
+    
+    .table-carousel table {
+      display: inline-block;
+      vertical-align: top;
+      white-space: normal;
+    }
+    
+    .carousel-nav {
+      text-align: center;
+      margin-top: 10px;
+    }
+    
+    .carousel-nav button {
+      display: inline-flex;
+      margin: 0 15px;
+      font-size: 24px;
+      height: 36px;
+      width: 36px;
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      cursor: pointer;
+      text-align: center;
+      justify-content: center;
+      align-items: center;
+    }
+    .orderbtn{
+      height:36px;
+      width:55px;
+      background-color:#e55;
+      margin-right:10px;
+      border:none;
+      color:white;
+      letter-spacing: 0.3px;
+    }
+    tr{
+      border-bottom:1px solid #dbd7d7;
+    }
+    .reviews{
+      height:fit-content;
+      margin-left:20px;
+    }
+    .review{
+      width: 60%;
+      min-height:35vh;
+      max-height: fit-content;
+      margin: 30px 0 0 0;
+    }
+    .im{
+      margin:0 2px 0 2px;
+    }
+    .content{
+      width: 75%;
+      font-size:16px;
+      font-family: sans-serif;
+      font-weight: 550;
+      margin-top: 15px;
+    }
+    .userImg{
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: grey;
+      margin-bottom: 5px;
+      object-fit: cover;
+    }
+    .topReview{
+      display: flex;
+      width: 30%;
+      flex-direction: row;
+      gap: 10px;
+      align-items: center;
+    }
+    .published{
+    margin-top:10px;
+    font-size: 18px;
+    }
+    #reviewForm{
+      display: flex;
+      flex-direction: column;
+     
+      width: 30%;
+      margin-top:50px;
+    }
+    #title , #rater{
+      height: 50px;
+      border:none;
+      border-bottom:3px solid #e55;
+      background-color: #eeeaea;
+      
+    }
+    #title:focus , #rater:focus{
+      outline: none;
+      background-color: #d3d0d0;
+      transition: 0.1s;
+      box-shadow: 0 0 8px rgba(229,85,85,0.5);
+    }
+    #title, #content{
+      font-size: 18px;
+    }
+    #content{
+      height: 120px;
+      border:none;
+      border-bottom:3px solid #e55;
+      background-color: #eeeaea;
+    }
+    #content:focus{
+      outline: none;
+      background-color: #d3d0d0;
+      transition: 0.1s;
+      box-shadow: 0 0 8px rgba(229,85,85,0.5);
+    }
+    label{
+      margin-top:30px;
+      padding-bottom:7px;
+    }
+    #reviewbtn{
+      margin-top:30px;
+      border:none;
+      font-size:18px;
+      font-weight: 550;
+      color: white;
+      height: 50px;
+      background-color: #e55;
+    }
+    #reviewbtn:focus{
+      outline: none;
+      transition: 0.1s;
+      box-shadow: 0 2px 12px rgba(229,85,85,0.5);
+    }
+    #rater{
+      font-size:20px;
+    }
+    option{
+      font-size: 20px;
+    }
