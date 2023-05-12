@@ -50,7 +50,7 @@
 <div class="backbackgroundarea">
     <div class="backgroundarea">     
         <div class="imgiconthing">
-            <img src="https://img.icons8.com/clouds/100/shopping-basket-2.png"  alt="shopping-basket-2" style="width: 100px;height: 100px;margin-top: 54px;"/>
+            <img src="https://img.icons8.com/bubbles/100/purchase-order.png"  alt="shopping-basket-2" style="width: 100px;height: 100px;margin-top: 54px;"/>
         </div>    
         <p class="baskettitle" style="text-align: center;font-style: normal;font-size: 57px;font-weight: 500;color: white;letter-spacing: 4px;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);">Your Basket:</p>
         @if($basket->getFood->count()==0)

@@ -9,6 +9,7 @@ use App\Http\Controllers\StoreDashboardController;
 use App\Http\Controllers\FoodController;
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ReviewController;
+use App\Http\Controllers\UserOrderController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('updateBasket/{id}',[BasketController::class,'updatebasket'])->name('updateBasket');
     Route::post('removefromBasket/{id}',[BasketController::class,'removefromBasket'])->name('removefromBasket');
     Route::post('clearBasket',[BasketController::class,'clearBasket'])->name('clearBasket');
+    Route::get('orders',[UserOrderController::class,'index'])->name('orders');
 });
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
