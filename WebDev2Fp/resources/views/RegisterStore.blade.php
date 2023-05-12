@@ -59,6 +59,13 @@
                            <strong>{{ $errors->first('cuisine') }}</strong>
                  </span>
                 @endif
+                <label for="logo">Store's Logo</label>
+        <input type="file" id="logo" name="logo" placeholder="Enter Image" size="60" />
+        @if ($errors->has('logo'))
+                 <span class="Error-msg" role="alert">
+                           <strong>{{ $errors->first('logo') }}</strong>
+                 </span>
+                @endif
         <label for="imgsrc">Store's Image</label>
         <input type="file" id="imgsrc" name="imgsrc" placeholder="Enter Image" size="60" />
         @if ($errors->has('imgsrc'))

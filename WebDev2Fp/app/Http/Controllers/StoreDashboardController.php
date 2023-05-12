@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\menu;
 use App\Models\store;
 use App\Models\food;
+use App\Models;
 class StoreDashboardController extends Controller
 {
     public function index(){
@@ -25,7 +26,10 @@ class StoreDashboardController extends Controller
     public function menu(){
         $userid = Auth::id();
         $store = store::where(['user_id'=>$userid])->first();
-        return view('StoreDashboad.SDmenu')->with('store',$store);
+        $category = category::all();
+        $cuisine = cuisine::all();
+        $diet = diet::all();
+        return view('StoreDashboad.SDmenu')->with(['store'=>$store,'cuisine'=>$cuisine,'diet'=>$diet]);
     }
 
     public function platdejour(){

@@ -31,7 +31,7 @@
         <div class="rigth-Conatiner">
         <div class="conatiner">
             <div class="header-content">
-                    <img id="im" src="{{asset($store->imgsrc)}}" width="125px">
+                    <img id="im" src="{{asset($store->logo)}}" width="125px">
                     <div class="tL">
                         <p class="storeTitle">{{$store->storeName}}</p>
                         <p class="storeloc">{{$store->Location}}</p>

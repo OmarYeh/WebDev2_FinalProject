@@ -31,7 +31,8 @@ class storeController extends Controller
             'phone_number'=>'required|numeric|min:11',
             'opened'=>'required|integer|min:4',
             'imgsrc'=>'required',
-            'cuisine'=>'required'
+            'cuisine'=>'required',
+            'logo'=>'required'
         ]);
 
         $store =  new store();
@@ -40,10 +41,16 @@ class storeController extends Controller
         $store->Description =$request->Description;
         $store->phone_number =$request->phone_number;
         $store->opened =$request->opened;
+
         $filename= time().'.'.$request->file('imgsrc')->getClientOriginalExtension();
         $request->file('imgsrc')->storeAs('public/images',$filename);
         $tosave= 'storage/images/'.$filename;
         $store->imgsrc=$tosave;
+
+        $filenamel= time().'.'.$request->file('logo')->getClientOriginalExtension();
+        $request->file('logo')->storeAs('public/images',$filenamel);
+        $tosave2= 'storage/images/'.$filenamel;
+        $store->logo=$tosave2;
         $store->user_id=Auth::id();
         $store->cuisine_id=$request->cuisine;
         $store->save();
