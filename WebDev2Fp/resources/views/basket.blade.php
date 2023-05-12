@@ -53,10 +53,18 @@
             <img src="https://img.icons8.com/clouds/100/shopping-basket-2.png"  alt="shopping-basket-2" style="width: 100px;height: 100px;margin-top: 54px;"/>
         </div>    
         <p class="baskettitle" style="text-align: center;font-style: normal;font-size: 57px;font-weight: 500;color: white;letter-spacing: 4px;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);">Your Basket:</p>
-        
+        @if($basket->getFood->count()==0)
+                <div class="searchforproduct">
+                <form method="get" action="{{ Route('searchFood') }}" >  
+                    <button class="searchforproductbtn">Search For Products</button>
+                </form>
+                </div>
+        @else
         @foreach($orderedfood as $menu)
             
             @foreach($menu as $obj)
+            
+               
                 @if ($loop->first)
                 <div class="dadada" style="">
                     <div class="storeitem" style="border-radius: 10px 10px 0px 0px;">
@@ -145,11 +153,12 @@
                         </div>
                     @endif
                     
-                
+            
+          
             @endforeach
            
         @endforeach
-
+        
         <!--THIS HERE IS FOR CLEARING ALL ITEMS FROM BASKET-->
         <form method="post" action="{{Route('clearBasket') }}">
             @csrf
@@ -162,6 +171,7 @@
                     <button>Checkout</button>
             </div>
         </form>
+        @endif
     </div>
 </div>
 
