@@ -22,10 +22,11 @@ class BasketController extends Controller
     public function index()
     {  
         $user = Auth::user();
-        $basket = basket::where('user_id',$user->id)->first();     
-        $basketitems=basketItems::where('basket_id',$basket->id)->get(); 
-        
-        return view('basket')->with(["basket"=>$basket,"basketitems"=>$basketitems]);
+        $basket = basket::where('user_id',$user->id)->first();
+        $food= $basket->getFood;
+        $orderedfood=$food->groupBy('menu_id');
+
+        return view('basket')->with(["basket"=>$basket,"orderedfood"=>$orderedfood]);
     }
 
     public function createbasket(Request $request)
@@ -34,38 +35,53 @@ class BasketController extends Controller
         $food = food::where('name', $request->input('food_name'))->first();
         $basket=basket::where('user_id',$user->id)->first();
         $order=order::where('user_id',$user->id)->first();
-        $data = new basketItems();
-        $data->quantity=$request->input('Quantity');
-        $data->food_id = $food->id;
-        $data->basket_id=$basket->id;
-        
-        $data->save();
-
-        $basket = basket::where('user_id',$user->id)->first();
-        $basketitems=basketItems::where('basket_id',$basket->id);
+        $basketitems=basketItems::where('food_id',$food->id)->where('basket_id',$basket->id)->first();
+        if($basketitems == null)
+        {
+            $data = new basketItems();
+            $data->quantity=$request->input('Quantity');
+            $data->food_id = $food->id;
+            $data->basket_id=$basket->id;           
+            $data->save();
+        }
+        else{
+            $basketitems->quantity =$basketitems->quantity + $request->input('Quantity');
+            $basketitems->save();
+        }
 
 
         return Redirect::route('basket');
-
-
-
     }
 
-    public function clearbasketitem()
+    public function clearBasket()
     {
-
+        $user= Auth::user();
+        $basket = basket::where('user_id',$user->id)->first();
+        $basketitems=basketItems::where('basket_id',$basket->id)->get();
+        foreach ($basketitems as $basketItem) {
+            $basketItem->delete();
+        }
+        return Redirect::route('basket');
     }
 
     public function updatebasket($id,Request $request)
-    {
-        $obj = food::find($id);
-        $basketitems=basketItems::where('food_id',$obj->id);
-        $basket=basket::where('user_id',$user->id)->first();
-
-        $basketitems->quantity = $request->input('Quantity');
-        $basketitems->food_id = $obj->id;
-        $basketitems->basket_id=$basket->id;
+    {    
+        $user= Auth::user();
+        $basket = basket::where('user_id',$user->id)->first();
+        $basketitems=basketItems::where('food_id',$id)->where('basket_id',$basket->id)->first();
+        $basketitems->quantity =  $request->input('Quantity') ;
         $basketitems->save();
-        return "ok";
+        return Redirect::route('basket');
+    }
+
+    public function removefromBasket($id,Request $request)
+    {
+        $user= Auth::user();
+        $basket = basket::where('user_id',$user->id)->first();
+        $basketitems=basketItems::where('food_id',$id)->where('basket_id',$basket->id)->first();
+        $basketitems->delete();
+        return Redirect::route('basket');
+        
+
     }
 }

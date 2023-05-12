@@ -62,7 +62,7 @@
                 <p class="title" style="  font-size: 53px;font-weight: 700;color:#e55">{{$food->name}}</p>
                 <p class="price" style="color: black;">${{$food->price}}</p>
                 <a href="{{Route('cuisine',['id'=>$cuisine->id])}}" style="font-size: 26px;text-decoration: none;">Cuisine: {{$cuisine->name}}</a>
-                <p><a href="{{Route('store',['id'=>$store->id])}}" style="font-size: 26px;text-decoration: none;">Store: {{$store->storeName}}</a></p>
+                <p><a href="{{Route('store',['id'=>$food->getMenu->getStore->id])}}" style="font-size: 26px;text-decoration: none;">Store: {{$food->getMenu->getStore->storeName}}</a></p>
                 <div class="extras" style="margin-top: 24px;">
 
                     

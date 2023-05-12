@@ -168,3 +168,67 @@
 .storeinfo{
     display:block;
 }
+.clearbutton{
+    display: flex;
+    justify-content: center;
+}
+.clearbutton button{
+    border: none;
+    padding: 8px;
+    font-size: 20px;
+    width: 90px;
+    border-radius: 10px;
+    background: rgb(238, 85, 85);
+    color: white;
+    font-weight: 800;
+    margin-top: 0px;
+    margin-bottom: 14px;
+    margin-left: 70%;
+}
+.clearbutton button:hover{
+    background: rgb(205, 58, 58);
+
+}
+.checkoutbutton{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 51px;
+}
+.checkoutbutton button{
+    border: none;
+    padding: 8px;
+    font-size: 23px;
+    height: 54px;
+    letter-spacing: 3px;
+    width: 500px;
+    border-radius: 10px;
+    background: rgb(238, 85, 85);
+    color: white;
+    font-weight: 800;
+    margin-top: 0px;
+    margin-bottom: 14px;
+}
+.checkoutbutton button:hover{
+    background: rgb(205, 58, 58);
+
+}
+
+.searchforproduct{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.searchforproductbtn{
+    border: none;
+    padding: 8px;
+    font-size: 30px;
+    height: 60px;
+    letter-spacing: 3px;
+    width: 500px;
+    border-radius: 10px;
+    background: rgb(238, 85, 85);
+    color: white;
+    font-weight: 300;
+    margin-top: 75px;
+    margin-bottom: 40px;
+}

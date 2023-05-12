@@ -35,9 +35,9 @@ justify-content: center;
     margin-top: 50px;
   }
   .imagesthings{
-    margin-left: 53px;
+    margin-left: 31px;
     display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 20px;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 11px;
   }
   

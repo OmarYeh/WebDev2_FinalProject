@@ -36,15 +36,17 @@
                         @endforeach
                     </select>
                 </div>
-                
-                <button type="submit" class="btn" style="height: 13%;background: white;font-size: 20px;font-weight: 500;">Search</button>
+                <div style="display:flex; justify-content:center">
+                <button type="submit" class="btn" style="height: 50px;background: white;font-size: 20px;font-weight: 500;">Search</button>
+                </div>
             </form>
         </div>
         
-        <div class="imagesthings">
+        <div class="imagesthings" style="height: 100%;">
             @if (isset($storeresult) && count($storeresult) > 0)
                
                         @foreach($storeresult as $storeresult)
+                            @if($storeresult->cuisine_id == $cuisine->id)
                             <div class="imagedish">
                                 <a href="{{Route('store',['id'=>$storeresult->id])}}" style="text-decoration: none;color: black;font-weight: 400;">
                                     <img class="imagedishimg"src="{{asset($storeresult->imgsrc)}}" style="width:300px; height:250px; border-radius: 18px;margin-left: 0px;" />
@@ -55,6 +57,7 @@
                                     </div>
                                 </a>
                             </div>
+                            @endif
                         @endforeach
             @elseif (isset($query))
                 <p>No results found for '{{ $query }}'</p>
