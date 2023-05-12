@@ -38,7 +38,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
     Route::get('basket',[BasketController::class,'index'])->name('basket');
     Route::post('AddBasket',[BasketController::class,'createbasket'])->name('AddBasket');
-    Route::post('updateBasket',[BasketController::class,'updatebasket'])->name('updateBasket');
+    Route::post('updateBasket/{id}',[BasketController::class,'updatebasket'])->name('updateBasket');
 });
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');

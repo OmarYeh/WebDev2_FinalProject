@@ -17,12 +17,9 @@ class basket extends Model
     }
     
     public function getfood(){
-        return $this->belongsToMany(food::class,'basket_items','basket_id','food_id');
+        return $this->belongsToMany(food::class,'basket_items','basket_id','food_id')->withPivot('quantity');
     }
     
-
-    
-
 
 
 }
