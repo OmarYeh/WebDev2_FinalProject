@@ -52,7 +52,7 @@
                                 <a href="{{Route('food',['id'=>$food_item->id])}}" style="color: black;font-weight: 400; text-decoration: none;">
                                     <img class="imagedishimg" src="{{asset($food_item->imgsrc)}}" style="" />
                                     <div class="productinfo" style="gap: 40px;justify-content: center;display: flex;align-items: center;">
-                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{ $food_item->name }}</p>
+                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;  max-width: 100px;max-height: 157px;}">{{ $food_item->name }}</p>
                                             <p style="font-weight:300;">{{ $food_item->getMenu->getStore->storeName}}</p>
                                             <p style="font-size: 24px;">${{ $food_item->price}}</p>
                                         </div>

@@ -30,6 +30,10 @@ Route::get('cuisine',[CuisineController::class,'AllCuisines'])->name('Allcusisne
 Route::get('cuisine/{id}',[CuisineController::class,'cuisineinfo'])->name('cuisine');
 Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
 
+Route::get('storepage',function(){
+   return view('regisPending'); 
+});
+
 Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
