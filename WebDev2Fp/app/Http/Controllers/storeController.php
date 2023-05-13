@@ -15,7 +15,8 @@ class storeController extends Controller
     public function index($id){
         $store = store::find($id);
         $reviews = $store->getReviews;
-        return view('store')->with('store',$store)->with('reviews',$reviews);
+        $foodP = $store->getMenu->getfood->where('platdujour',1);
+        return view('store')->with('store',$store)->with('reviews',$reviews)->with('foodP',$foodP);
     }
     public function AllStores(){
         $stores = store::all();
@@ -73,4 +74,5 @@ class storeController extends Controller
         $store = Auth::user()->getstore;
         return view('pending')->with('store',$store);
     }
+    
 }

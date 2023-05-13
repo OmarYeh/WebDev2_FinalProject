@@ -2,6 +2,8 @@
 @section('title','store-details')
 @section('css')
 <link href="{{ asset('css/storedetails.css') }}" rel="stylesheet">
+<link href="{{ asset('css/homefoodpage.css') }}" rel="stylesheet">
+
 <style>
   .imgcont{
    
@@ -19,16 +21,71 @@
         </div>
     </div>
 </div>
-    
-    
-
 </div>
+<div class="fjdsaf" style="margin-top: 30px;margin-left: 100px;">
+  <p style="margin-bottom:0;font-size: 47px;letter-spacing: 4px;font-weight: 700;">Current Offers</p>
+  <div class="gnkdfb" style="display:flex;gap: 55px;margin-top: 12px;">
+  <div style="display: flex;overflow-x: hidden;">
+    <button class="left-button3">&#8249;</button>
+    <div class="dishesrow3" style="padding-left: 13px;">
+    @foreach($store->getOffer as $obj)
+          <div style="display:flex; flex-direction: column;">
+            <p style="font-size: 27px;">{{$obj->name}}</p>
+            <img src="{{asset($obj->imgsrc)}}" style="width: 250px;height: 250px;margin-bottom: 10px;"/>
+            <div style="display:flex; flex-direction: column;font-size: 18px;">
+              
+            @foreach($obj->getFood as $food)
+              <a href="{{Route('food',['id'=>$food->id])}}" style="color: black;text-decoration: none;">         
+              <div class="dassfsdf" style="display:flex;margin-bottom: 10px;"> 
+              
+              <img src="{{asset($food->imgsrc)}}" style="width:70px;height:70px"/>
+              <div style="padding-left: 16px;">
+                <p style="margin-bottom:0">{{$food->name}}</p>
+                <div style="display:flex;">
+                @php
+                  $originalPrice = $food->price;
+                  $percentageIncrease = $obj->newPrice;
+                  $newPrice = $originalPrice * (1 - $percentageIncrease/100);
+                @endphp
+                  <p style="margin-bottom:0;color:red;text-decoration: line-through;">${{$food->price}}</p>
+                  <p style="margin-bottom:0; color:green;margin-left: 10px;">${{$newPrice}}</p>
+                </div>
+              </div>
+              </div>
+              </a>
+              @endforeach
+            </div>
+        </div>
+
+    @endforeach
+    </div>
+    <button class="right-button3">&#8250;</button>
+  </div>
+  </div>
+</div>
+<div class="fdgdfgd" style="margin-top: 30px;margin-left: 100px;">
+  <p style="margin-bottom: 0px;font-size: 47px;letter-spacing: 4px;font-weight: 700;">Plat Du Jour</p>
+  <div style="display:flex;margin-top: 20px;gap: 20px;">
+    @foreach($foodP as $obj)
+      <div style="">
+      <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;text-decoration: none;">
+        <img src="{{asset($obj->imgsrc)}}" style="width: 200px;height: 200px;margin-bottom: 10px;"/>
+        <div style="display:flex;justify-content: center;gap: 40px">
+          <p style="font-size: 28px;font-weight: 500;">{{$obj->name}}</p>
+          <p style="font-size: 28px;">${{$obj->price}}</p>
+        </div>
+    </a>
+      </div>
+    @endforeach
+  </div>
+</div>
+
 <div id="menu">
   @php
   $menu = $store->getMenu->getFood;
   $menus = $menu->chunk(12);
   @endphp
-  <h2 class="menuTitle">Menu:</h2>
+  <h2 class="menuTitle" style="font-weight: 700;">Menu</h2>
   <div class="table-carousel">
     @foreach ($menus as $menui)
     
@@ -67,7 +124,7 @@
 
 <div class="reviews" style="margin-top: 45px;margin-left: 100px;">
   
-  <h1 style="font-size: 47px;letter-spacing: 4px;font-weight: 300;margin-bottom: 29px;">Reviews:</h1>
+  <h1 style="font-size: 47px;letter-spacing: 4px;font-weight: 700;margin-bottom: 29px;">Reviews</h1>
   @foreach($reviews as $review)
   <div class="review" style="  margin: 0px; width:70%;">  
   <div class="topReview">

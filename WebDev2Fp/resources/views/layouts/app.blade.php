@@ -111,6 +111,40 @@
             var container = document.getElementsByClassName(".dishesrow2");
             container[0].scroll({ left: 200, behavior: "smooth" });
         }
+
+        //for third dishesrow
+        document.addEventListener("DOMContentLoaded", function (event) {
+            const btnleft = document.querySelectorAll(".left-button3");
+            if (btnleft) {
+                btnleft.forEach((ele, index) => {
+                    ele.addEventListener('click', () => {
+                        var container = document.querySelectorAll(".dishesrow3");
+                        const scrollPosition = container[index].scrollLeft - 200;
+                        console.log(scrollPosition);
+                        container[index].scroll({ left: scrollPosition , behavior: "smooth" });
+                        //container[index].scrollLeft = scrollPosition;
+                    });
+                });
+            }
+            const btnRigth = document.querySelectorAll(".right-button3");
+            if (btnRigth) {
+                btnRigth.forEach((ele, index) => {
+                    ele.addEventListener('click', () => {
+                        var container = document.querySelectorAll(".dishesrow3");
+                        console.log(index, container, container[index]);
+                        const scrollPosition = container[index].scrollLeft + 200;
+
+                        container[index].scroll({ left: scrollPosition, behavior: "smooth" });
+
+                    });
+                });
+            }
+        });
+
+        function scrollRight() {
+            var container = document.getElementsByClassName(".dishesrow3");
+            container[0].scroll({ left: 200, behavior: "smooth" });
+        }
     </script>
 </head>
 <body>

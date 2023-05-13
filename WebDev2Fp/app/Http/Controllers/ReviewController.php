@@ -14,7 +14,7 @@ class ReviewController extends Controller
     public function review(Request $request){
         $user_id = Auth::id();
         $store_id = $request->input('store_id');
-        $store = 
+       
         $review =  new review();
         $review->title = $request->input('title');
         $review->content = $request->input('content');

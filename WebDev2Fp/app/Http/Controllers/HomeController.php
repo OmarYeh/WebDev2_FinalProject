@@ -9,6 +9,7 @@ use App\Models\cuisine;
 use App\Models\menu;
 use App\Models\User; 
 use App\Models\basket;
+use App\Models\offer;
 
 class HomeController extends Controller
 {
@@ -29,8 +30,8 @@ class HomeController extends Controller
         $food=food::all();
         $cuisine=cuisine::all();
         $store=store::all();
-       
-        return view('home')->with(["food"=>$food,"cuisine"=>$cuisine,"store"=>$store,"menu"=>$menu]);
+        $offer=offer::all();      
+        return view('home')->with(["food"=>$food,"cuisine"=>$cuisine,"store"=>$store,"menu"=>$menu,"offer"=>$offer]);
     }
 
    
