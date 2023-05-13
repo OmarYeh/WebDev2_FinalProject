@@ -34,14 +34,18 @@ Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware(['auth','verified'])->group(function () {
-    Route::get('AddStore', [storeController::class, 'RegisterStore'])->name('RstoreInput');
-    Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
     Route::get('basket',[BasketController::class,'index'])->name('basket');
     Route::post('AddBasket',[BasketController::class,'createbasket'])->name('AddBasket');
     Route::post('updateBasket/{id}',[BasketController::class,'updatebasket'])->name('updateBasket');
     Route::post('removefromBasket/{id}',[BasketController::class,'removefromBasket'])->name('removefromBasket');
     Route::post('clearBasket',[BasketController::class,'clearBasket'])->name('clearBasket');
     Route::get('orders',[UserOrderController::class,'index'])->name('orders');
+
+    Route::get('pending/approval', [storeController::class, 'pendingS'])->name('pendingStore');
+});
+Route::middleware(['auth','verified','store'])->group(function () {
+Route::get('AddStore', [storeController::class, 'RegisterStore'])->name('RstoreInput');
+Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
 });
 Route::middleware('auth')->group(function () {
     Route::get('profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -49,12 +53,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::middleware(['auth','verified'])->group(function () {
+Route::middleware(['auth','verified','role:Cook','approved'])->group(function () {
     Route::get('/Store/Dashboard', [StoreDashboardController::class, 'index'])->name('sdindex');
     Route::get('/Store/Dashboard/Analytic', [StoreDashboardController::class, 'analysis'])->name('sdindexA');
-
+    Route::post('/Addfood/{id}', [StoreDashboardController::class, 'store'])->name('storeFood');
     Route::get('/Store/Dashboard/Menu', [StoreDashboardController::class, 'menu'])->name('sdindexMenu');
-    Route::get('/Store/Dashboard/offers', [StoreDashboardController::class, 'analysis'])->name('sdindexOfers');
+    Route::get('/Store/Dashboard/offers', [StoreDashboardController::class, 'offer'])->name('sdindexOffers');
+    Route::post('/AddOffer', [StoreDashboardController::class, 'storeoffer'])->name('addoffer');
+    Route::post('/addFoodTooffer', [StoreDashboardController::class, 'addFoodTooffer'])->name('addFoodTooffer');
     Route::get('/Store/Dashboard/Platdejour', [StoreDashboardController::class, 'analysis'])->name('Addplatdujour');
     Route::get('/Store/Dashboard/Orders', [StoreDashboardController::class, 'analysis'])->name('sdindexOrders');
     Route::get('/Store/Dashboard/Delvery', [StoreDashboardController::class, 'analysis'])->name('sdindexManageDe');

@@ -49,7 +49,7 @@
                             @if($storeresult->cuisine_id == $cuisine->id)
                             <div class="imagedish">
                                 <a href="{{Route('store',['id'=>$storeresult->id])}}" style="text-decoration: none;color: black;font-weight: 400;">
-                                    <img class="imagedishimg"src="{{asset($storeresult->imgsrc)}}" style="width:300px; height:250px; border-radius: 18px;margin-left: 0px;" />
+                                    <img class="imagedishimg"src="{{asset($storeresult->logo)}}" style="width:300px; height:250px; border-radius: 18px;margin-left: 0px;" />
                                     <div class="storeinfo">
                                         <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;margin-bottom: 0px;">{{$storeresult->storeName}}</p>
 

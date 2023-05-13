@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 use App\Models\cuisine;
 use App\Models\store;
 use App\Models\menu;
+use App\Models\User;
+use App\Models\userroles;
+use App\Models\role;
 use Illuminate\Support\Facades\Auth;
 class storeController extends Controller
 {
@@ -58,6 +61,16 @@ class storeController extends Controller
         $menu = new menu();
         $menu->store_id = $store->id;
         $menu->save();
-        return view('store')->with('store',$store);
+        $userroles = new userroles();
+        $userroles->user_id = Auth::id();
+        $role = role::where('name','Cook')->first();
+        $userroles->role_id = $role->id;
+        $userroles->save();
+        return view('regisPending')->with('store',$store);
+    }
+
+    public function pendingS(){
+        $store = Auth::user()->getstore;
+        return view('pending')->with('store',$store);
     }
 }
