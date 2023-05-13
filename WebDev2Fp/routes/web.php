@@ -38,6 +38,7 @@ Route::get('dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 Route::middleware(['auth','verified'])->group(function () {
+    Route::get('AddStore', [storeController::class, 'RegisterStore'])->name('RstoreInput');
     Route::get('basket',[BasketController::class,'index'])->name('basket');
     Route::post('AddBasket',[BasketController::class,'createbasket'])->name('AddBasket');
     Route::post('updateBasket/{id}',[BasketController::class,'updatebasket'])->name('updateBasket');
@@ -48,7 +49,6 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('pending/approval', [storeController::class, 'pendingS'])->name('pendingStore');
 });
 Route::middleware(['auth','verified','store'])->group(function () {
-Route::get('AddStore', [storeController::class, 'RegisterStore'])->name('RstoreInput');
 Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
 });
 Route::middleware('auth')->group(function () {
@@ -65,9 +65,18 @@ Route::middleware(['auth','verified','role:Cook','approved'])->group(function ()
     Route::get('/Store/Dashboard/offers', [StoreDashboardController::class, 'offer'])->name('sdindexOffers');
     Route::post('/AddOffer', [StoreDashboardController::class, 'storeoffer'])->name('addoffer');
     Route::post('/addFoodTooffer', [StoreDashboardController::class, 'addFoodTooffer'])->name('addFoodTooffer');
-    Route::get('/Store/Dashboard/Platdejour', [StoreDashboardController::class, 'analysis'])->name('Addplatdujour');
-    Route::get('/Store/Dashboard/Orders', [StoreDashboardController::class, 'analysis'])->name('sdindexOrders');
-    Route::get('/Store/Dashboard/Delvery', [StoreDashboardController::class, 'analysis'])->name('sdindexManageDe');
+    Route::get('/updatefood/{id}',[StoreDashboardController::class,'updateItem'])->name('updateItem');
+    Route::put('/updatefood/{id}',[StoreDashboardController::class,'update'])->name('updateI');
+    Route::delete('/delete/{id}',[StoreDashboardController::class,'deleteItem'])->name('deleteItem');
+    Route::get('/deleteOffer/{id}',[StoreDashboardController::class,'deleteOffer'])->name('deleteOffer');
+    Route::get('/Store/Dashboard/Platdejour', [StoreDashboardController::class, 'platdejour'])->name('sdplatdujour');
+    Route::put('/AddPlat/{id}', [StoreDashboardController::class, 'addplat'])->name('addPlat');
+    Route::put('/DeletePlat/{id}', [StoreDashboardController::class, 'deleteplat'])->name('deletePlat');
+    Route::get('/Store/Dashboard/Orders', [StoreDashboardController::class, 'order'])->name('sdindexOrders');
+    Route::put('/ApproveOrders/{id}', [StoreDashboardController::class, 'approve'])->name('appOr');
+    Route::put('/RejectOrders/{id}', [StoreDashboardController::class, 'reject'])->name('rejOr');
+    Route::get('/Store/Dashboard/Delivery', [StoreDashboardController::class, 'Delivery'])->name('sdindexManageDe');
+    Route::put('/UpdateStatue/{id}/{status}', [StoreDashboardController::class, 'UpdateStatus'])->name('updateSD');
 });
 
 Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');

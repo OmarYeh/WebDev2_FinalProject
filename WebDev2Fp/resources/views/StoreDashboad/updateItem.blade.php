@@ -1,34 +1,35 @@
 @extends('layouts.dashboardStore')
 @section('content')
-    <div class="conatiner">
+<div class="conatiner">
 <div class="allfoods">
-<p>{{ $store->storeName }}</p>
+<p>{{ auth()->user()->getStore->storeName }}</p>
 
 <div class="AddFood">
-    <form method="post" action="{{Route('storeFood',['id'=>$store->getMenu->id])}}" enctype="multipart/form-data">
+    <form method="post" action="{{Route('updateI',['id'=>$food->id])}}" enctype="multipart/form-data">
         @csrf
+        @method('put')
         <lable for="">Name</lable>
-        <input type="text" name="name" placeholder="Ex:Pizza"/>
+        <input type="text" name="name"  value="{{$food->name}}" placeholder="Ex:Pizza"/>
         <lable for="price"></lable>
-        <input type="text" id="price" name="price" placeholder="Ex:12$"/>
+        <input type="text" id="price" name="price" value="{{$food->price}}" placeholder="Ex:12$"/>
       
         
         <lable for="platdujour">plat du jour</lable>
-        <input type="checkbox"  id="platdujour" value="1" name="platdujour" />
+        <input type="checkbox"  id="platdujour"  value="1" name="platdujour" />
         <select name="cuisine">
-            <option value=""></option>
+            <option  value="{{$food->cuisine_id}}">{{$food->getCuisine->name}}</option>
             @foreach($cuisine as $obj)
             <option value="{{$obj->id}}">{{$obj->name}}</option>
             @endforeach
         </select>
         <select name="diet">
-            <option value=""></option>
+            <option  value="{{$food->diet_id}}">{{$food->getDiet->name}}</option>
             @foreach($diet as $obj)
             <option value="{{$obj->id}}">{{$obj->name}}</option>
             @endforeach
         </select>
         <select name="category">
-            <option value=""></option>
+            <option value="{{$food->category_id}}">{{$food->getCategory->name}}</option>
             @foreach($category as $obj)
             <option value="{{$obj->id}}">{{$obj->name}}</option>
             @endforeach
@@ -47,16 +48,7 @@
         </div>
     @endif
 </div>
-@foreach($store->getMenu->getFood as $obj)
-<img src="{{asset($obj->imgsrc)}}"/>
-    <p>{{$obj}}</p>
-    <a href="{{route('updateItem',['id'=>$obj->id])}}">update</a>
-    <form method="post" action="{{route('deleteItem',['id'=>$obj->id])}}">
-        @csrf
-        @method('delete')
-        <button type="submit">delete</button>
-    </form>
-@endforeach
+
 </div>
 <script>
 $(document).ready(function() {
@@ -71,6 +63,4 @@ $(document).ready(function() {
 
     </script>
 </div>
-
 @endsection
-

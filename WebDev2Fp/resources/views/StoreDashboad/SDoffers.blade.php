@@ -34,6 +34,8 @@
         <img src="{{asset($obj->imgsrc)}}" width="50px" heigth="50px"/>
         <p>{{$obj->name}}</p>
         <input type="radio" name="offerId" id="offer{{$obj->id}}" value="{{$obj->id}}"/>
+    
+        <a href="{{route('deleteOffer',['id'=>$obj->id])}}">delete</a>
 
    
     @endforeach
@@ -45,7 +47,7 @@
         <input type="checkbox" name="foodId[]" id="food{{$obj->id}}" value="{{$obj->id}}"/>
         <img src="{{asset($obj->imgsrc)}}" width="50px" heigth="50px"/>
         <p>{{$obj->name}}</p>
-
+    
         @endforeach
     </div> 
 
@@ -109,7 +111,9 @@ $(document).ready(function() {
       }
     });
   });
- 
+
+       
+
 });
    
 

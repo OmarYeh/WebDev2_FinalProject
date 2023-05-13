@@ -75,6 +75,11 @@
                 @endif
         <button type="submit" class="buttoninput">Register Store</button>
     </form>
+    @if ($errors->has('uniqueAcc'))
+                 <span class="Error-msg" role="alert">
+                           <strong>{{ $errors->first('uniqueAcc') }}</strong>
+                 </span>
+                @endif
 </div>
 </div>
 @endsection
