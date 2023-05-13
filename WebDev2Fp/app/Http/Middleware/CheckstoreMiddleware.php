@@ -19,7 +19,8 @@ class CheckstoreMiddleware
         $user=Auth::user();
         $store=$user->getstore;
         if($store){
-            return redirect()->route('sdindex');
+            return redirect()->back()->withErrors(['uniqueAcc' => 'This account already has a registered store.']);
+
         }
         return $next($request);
     }

@@ -48,6 +48,7 @@ class StoreDashboardController extends Controller
         $store = $user->getStore;
         return view('StoreDashboad.SDoffers')->with('store',$store);
     }
+
     public function storeoffer(Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:4',
@@ -119,6 +120,53 @@ class StoreDashboardController extends Controller
         $food->imgsrc=$tosave;
         $food->save();
         return redirect()->route('sdindexMenu');
+    }
+
+    public function deleteItem($id){
+        $food = food::where('id',$id)->first();
+        $food->delete();
+        return redirect()->route('sdindexMenu');
+    }
+    public function updateItem($id){
+        $food = food::find($id);
+        $category = category::all();
+        $cuisine = cuisine::all();
+        $diet = diet::all();
+        return view('StoreDashboad.updateItem')->with(['food'=>$food,'cuisine'=>$cuisine,'diet'=>$diet,'category'=>$category]);
+    }
+
+    public function update($id,Request $request){
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|min:4',
+            'price' => 'required|numeric',
+            'imgsrc' => 'required',
+            'cuisine' => 'required',
+            'diet' => 'required',
+            'category' => 'required'
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->route('sdindexMenu')->withErrors($validator);
+        }
+        
+        $food = new food();
+        $food->name = $request->name ;
+        $food->price = $request->price ;
+        $food->cuisine_id = $request->cuisine ;
+        $food->diet_id = $request->diet ;
+        $food->category_id = $request->category ;
+        $food->menu_id = $id; 
+        $filename= time().'.'.$request->file('imgsrc')->getClientOriginalExtension();
+        $request->file('imgsrc')->storeAs('public/images',$filename);
+        $tosave= 'storage/images/'.$filename;
+        $food->imgsrc=$tosave;
+        $food->save();
+        return redirect()->route('sdindexMenu');
+    }
+    public function deleteOffer($id){
+        $offer = offer::find($id);
+        $offer->delete();
+        return redirect()->route('sdindexOffers');
     }
 
 }
