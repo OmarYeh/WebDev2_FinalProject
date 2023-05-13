@@ -14,6 +14,7 @@
     <link href="https://fonts.cdnfonts.com/css/recoleta" rel="stylesheet">
 
     <link href="{{ asset('css/StoreDashboard.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
     
         </style>
@@ -32,8 +33,7 @@
             @yield('content')
         </div>  
 </body>
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-@yield('js')
+
 <script>
    
     $(function () {
@@ -58,4 +58,5 @@
 });
 });
 </script>
+
 </html>

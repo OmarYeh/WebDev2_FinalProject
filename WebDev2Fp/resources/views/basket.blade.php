@@ -52,7 +52,12 @@
         <div class="imgiconthing">
             <img src="https://img.icons8.com/bubbles/100/purchase-order.png"  alt="shopping-basket-2" style="width: 100px;height: 100px;margin-top: 54px;"/>
         </div>    
+       
         <p class="baskettitle" style="text-align: center;font-style: normal;font-size: 57px;font-weight: 500;color: white;letter-spacing: 4px;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);">Your Basket:</p>
+        <form method="post" action="{{Route('clearBasket') }}">
+            @csrf
+            <div class="clearbutton"><button>Clear</button></div>
+        </form>
         @if($basket->getFood->count()==0)
                 <div class="searchforproduct">
                 <form method="get" action="{{ Route('searchFood') }}" >  
@@ -69,7 +74,7 @@
                 <div class="dadada" style="">
                     <div class="storeitem" style="border-radius: 10px 10px 0px 0px;">
                                 <div class="storeimg">
-                                    <img src="{{asset($obj->getMenu->getStore->imgsrc)}}" style="width:100px;border-radius: 14px;height:100px;">
+                                    <img src="{{asset($obj->getMenu->getStore->logo)}}" style="width:100px;border-radius: 14px;height:100px;">
                                 </div>
                                 <div class="storeinfo">
                                     <p style="font-size: 26px;font-weight: 700;margin-bottom: 0px;">{{$obj->getMenu->getStore->storeName}}</p>
@@ -159,13 +164,10 @@
            
         @endforeach
         
-        <!--THIS HERE IS FOR CLEARING ALL ITEMS FROM BASKET-->
-        <form method="post" action="{{Route('clearBasket') }}">
-            @csrf
-            <div class="clearbutton"><button>Clear</button></div>
-        </form>
+        
+     
 
-        <!--THIS HERE IS FOR CHECKOUT-->
+
         <form method="get" action="">
             <div class="checkoutbutton">
                     <button>Checkout</button>

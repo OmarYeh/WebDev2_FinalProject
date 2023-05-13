@@ -9,10 +9,13 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use App\Models\userroles;
+use App\Models\role;
+use App\Models\basket;
 use DateTime;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Auth\Events\Registered;
 class LoginController extends Controller
 {
     /*
@@ -121,13 +124,19 @@ class LoginController extends Controller
                 'Gender' => $request->gender,
                 'phone_number' => $request->phonenumber,
             ]);
-    
-    
-            // Log in the user
+            event(new Registered($newUser));
+
+            $userroles = new userroles();
+            $userroles->user_id = $newUser->id;
+            $role = role::where('name','Client')->first();
+            $userroles->role_id = $role->id;
+            $userroles->save();
+            $basket = new basket();
+            $basket->user_id = $newUser->id;
+
+
             Auth::login($newUser, true);
-    
-    
-            // Redirect to home page
+
             return redirect('/');
         }
     

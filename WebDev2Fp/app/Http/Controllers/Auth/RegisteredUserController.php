@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\userroles;
 use App\Models\role;
+use App\Models\basket;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
@@ -65,6 +66,8 @@ class RegisteredUserController extends Controller
         $role = role::where('name','Client')->first();
         $userroles->role_id = $role->id;
         $userroles->save();
+        $basket = new basket();
+        $basket->user_id = $user->id;
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
