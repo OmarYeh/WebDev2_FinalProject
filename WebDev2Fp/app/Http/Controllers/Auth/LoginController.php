@@ -133,7 +133,7 @@ class LoginController extends Controller
             $userroles->save();
             $basket = new basket();
             $basket->user_id = $newUser->id;
-
+            $basket->save();
 
             Auth::login($newUser, true);
 

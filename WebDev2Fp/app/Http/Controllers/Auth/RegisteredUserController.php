@@ -68,6 +68,7 @@ class RegisteredUserController extends Controller
         $userroles->save();
         $basket = new basket();
         $basket->user_id = $user->id;
+        $basket->save();
         Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
