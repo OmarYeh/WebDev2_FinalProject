@@ -187,7 +187,16 @@
         @php
         use Carbon\Carbon;
         @endphp
-    
+        @if(count($order)==0)
+        
+                <p style="text-align: center;font-style: normal;font-size: 36px;font-weight: 500;color: white;letter-spacing: 4px;text-shadow: rgba(0, 0, 0, 0.6) 2px 2px 5px;">You have not made any orders recently.</p>
+                <div class="searchforproduct">
+                <form method="get" action="{{ Route('searchFood') }}" >  
+                    <button class="searchforproductbtn">Search For Products</button>
+                </form>
+                </div>
+        
+        @else
         @isset($order)
             @foreach($order as $menu) 
                             @php
@@ -271,7 +280,7 @@
                                                 <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 33px;">{{$obj->name}}</p>  
                                                 <p style="font-size: 21px;margin-right: 21%;">${{$obj->price}}</p>
                                                 <p style="font-size: 22px;">Quantity:</p>
-                                                <p style="margin-left: -20%;margin-right: 31%;font-size: 19px;">{{$obj->pivot->quantity}}</p>
+                                                <p style="margin-left: -20%;margin-right: 14%;font-size: 19px;">{{$obj->pivot->quantity}}</p>
                                                 <p style="font-size: 22px;">Store:</p>
                                                 <p style="margin-left: -20%;font-size: 19px;">{{$obj->getMenu->getStore->storeName}}</p>
                                             </div>   
@@ -294,7 +303,7 @@
                                                 <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 33px;">{{$obj->name}}</p>  
                                                 <p style="font-size: 21px;margin-right: 21%;">${{$obj->price}}</p>
                                                 <p style="font-size: 22px;">Quantity:</p>
-                                                <p style="margin-left: -20%;margin-right: 31%;font-size: 19px;">{{$obj->pivot->quantity}}</p>
+                                                <p style="margin-left: -20%;margin-right: 14%;font-size: 19px;">{{$obj->pivot->quantity}}</p>
                                                 <p style="font-size: 22px;">Store:</p>
                                                 <p style="margin-left: -20%;font-size: 19px;">{{$obj->getMenu->getStore->storeName}}</p>
                                             </div>   
@@ -309,13 +318,7 @@
                     @endif  
                 @endforeach
             @endforeach
-        @else
-                <p style="text-align: center;font-style: normal;font-size: 36px;font-weight: 500;color: white;letter-spacing: 4px;text-shadow: rgba(0, 0, 0, 0.6) 2px 2px 5px;">You have not made any orders recently.</p>
-                <div class="searchforproduct">
-                <form method="get" action="{{ Route('searchFood') }}" >  
-                    <button class="searchforproductbtn">Search For Products</button>
-                </form>
-                </div>
-           
+        
+        @endif
         @endif
 @endsection

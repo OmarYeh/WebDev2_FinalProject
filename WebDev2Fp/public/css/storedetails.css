@@ -268,3 +268,24 @@
     #reviewbtn:hover{
       background-color: #d33d3d;;
     }
+    .dishesrow3{
+      display:flex;
+      gap: 28px;
+      overflow-x: hidden;
+  }
+  .left-button3,
+  .right-button3 {
+      background-color: #ffffff;
+      border: none;
+      color: #000000;
+      font-size: 30px;
+      padding: 10px 20px;
+      margin: 0 10px;
+  }
+
+  .left-button3:hover,
+  .right-button3:hover {
+      background-color: #000000;
+      color: #ffffff;
+      cursor: pointer;
+  }
