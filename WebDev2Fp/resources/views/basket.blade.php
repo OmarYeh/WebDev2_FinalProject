@@ -92,7 +92,7 @@
                                 <div class="imagedish">                              
                                         <img class="imagedishimg"src="{{asset($obj->imgsrc)}}" style="width:250px; height:200px; border-radius: 18px;margin-left: 8px;" />
                                         <div class="productinfo">
-                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 33px;">{{$obj->name}}</p>
+                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 33px;max-width: 285px;">{{$obj->name}}</p>
                                             
                                             <p style="font-size: 21px;">${{$obj->price}}</p>
                                         </div>   
