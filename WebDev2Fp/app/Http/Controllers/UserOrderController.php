@@ -12,9 +12,12 @@ class UserOrderController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $order = order::where('user_id',$user->id)->get();
-        $orderedbytime = $order->groupBy('Dot');
-       
-        return view('userorder')->with(["order"=>$order,"orderedbytime"=>$orderedbytime]);
+        $order = order::where('user_id',$user->id)->get();     
+        
+        $total = 0; 
+        
+        return view('userorder')->with(["order"=>$order,"total"=>$total]);
+        
+        
     }
 }

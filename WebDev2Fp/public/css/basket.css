@@ -57,7 +57,7 @@
 .productinfo{
     display: flex;
     align-items: center;
-    gap: 84px;
+    gap: 32px;
     width: 35%;
     margin-left: 24px;
 }

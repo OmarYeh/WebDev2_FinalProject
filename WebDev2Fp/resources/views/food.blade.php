@@ -86,7 +86,7 @@
                 </div>
             </div>
         
-        <div class="suggested" style="margin-left: 141px;">
+        <div class="suggested" style="margin-right: 107px;">
             <p style="margin-left: 53px; font-size: 30px;color: rgb(238, 85, 85);">Suggested Items</p>
             <div class="d-flex flex-column flex-md-row p-4 gap-4 py-md-5 align-items-center justify-content-center" style="padding-top: 7px !important;">
                 <div class="list-group">
