@@ -12,6 +12,7 @@ use App\Models\diet;
 use App\Models\cuisine;
 use App\Models\offer;
 use App\Models\offerfood;
+use App\Models\order;
 use Illuminate\Support\Facades\Validator;
 
 class StoreDashboardController extends Controller
@@ -40,9 +41,24 @@ class StoreDashboardController extends Controller
     }
 
     public function platdejour(){
-        return view('StoreDashboad.SDplat');
+        $userid = Auth::id();
+        $store = store::where(['user_id'=>$userid])->first();
+        $foodP = $store->getMenu->getfood->where('platdujour',1);
+        return view('StoreDashboad.SDPlatdejur')->with(['store'=>$store,'foodP'=>$foodP]);
+    }
+    public function addplat($id){
+        $food= food::find($id);
+        $food->platdujour = 1;
+        $food->save();
+        return redirect()->route('sdplatdujour');
     }
 
+    public function deleteplat($id){
+        $food= food::find($id);
+        $food->platdujour = 0;
+        $food->save();
+        return redirect()->route('sdplatdujour');
+    }
     public function offer(){
         $user = Auth::user();
         $store = $user->getStore;
@@ -118,6 +134,9 @@ class StoreDashboardController extends Controller
         $request->file('imgsrc')->storeAs('public/images',$filename);
         $tosave= 'storage/images/'.$filename;
         $food->imgsrc=$tosave;
+        if($request->platdujour){
+            $food->platdujour = $request->platdujour;
+        }
         $food->save();
         return redirect()->route('sdindexMenu');
     }
@@ -128,11 +147,12 @@ class StoreDashboardController extends Controller
         return redirect()->route('sdindexMenu');
     }
     public function updateItem($id){
+        $store = store::where(['user_id'=>Auth::id()])->first();
         $food = food::find($id);
         $category = category::all();
         $cuisine = cuisine::all();
         $diet = diet::all();
-        return view('StoreDashboad.updateItem')->with(['food'=>$food,'cuisine'=>$cuisine,'diet'=>$diet,'category'=>$category]);
+        return view('StoreDashboad.updateItem')->with(['store'=>$store,'food'=>$food,'cuisine'=>$cuisine,'diet'=>$diet,'category'=>$category]);
     }
 
     public function update($id,Request $request){
@@ -146,27 +166,75 @@ class StoreDashboardController extends Controller
         ]);
     
         if ($validator->fails()) {
-            return redirect()->route('sdindexMenu')->withErrors($validator);
+            return redirect()->route('updateItem',['id'=>$id])->withErrors($validator);
         }
         
-        $food = new food();
+        $food = food::find($id);
         $food->name = $request->name ;
         $food->price = $request->price ;
         $food->cuisine_id = $request->cuisine ;
         $food->diet_id = $request->diet ;
         $food->category_id = $request->category ;
-        $food->menu_id = $id; 
         $filename= time().'.'.$request->file('imgsrc')->getClientOriginalExtension();
         $request->file('imgsrc')->storeAs('public/images',$filename);
         $tosave= 'storage/images/'.$filename;
         $food->imgsrc=$tosave;
+        if($request->platdujour){
+            $food->platdujour = $request->platdujour;
+        }
+        else{
+            $food->platdujour = 0;
+        }
         $food->save();
         return redirect()->route('sdindexMenu');
     }
+
     public function deleteOffer($id){
         $offer = offer::find($id);
         $offer->delete();
         return redirect()->route('sdindexOffers');
+    }
+
+    public function order(){
+        $userid = Auth::id();
+        $store = store::where(['user_id'=>$userid])->first();
+        $dorder = $store->getOrders()->where('statues','approved')
+        ->orwhere('statues','pending')
+        ->orwhere('statues','rejected')
+        ->get();
+        return view('StoreDashboad.SDorders')->with(['store'=>$store,'orders'=>$dorder]);
+    }
+
+    public function approve($id){
+        $order = order::find($id);
+        $order->statues = 'approved';
+        $order->save();
+        return redirect()->route('sdindexOrders');
+    }
+
+    public function reject($id){
+        $order = order::find($id);
+        $order->statues = 'rejected';
+        $order->save();
+        return redirect()->route('sdindexOrders');
+    }
+
+    public function Delivery(){
+        $userid = Auth::id();
+        $store = store::where(['user_id'=>$userid])->first();
+        $dorder = $store->getOrders()->where('statues','approved')
+        ->orwhere('statues','delivering')
+        ->orwhere('statues','delivered')
+        ->orwhere('statues','canceled')
+        ->get();;
+        return view('StoreDashboad.SDmangd')->with(['store'=>$store,'orderA'=>$dorder]);
+    }
+
+    public function UpdateStatus($id,$status){
+        $order = order::find($id);
+        $order->statues = $status;
+        $order->save();
+        return redirect()->route('sdindexManageDe');
     }
 
 }

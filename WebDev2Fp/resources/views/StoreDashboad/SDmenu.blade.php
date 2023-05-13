@@ -50,6 +50,12 @@
 @foreach($store->getMenu->getFood as $obj)
 <img src="{{asset($obj->imgsrc)}}"/>
     <p>{{$obj}}</p>
+    <a href="{{route('updateItem',['id'=>$obj->id])}}">update</a>
+    <form method="post" action="{{route('deleteItem',['id'=>$obj->id])}}">
+        @csrf
+        @method('delete')
+        <button type="submit">delete</button>
+    </form>
 @endforeach
 </div>
 <script>

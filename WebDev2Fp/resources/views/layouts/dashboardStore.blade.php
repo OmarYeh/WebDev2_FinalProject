@@ -27,7 +27,7 @@
             <div class="sd"><p>offers</p></div>
             <div class="sd"><p>Plat de jour</p></div>
             <div class="sd"><p>Orders</p></div>
-            <div class="sd"><p>Delvery</p></div>
+            <div class="sd"><p>Delivery</p></div>
         </div>
         <div class="rigth-Conatiner">
             @yield('content')
@@ -45,7 +45,7 @@
     // Add the 'clicked' class to the currently selected element
     $(this).addClass('clicked');
 
-    var text = $(this).text();
+    var text = $(this).text().replace(/\s/g, '');
     const url = '/Store/Dashboard/' + text.toString();
     $.ajax({
     url: url,
