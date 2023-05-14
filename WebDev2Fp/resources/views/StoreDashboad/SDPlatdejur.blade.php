@@ -1,37 +1,57 @@
 @extends('layouts.dashboardStore')
 @section('content')
-<div class="conatiner">
-<div class="allfoods">
-<p>{{ auth()->user()->getStore->storeName }}</p>
-<div class="Allplat">
-    <h1>Plat De jour</h1>
-    @foreach($foodP as $obj)
-    <img src="{{asset($obj->imgsrc)}}"/>
-    {{$obj}}
-    <form method="post" action="{{route('deletePlat',['id'=>$obj->id])}}">
-            @csrf
-            @method('put')
-            <button type="submit">delete</button>
-    </form>
-    @endforeach
-</div>
-<div class="AddFood">
-    @foreach($store->getMenu->getFood as $obj)
-    @if($obj->platdujour == 0)
-        <img src="{{asset($obj->imgsrc)}}" />    
-    {{$obj}}
-    <form method="post" action="{{route('addPlat',['id'=>$obj->id])}}">
-            @csrf
-            @method('put')
-            <button type="submit">add</button>
-    </form>
-    <form method="post" action="{{route('deletePlat',['id'=>$obj->id])}}">
-            @csrf
-            @method('put')
-            <button type="submit">delete</button>
-    </form>
-    @endif
-    @endforeach
+<div class="conatiner" style="margin: 0;width: 100%;">
+<p style="text-align:center;margin-top:20px;font-size:40px;font-weight:600;margin-bottom: 62px;">Plat De jour</p>
+
+<div class="allfoods" style="display:flex;margin-top:40px;">
+  <div class="Allplat" style="width: 50%;">
+
+    <div class="fooooood" style="margin-left:40px;">
+    <p style="text-align:center;font-size:30px;font-weight: 500;color: black;">Items in Plat De Jour</p>
+      @foreach($foodP as $obj)
+      <div style="display:flex;flex-direction:column;align-items: center;">
+        <img src="{{asset($obj->imgsrc)}}" style="height: 200px;width:250px; border-radius:9px;"/>
+        <div style="display:flex;align-items: center;margin-top: 13px;margin-bottom: 39px;gap: 25px;">    
+              <p style="color:black;font-size:25px;font-weight:500;margin-bottom:0;margin-top:0">{{$obj->name}}</p>
+              <p style="color:black;font-size:20px;margin-bottom:0;margin-top:0">${{$obj->price}}</p>
+              <form method="post" action="{{route('deletePlat',['id'=>$obj->id])}}" style="">
+                @csrf
+                @method('put')
+                <button type="submit" style="border:none;width:90px;padding:9px;font-size:19px;background-color:#e55;border-radius:9px;cursor:pointer;color:white;">Remove</button>
+        </form>
+        </div>
+        
+    </div>
+      @endforeach
+    </div>
+  </div>
+      <div class="AddFood" style="margin-left:40px;width: 50%;">
+      <p style="text-align:center;font-size:30px;font-weight: 500;color: black;">Items You Can Add</p>
+
+        @foreach($store->getMenu->getFood as $obj)
+          @if($obj->platdujour == 0)
+              <div style="display:flex;flex-direction:column;align-items: center;">
+              <img src="{{asset($obj->imgsrc)}}" style="height: 200px;width:250px;border-radius:9px;" />
+              <div style="display:flex;align-items: center;margin-top: 13px;margin-bottom: 10px; gap:30px">   
+              <p style="color:black;font-size:25px;font-weight:500;margin-bottom:0;margin-top:0">{{$obj->name}}</p>
+              <p style="color:black;font-size:20px;margin-bottom:0;margin-top:0">${{$obj->price}}</p>
+              
+            </div>
+              <div style="display:flex; gap:10px; margin-bottom:20px;">
+                <form method="post" action="{{route('addPlat',['id'=>$obj->id])}}">
+                        @csrf
+                        @method('put')
+                        <button type="submit" style="border:none;width:90px;padding:9px;font-size:19px;background-color:#e55;border-radius:9px;cursor:pointer;color:white;">Add</button>
+                </form>
+                <form method="post" action="{{route('deletePlat',['id'=>$obj->id])}}">
+                        @csrf
+                        @method('put')
+                        <button type="submit" style="border:none;width:90px;padding:9px;font-size:19px;background-color:#e55;border-radius:9px;cursor:pointer;color:white;">Delete</button>
+                </form>
+              </div>
+          </div>
+          @endif
+        @endforeach
 </div>
 
 </div>

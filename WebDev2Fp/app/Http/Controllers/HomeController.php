@@ -42,7 +42,8 @@ class HomeController extends Controller
         $cuisine = cuisine::find($data->cuisine_id);
         $store=store::find($data->store_id);
         $userId = auth()->id();
-        return view('food')->with(["food"=>$data,"cuisine"=>$cuisine,"alldata"=>$alldata,"store"=>$store,"userId"=>$userId]);
+        $offer=offer::all();
+        return view('food')->with(["food"=>$data,"cuisine"=>$cuisine,"alldata"=>$alldata,"store"=>$store,"userId"=>$userId,"offer"=>$offer]);
     }
 
     

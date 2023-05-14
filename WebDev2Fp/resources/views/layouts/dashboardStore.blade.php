@@ -21,6 +21,7 @@
     </head>
 
     <body>
+    
         <div class="left-nav">
             <div class="sd clicked"><p>Analytic</p></div>
             <div class="sd"><p>Menu</p></div>
@@ -29,7 +30,7 @@
             <div class="sd"><p>Orders</p></div>
             <div class="sd"><p>Delivery</p></div>
         </div>
-        <div class="rigth-Conatiner">
+        <div class="rigth-Conatiner" style="width: 80%;">
             @yield('content')
         </div>  
 </body>
