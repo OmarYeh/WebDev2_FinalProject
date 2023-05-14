@@ -1,5 +1,5 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
+<x-guest-layout style="max-width: 1000px;width: 562px;">
+    <div class="mb-4 text-sm text-gray-600"style="font-size: 16px;">
         {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
     </div>
 
@@ -17,7 +17,7 @@
         </div>
 
         <div class="flex items-center justify-end mt-4">
-            <x-primary-button>
+            <x-primary-button style=" background: #e55;">
                 {{ __('Email Password Reset Link') }}
             </x-primary-button>
         </div>
