@@ -85,6 +85,8 @@
                                      
                 </div>
             </div>
+
+        <div  class="suggoffer" style="display:flex;flex-direction: column;">
         
         <div class="suggested" style="margin-right: 107px;">
             <p style="margin-left: 53px; font-size: 30px;color: rgb(238, 85, 85);">Suggested Items</p>
@@ -110,5 +112,36 @@
                 </div>
             </div>
 
+        </div>
+        <div class="offers">
+        
+        @foreach($offer as $obj)  
+                    @foreach($obj->getFood as $foods)
+                    @if($foods->id == $food->id)
+                    <p style="margin-left: 53px; font-size: 30px; color: rgb(238, 85, 85);">This item is also on offer:</p>
+                    <div class="imagedish" style="  display: flex; flex-direction:column;margin-left: 9%;">
+                                <a href="{{Route('food',['id'=>$food->id])}}" style="color: black;font-weight: 400; text-decoration: none;display: flex;flex-direction: row;">
+                                    <img class="imagedishimg" src="{{asset($food->imgsrc)}}" style="height: 100px;width: 100px;" />
+                                    <div class="productinfo" style="gap: 26px;justify-content: center;align-items: center;display: flex;  margin-left: 8px;">
+                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 20px;  max-width: 100px;max-height: 157px;}">{{ $food->name }}</p>
+                                            <p style="font-weight:300;">{{ $food->getMenu->getStore->storeName}}</p>                    
+                                            <p style="font-size: 24px;color:red;text-decoration: line-through;">${{ $food->price}}</p>
+                                            @php
+                                                $originalPrice = $food->price;
+
+                                                $percentageIncrease = $obj->newPrice;
+
+                                                $newPrice = $originalPrice * (1 - $percentageIncrease/100);
+
+                                            @endphp
+                                            
+                                            <p style="font-size: 24px; color:green">${{$newPrice}}</p>
+                                        </div>
+                                </a>
+                            </div> 
+                    @endif
+                    @endforeach
+                @endforeach
+        </div>
     </div>
 @endsection
