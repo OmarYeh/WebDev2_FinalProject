@@ -16,10 +16,56 @@
     <link href="{{ asset('css/StoreDashboard.css') }}" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-    
+  
+        input[type="text"]{
+            margin-top:10px;
+            width:450px;
+            height:15px;
+            padding:7px;
+            outline:none;
+            background:none;
+            font-family: "Gilroy", "Helvetica", "Arial", "sans-serif";
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 18px;
+            border-style: hidden;
+            border-radius: 8px;
+            border: 1px solid rgb(184, 184, 184);
+            cursor: text;
+            margin-bottom:10px;
+        }
+        select{
+            width:470px;
+            height:35px;
+            padding:7px;
+            outline:none;
+            background:none;
+            font-family: "Gilroy", "Helvetica", "Arial", "sans-serif";
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 18px;
+            border-style: hidden;
+            border-radius: 8px;
+            border: 1px solid rgb(184, 184, 184);
+            cursor: pointer;
+            margin-bottom:10px;
+        }
+
+         form input:focus, form select:focus{
+    outline:none;
+}
+label{
+    font-size: 17px;
+    line-height: 1.42857143;
+    margin-bottom:10px;
+}
+.Allplat::-webkit-scrollbar,.AddFood::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
         </style>
     </head>
-
+    
     <body>
     
         <div class="left-nav">

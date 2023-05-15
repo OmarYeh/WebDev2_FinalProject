@@ -126,7 +126,6 @@
 
 .buttonforcat {
     text-decoration: none;
-    flex-basis: calc(100% - 89%);
     flex-grow: 1;
     background: unset;
     border: 1px solid rgb(202, 202, 202);
@@ -176,7 +175,7 @@
 
 .left-button:hover,
 .right-button:hover {
-    background-color: #000000;
+    background-color: #b3b3b3;
     color: #ffffff;
     cursor: pointer;
 }
@@ -192,7 +191,7 @@
 
 .left-button2:hover,
 .right-button2:hover {
-    background-color: #000000;
+    background-color: #b3b3b3;
     color: #ffffff;
     cursor: pointer;
 }
@@ -644,7 +643,7 @@ i {
 }
 .imagedishimg{
     margin-top: 14px;
-    width:300px; 
+    width:350px; 
     height:250px; 
     border-radius: 18px;
     margin-left: 0px;

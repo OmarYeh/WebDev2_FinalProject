@@ -1,3 +1,4 @@
+
 @foreach($stores as $store)
 <p> {{$store->status}} </p>
 @if( $store->status == "pending")

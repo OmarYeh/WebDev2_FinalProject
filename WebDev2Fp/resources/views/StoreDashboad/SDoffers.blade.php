@@ -1,87 +1,63 @@
 @extends('layouts.dashboardStore')
+
 @section('content')
-    <div class="conatiner">
-<div class="alloffers">
-<p>{{ $store->storeName }}</p>
-<div class="addOffer">
-<form id="addOfferForm" method="post" action="{{Route('addoffer')}}" enctype="multipart/form-data">
-    @csrf
-    <lable for="">Name</lable>
-    <input type="text" name="name" placeholder="Ex:Pizza"/>
-    <lable for="newPrice">Price Discount</lable>
-    <input type="text" id="newPrice" name="newPrice" placeholder="Ex:26%"/>
-    <label for="imgsrc">Offer's Image</label>
-    <input type="file" id="imgsrc" name="imgsrc" placeholder="Enter Image" size="60" />
-    <button type="submit" onclick="submitAddOfferForm()">Add Offer</button>
-</form>
-@if ($errors->any())
-        <div class="alert alert-dark">
-             <ul>           
-                 @foreach ($errors->all() as $error) 
-                    <li>{{ $error }}</li>
-                @endforeach        
-            </ul>    
-        </div>
-    @endif
+    <div class="conatiner" style="display:flex;flex-direction:column;gap:25px;">
+<div class="alloffers" style="display:flex;flex-direction:column;padding:10px;gap:10px;">
+<div class="addOffer" style="display:flex;flex-direction:column;padding:10px;gap:10px;width:1100px;">
+<p style="font-size:25px;font-weight:700">Offers:</p>
+    @foreach($store->getOffer as $obj)
+    <div class="offer" style="display:flex;flex-direction:row;gap:25px;justify-content:space-between;align-items:center;border:2px solid lightgray;background-color:#f8f8ff;border-radius:15px;padding:20px;">
+    <img src="{{asset($obj->getfood->imgsrc)}}" width="100px" height="75px"/>  
+    <p> {{$obj->getfood->name}}</p>
+      <p>Old Price: {{$obj->oldprice}}</p>
+      <p>New Price:{{$obj->getfood->price}}</p>
+      <a href="{{route('deleteOffer',['id'=>$obj->getfood->id])}}" style="text-decoration:none;color:white;background:#e55;border-radius:12px;cursor:pointer;padding:10px;">delete</a>
+</div>
+    @endforeach
 </div>
 
-<div class="addFoodOffer">
-<form action="">
-    <h1>Offers</h1>
-    <div class="offer">
-    @foreach($store->getOffer as $obj)
-   
-        <img src="{{asset($obj->imgsrc)}}" width="50px" heigth="50px"/>
-        <p>{{$obj->name}}</p>
-        <input type="radio" name="offerId" id="offer{{$obj->id}}" value="{{$obj->id}}"/>
-    
-        <a href="{{route('deleteOffer',['id'=>$obj->id])}}">delete</a>
-
-   
-    @endforeach
-    </div>
-    <h1>Food</h1>
-
-    <div class="food">
+<div class="addFoodOffer" >
+  <p style="font-size:25px;font-weight:700" >Add Offer</p>
+    <div class="food" style="background:none;display:flex;flex-direction:column;padding:10px;gap:10px;width:1100px;">
         @foreach($store->getMenu->getFood as $obj)
-        <input type="checkbox" name="foodId[]" id="food{{$obj->id}}" value="{{$obj->id}}"/>
-        <img src="{{asset($obj->imgsrc)}}" width="50px" heigth="50px"/>
-        <p>{{$obj->name}}</p>
-    
+        @if(!$obj->getOffer)
+        <form method="post"action="{{route('addoffer',['id'=> $obj->id])}}" style="display:flex;flex-direction:row;gap:25px;justify-content:space-between;align-items:center;border:2px solid lightgray;background-color:#f8f8ff;border-radius:15px;padding:20px;">
+           @csrf
+            <img src="{{asset($obj->imgsrc)}}" width="100px" heigth="75px" />
+            <p>{{$obj->name}}</p>
+            <p>Price: {{$obj->price}}</p>
+            <p>Discount:</p>
+            <input type="text" name="newPrice" style="width:200px" placeholder="Ex: 20%"/> 
+            <button style="color:white;background:#e55;border-radius:12px;cursor:pointer;padding:10px;outline:none;border:none;">Add offer</button>
+        </form>
+        @endif
         @endforeach
     </div> 
 
-    <button id="afo">Add Food to offers</button>
-</form>
+    
+
 
 </div>
-<div class="alloffersfood">
-    @foreach($store->getOffer as $obj)
-        {{$obj->name}}
-        @foreach($obj->getfood as $food)
-            {{$food->name}}
-            @php
-            $originalPrice = $food->price;
-            $percentageIncrease = $obj->newPrice;
-            $newPrice = $originalPrice * (1 - $percentageIncrease/100);
-        @endphp
-            {{$newPrice}}
-            {{$food->price}}
-        @endforeach
-    @endforeach
-</div>
+
 </div>
 <script>
-     history.pushState(null, null, '/Store/Dashboard');
+    
 $(document).ready(function() {
-  var currentPage = window.location.pathname.split('/').pop();
+  var currentPage = window.location.pathname.split('/').pop().toLowerCase();
+    history.pushState(null, null, '/Store/Dashboard');
   $('.sd').each(function() {
-    if ($(this).data('page') === currentPage) {
+   
+    var textWithoutSpaces = $(this).text().replace(/\s+/g, '').toLowerCase();
+    console.log(currentPage,textWithoutSpaces)
+    if (textWithoutSpaces === currentPage) {
+      $('.sd').each(function() {
+        $(this).removeClass('clicked');
+      });
       $(this).addClass('clicked');
     }
   });
 
-  $('#afo').click(function(event) {
+ /* $('#afo').click(function(event) {
     event.preventDefault(); 
     console.log('clicked');
     var offerId = $('input[name="offerId"]:checked').val(); 
@@ -110,7 +86,7 @@ $(document).ready(function() {
         console.log(error);
       }
     });
-  });
+  });*/
 
        
 

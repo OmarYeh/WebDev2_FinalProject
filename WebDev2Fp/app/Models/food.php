@@ -31,9 +31,9 @@ class food extends Model
         return $this->belongsTo(category::class,'category_id','id');
     }
 
-    public function getOffers()
+    public function getOffer()
     {
-        return $this->belongsToMany(offer::class,'offerfoods','food_id','offer_id');
+        return $this->hasOne(offer::class);
         
     }
     public function getOrders()

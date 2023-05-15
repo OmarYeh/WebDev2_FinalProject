@@ -15,7 +15,7 @@ class offer extends Model
 
     public function getfood()
     {
-        return $this->belongsToMany(food::class,'offerfoods','offer_id','food_id');
+        return $this->belongsTo(food::class,'food_id','id');
         
     }
 }

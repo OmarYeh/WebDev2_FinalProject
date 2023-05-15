@@ -2,15 +2,24 @@
 
 @section('title', 'Profile')
 @section('css')
-<link
-      href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet" />
     <style>
         input{
             height: 32px;
             padding: 7px;
         }
+         .logoa {
+            display: initial;
+    z-index: initial;
+    opacity: initial;
+    background-color: initial;
+    background: initial;
+    font-size: initial;
+    text-decoration: initial;
+    color: initial;
+}
+
+
     </style>
 @endsection
 @section('content')

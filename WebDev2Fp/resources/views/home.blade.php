@@ -61,17 +61,21 @@
         <div style="display: flex;overflow-x: hidden;">
             <button class="left-button">&#8249;</button>
             <div class="dishesrow" style="padding-left: 13px;">
-                @foreach($food as $obj)  
+                @foreach($food as $obj) 
+                @if($obj->getOffer)
+                    @continue
+                    @else
                       <div class="imagedish" >
                                 <a href="{{Route('food',['id'=>$obj->id])}}" style="color: black;font-weight: 400; text-decoration: none;">
                                     <img class="imagedishimg" src="{{asset($obj->imgsrc)}}" style="" />
-                                    <div class="productinfo" style="gap: 40px;display: flex;justify-content: center;align-items: center;">
-                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$obj->name}}</p>
+                                    <div class="productinfo" style="gap: 10px;display: flex;justify-content: center;align-items: center;">
+                                            <p style="text-align:center;font-weight: 700;color: rgb(56, 56, 56);font-size: 20px;  max-width: 175px;">{{$obj->name}}</p>
                                             <p style="font-weight:300;">{{$obj->getMenu->getStore->storeName}}</p>
                                             <p style="font-size: 24px;">${{$obj->price}}</p>
                                         </div>
                                 </a>
-                            </div>                     
+                            </div>       
+                            @endif              
                 @endforeach
 
                 <div class="imagedish">
@@ -162,29 +166,20 @@
             <button class="left-button">&#8249;</button>
             <div class="dishesrow" style="padding-left: 13px;">
                 @foreach($offer as $obj)  
-                    @foreach($obj->getFood as $food)
+                   
                       <div class="imagedish" >
-                                <a href="{{Route('store',['id'=>$food->getMenu->getStore->id])}}" style="color: black;font-weight: 400;text-decoration: none; ">
-                                    <img class="imagedishimg" src="{{asset($food->imgsrc)}}" style="" />
-                                    <div class="productinfo" style="gap: 22px;display: flex;justify-content: center;align-items: center;">
-                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;">{{$food->name}}</p>
-                                            <p style="font-weight:300;">{{$food->getMenu->getStore->storeName}}</p>
-                                            <p style="font-size: 24px; color:red;text-decoration: line-through;margin-right: -10px;">${{$food->price}}</p>
-                                            @php
-                                            $originalPrice = $food->price;
-
-                                            $percentageIncrease = $obj->newPrice;
-
-                                            $newPrice = $originalPrice * (1 - $percentageIncrease/100);
-
-                                            @endphp
-                                            
-                                            <p style="font-size: 24px; color:green">${{$newPrice}}</p>
-                                            
+                                <a href="{{Route('store',['id'=>$obj->getfood->getMenu->getStore->id])}}" style="color: black;font-weight: 400;text-decoration: none; ">
+                                    <img class="imagedishimg" src="{{asset($obj->getfood->imgsrc)}}" style="" />
+                                    <div class="productinfo" style="gap: 10px;display: flex;justify-content: center;align-items: center;">
+                                            <p style="text-align:center;font-weight: 700;color: rgb(56, 56, 56);font-size: 20px;">{{$obj->getfood->name}}</p>
+                                            <p style="font-weight:300;">{{$obj->getfood->getMenu->getStore->storeName}}</p>
+                                            <p style="font-size: 17px; color:red;text-decoration: line-through;margin-right: -10px;">${{$obj->oldprice}}</p>                               
+                                            <p style="font-size: 17px; color:green">${{$obj->getfood->price}}</p>
+                                    
                                         </div>
                                 </a>
                             </div>                     
-                @endforeach
+               
                 @endforeach
 
                 <div class="imagedish">

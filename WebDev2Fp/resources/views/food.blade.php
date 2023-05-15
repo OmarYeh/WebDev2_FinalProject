@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Food')
+@section('title', $food->name)
 @section('css')
 <link href="{{ asset('css/homefoodpage.css') }}" rel="stylesheet">
 @endsection
@@ -60,7 +60,14 @@
         
             <div class="side-card" style="margin-left: 58px;">
                 <p class="title" style="  font-size: 53px;font-weight: 700;color:#e55">{{$food->name}}</p>
+                @if($food->getOffer)
+                <div style="display:flex;flex-direction:row;">
+                     <p style="font-size: 24px;color:red;text-decoration: line-through;margin-left=250px;">${{$food->getOffer->oldprice}}</p>
+                     <p style=" font-size: 24px;color:green;margin-left: 15px;">${{$food->price}}</p>
+                </div>
+                @else
                 <p class="price" style="color: black;">${{$food->price}}</p>
+                @endif
                 <a href="{{Route('cuisine',['id'=>$cuisine->id])}}" style="font-size: 26px;text-decoration: none;">Cuisine: {{$cuisine->name}}</a>
                 <p><a href="{{Route('store',['id'=>$food->getMenu->getStore->id])}}" style="font-size: 26px;text-decoration: none;">Store: {{$food->getMenu->getStore->storeName}}</a></p>
                 <div class="extras" style="margin-top: 24px;">
@@ -95,11 +102,18 @@
                     @for($i = 0; $i < 3; $i++)
                         @if(isset($alldata[$i]))
                         <a  href="{{Route('food',['id'=>$alldata[$i]->id])}}" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true" style="width: 400px;align-items: center;">
-                            <img src="{{$alldata[$i]->imgsrc}}" alt="twbs" width="80" height="80" class="rounded-circle flex-shrink-0">
+                            <img src="{{asset($alldata[$i]->imgsrc)}}" alt="twbs" width="80" height="80" class=" flex-shrink-0" />
                             <div class="d-flex gap-2 w-100 justify-content-between" style="margin-left: 10px;">
                                 <div>
                                     <h6 class="mb-0" style="font-size: 27px;">{{$alldata[$i]->name}}</h6>
+                                    @if($alldata[$i]->getOffer)
+                                    <div style="display:flex;flex-direction:row;">
+                                        <p class="mb-0 opacity-75" style="font-size: 17px;color:red;text-decoration: line-through;margin-left=250px;">${{$alldata[$i]->getOffer->oldprice}}</p>
+                                        <p class="mb-0 opacity-75" style=" font-size: 17px;color:green;margin-left: 7px;">${{$alldata[$i]->price}}</p>
+                                    </div>  
+                                    @else
                                     <p class="mb-0 opacity-75" style="font-size: 19px;">${{$alldata[$i]->price}}</p>
+                                    @endif
                                 </div>
 
                             </div>
@@ -112,36 +126,6 @@
                 </div>
             </div>
 
-        </div>
-        <div class="offers">
-        
-        @foreach($offer as $obj)  
-                    @foreach($obj->getFood as $foods)
-                    @if($foods->id == $food->id)
-                    <p style="margin-left: 53px; font-size: 30px; color: rgb(238, 85, 85);">This item is also on offer:</p>
-                    <div class="imagedish" style="  display: flex; flex-direction:column;margin-left: 9%;">
-                                <a href="{{Route('food',['id'=>$food->id])}}" style="color: black;font-weight: 400; text-decoration: none;display: flex;flex-direction: row;">
-                                    <img class="imagedishimg" src="{{asset($food->imgsrc)}}" style="height: 100px;width: 100px;" />
-                                    <div class="productinfo" style="gap: 26px;justify-content: center;align-items: center;display: flex;  margin-left: 8px;">
-                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 20px;  max-width: 100px;max-height: 157px;}">{{ $food->name }}</p>
-                                            <p style="font-weight:300;">{{ $food->getMenu->getStore->storeName}}</p>                    
-                                            <p style="font-size: 24px;color:red;text-decoration: line-through;">${{ $food->price}}</p>
-                                            @php
-                                                $originalPrice = $food->price;
-
-                                                $percentageIncrease = $obj->newPrice;
-
-                                                $newPrice = $originalPrice * (1 - $percentageIncrease/100);
-
-                                            @endphp
-                                            
-                                            <p style="font-size: 24px; color:green">${{$newPrice}}</p>
-                                        </div>
-                                </a>
-                            </div> 
-                    @endif
-                    @endforeach
-                @endforeach
         </div>
     </div>
 @endsection
