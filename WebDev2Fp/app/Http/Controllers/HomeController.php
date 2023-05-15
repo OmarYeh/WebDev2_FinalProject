@@ -52,4 +52,16 @@ class HomeController extends Controller
         return view('store')->with("store",$data);
     }
 
+    public function getPrivacy(){
+
+        $file_path = public_path('download/FoodiesPrivacyPolicy.pdf'); 
+        return response()->download($file_path);
+    }
+
+    public function getTermsOfService(){
+
+        $file_path = public_path('download/FoodiesTermsOfService.pdf'); 
+        return response()->download($file_path);
+    }
+
 }

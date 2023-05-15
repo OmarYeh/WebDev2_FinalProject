@@ -14,15 +14,7 @@ use Illuminate\Support\Facades\Validator;
 use Carbon\Carbon;
 class DashboardController extends Controller
 {
-    public function menu(){
-        $userid = Auth::id();
-        $store = store::where(['user_id'=>$userid])->first();
-        $category = category::all();
-        $category = category::All();
-        $cuisine = cuisine::all();
-        $diet = diet::all();
-        return view('Dashboard.SDmenu')->with(['store'=>$store,'cuisine'=>$cuisine,'diet'=>$diet,'category'=>$category]);
-    }
+
     public function getStores(){
         $stores=store::all();
         return view('Dashboard.SDAdminControl')->with('stores',$stores);
@@ -73,6 +65,10 @@ class DashboardController extends Controller
      public function editUser(Request $request, $id){
 
          $user = User::find($id);
+         $user->fill($request->all());
+         if($user->isClean()){
+             return ('userControls');
+         }
          $user->name = $request->input('name');
          $user->email = $request->input('mail');
          $user->gender = $request->input('gender');

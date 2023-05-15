@@ -92,6 +92,7 @@ Route::middleware(['auth','verified','role:Admin'])->group(function () {
 });
 Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
 Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');
-
+Route::get('/DownloadPrivacy',[HomePageController::class,'getPrivacy'])->name('downloadPrivacy');
+Route::get('/DownloadTerms',[HomePageController::class,'getTermsOfService'])->name('downloadTerms');
 require __DIR__.'/auth.php';
 
