@@ -129,12 +129,15 @@
                   Login
                 </span>
               </button>
+              <div style="display:flex;flex-direction:column;">
               @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}" style="color: #5151ff;font-size:15px">
+                                    <a class="btn btn-link" href="{{ route('password.request') }}" style="font-size: 14px; color: #5151ff;font-size:15px">
                                         {{ __('Forgot Your Password?') }}
                                     </a>
                 @endif
-              <p class="mt-6 text-xs text-gray-600 text-center">
+                <a class="btn btn-link" href="{{ route('register') }}" style="margin-top:5px;color: #5151ff;font-size:15px">Do you not have an account? Register Now!</a>
+              </div>
+                <p class="mt-6 text-xs text-gray-600 text-center">
                 I agree to abide by Foodies's
                 <a href="#" class="border-b border-gray-500 border-dotted">
                   Terms of Service

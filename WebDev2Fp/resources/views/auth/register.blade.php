@@ -154,7 +154,7 @@
                  </span>
                 @endif
 
-              <button type="submit" style="margin-top: 16px;background: #e55;"
+              <button type="submit" style="margin-top: 16px;background: #e55;margin-bottom: 8px;"
                 class="mt-5 tracking-wide font-semibold bg-indigo-500 text-gray-100 w-full py-4 rounded-lg hover:bg-indigo-700 transition-all duration-300 ease-in-out flex items-center justify-center focus:shadow-outline focus:outline-none"
               >
                 <svg
@@ -173,6 +173,7 @@
                   Sign Up
                 </span>
               </button>
+              <a class="btn btn-link" href="{{ route('login') }}" style="margin-top:5px;color: #5151ff;font-size:15px">Do you already have an account? Login Now!</a>
               <p class="mt-6 text-xs text-gray-600 text-center">
                 I agree to abide by Foodies's
                 <a href="#" class="border-b border-gray-500 border-dotted">
