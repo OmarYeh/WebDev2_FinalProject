@@ -400,6 +400,9 @@ $('.close').click(function() {
 });
       
 function handleUserMessage(userMessage) {
+             function containsNumber(input) {
+                return /\d/.test(input);
+             }
            
             if (userMessage.includes('orderID')) {
     const orderId = userMessage.split(':')[1].trim();
@@ -450,12 +453,18 @@ function handleUserMessage(userMessage) {
     });
 }
 }
-            else if(userMessage.includes('help')){
+            else if(userMessage.includes('help')|| userMessage.includes('commands')){
                 let message = 'orderID: - your order\'s id<br>offers - to display the offers';
               displayBotMessage(message);
             }
-            else if(userMessage.includes('offers')){
-                console.log('in offers');
+            else if(userMessage === 'hi'  || userMessage === 'hello' || userMessage ===' Hello' || userMessage ===' Hey' || userMessage ===' howdie' ){
+                displayBotMessage('Hello! How can I help you today?');
+            }
+            else if(userMessage === 'hru'  || userMessage === 'how are you ?' || userMessage ===' how\'re you?' || userMessage ==='How are you ?' ||userMessage.includes('how are you') || userMessage.includes('How are you')){
+                displayBotMessage('I am Good! thank you ! how may i assist you ?');
+            }
+            else if(userMessage.includes('offers') || userMessage.includes('discounts')){
+
                
                 $.ajax({
             type: 'get',
@@ -482,9 +491,44 @@ function handleUserMessage(userMessage) {
       }
     });
         }
+        if(userMessage.includes('cuisine')){
+    $.ajax({
+        type: 'get',
+        url:'/chatoffers',
+        success: function(result){
+            for(let c in result.cuisines){
+                console.log(result.cuisines[c].name);
+                if(userMessage.includes(result.cuisines[c].name) || userMessage.includes(result.cuisines[c].name.toLowerCase())){
+                    let cuisine = '';
+                    cuisine +=`<p>You can look more at this cuisine</p><a href="/cuisine/${result.cuisines[c].id}">here</a>`;
+                    displayBotMessage(cuisine);
+                }
+                else{
+                    displayBotMessage('Sorry but such cuisine does not exist')
+                }
+            }
+        }
+    });
+}
+      else if(containsNumber(userMessage) && userMessage.includes('greater') || userMessage.includes('Greater')){
+         const price = parseInt(userMessage.match(/\d+/)[0], 10);
+         $.ajax({
+            type:'get',
+            url:'/chatoffers',
+            success: function(result){
+                for(let av in result.menuAverage){
+                    if(price > menuAverage){
+                        let store ='';
+                        store +=`<a href="/store/${result.store[av].id}">${result.store[av].name}</a>`;
+                        displayBotMessage(store[0]);
+                    }
+                }
+            }
+         })
+      }
             else {
                 
-                displayBotMessage('I\'m sorry, I could not understand your request. If you want help type \'help\;.');
+                displayBotMessage('I\'m sorry, I could not understand your request. If you want help type \"help\" or \"commands\"\.');
             }
         }
 

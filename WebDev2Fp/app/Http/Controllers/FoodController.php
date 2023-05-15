@@ -32,7 +32,9 @@ class FoodController extends Controller
         if ($diet_id) {
             $foods->where('diet_id', $diet_id);
         }
-
+        if ($request->has('offers')){
+            $foods->where('platdujour',1);
+        }
         switch ($priceRange) {
             case 10:
                 $foods->where('price', '<=', 10);
