@@ -8,7 +8,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-   
+    <link rel="stylesheet" href="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/css/ol.css" type="text/css">
+	<script src="https://cdn.rawgit.com/openlayers/openlayers.github.io/master/en/v5.3.0/build/ol.js"></script>
+
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
@@ -377,7 +379,10 @@
 <script>
 
 
+
+
 $(document).ready(function() {
+    displayBotMessage('Hello! How can I help you today?');
     $('.supbtn').click(function() {
   const sup = document.querySelector('.supbot');
   const btn = document.querySelector('.supbtn');
@@ -394,8 +399,125 @@ $('.close').click(function() {
   btn.style.display = 'flex';
 });
       
+function handleUserMessage(userMessage) {
+           
+            if (userMessage.includes('orderID')) {
+    const orderId = userMessage.split(':')[1].trim();
+    const authUserId = $('#auth-user').val();
+    console.log(authUserId);
+        if(!authUserId){
+            displayBotMessage('Please log in to access you\'re orders');
+        }else{
+    const url = '/orders/' + authUserId +'/'+orderId;
+    $.ajax({
+        type: 'post',
+        url: url,
+        headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+  },
+        success: function(result) {
+            const orderStatus = result.status;
 
+            let message = '';
+            switch (orderStatus) {
+                case 'pending':
+                    message = 'Your order is still pending approval. Please wait for further updates.';
+                    break;
+                case 'delivered':
+                    message = 'Your order has been delivered. Enjoy your food!';
+                    break;
+                case 'delivering':
+                    message = 'Your order is currently being delivered. Please wait for your food to arrive.';
+                    break;
+                case 'approved':
+                    message = 'Your order is approved and is begin prepared.';
+                    break;
+                case 'canceled':
+                    message = 'Your order has been canceled. We apologize for any inconvenience.';
+                    break;
+                case 'rejected':
+                    message = 'Your order has been rejected. Please contact customer support for more information.';
+                    break;
+                default:
+                    message = 'I\'m sorry, I could not retrieve the status of your order. Please try again later.';
+            }
+ 
+            displayBotMessage(message);
+        },
+        error: function(error) {
+            displayBotMessage('I\'m sorry, an error occurred while retrieving the status of your order. Please try again later.');
+        }
+    });
+}
+}
+            else if(userMessage.includes('help')){
+                let message = 'orderID: - your order\'s id<br>offers - to display the offers';
+              displayBotMessage(message);
+            }
+            else if(userMessage.includes('offers')){
+                console.log('in offers');
+               
+                $.ajax({
+            type: 'get',
+            url: '/chatoffers',
+        
+            success: function(result) {
+                console.log(result.offers);
+                         const offers = result.offers;
+                        let offerList = '';
+                        for(let i=0; i<offers.length; i++){
+                            let offer = offers[i];
+                            offerList += `<a href="/food/${offer.id}">${offer.name} ${offer.store} new:${offer.price} old:${offer.oldprice}</a> <br>`;
+                            console.log(i);
+                        }
+                        if(offerList === ''){
+                        displayBotMessage('There are no offers at the moment. Check again later.');
+                        } else {
+                        displayBotMessage(offerList);
+                        }
+                    
+      },
+      error: function(error) {
+        console.log(error);
+      }
+    });
+        }
+            else {
+                
+                displayBotMessage('I\'m sorry, I could not understand your request. If you want help type \'help\;.');
+            }
+        }
+
+     
+function displayUserMessage(message) {
+  const chatHistory = document.getElementById('chat-history');
+  const userMessage = document.createElement('div');
+  userMessage.classList.add('user-message');
+  userMessage.innerHTML = message;
+  chatHistory.appendChild(userMessage);
+}
+
+$('#input-form').submit(function(event) {
+event.preventDefault(); 
+const userInput = document.getElementById('userinput');
+const userMessage = userInput.value;
+userInput.value = '';
+displayUserMessage(userMessage);
+handleUserMessage(userMessage);
+const chatHistory = document.getElementById('chat-history');
+chatHistory.scrollTop = chatHistory.scrollHeight;
+
+});
   });
+  function displayBotMessage(message) {
+          const chatHistory = document.getElementById('chat-history');
+          const botMessage = document.createElement('div');
+          botMessage.classList.add('bot-message');
+          botMessage.innerHTML = message;
+          chatHistory.appendChild(botMessage);
+         
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      }
  
     </script>
 </html>

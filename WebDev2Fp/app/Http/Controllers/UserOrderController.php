@@ -20,4 +20,16 @@ class UserOrderController extends Controller
         
         
     }
+
+    public function checkout(){
+        return view('Checkout');
+    }
+
+    public function place(){
+        $user = Auth::user();
+        $orderfood = $user->getOrders;
+        foreach($orderfood as $obj){
+            dd($obj);
+        }
+    }
 }
