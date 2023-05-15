@@ -50,7 +50,7 @@ class DashboardController extends Controller
 
         $data= store::find($id);
         $data->delete();
-        return redirect()->route('controls');
+        return redirect()->route('Controls');
 
       }
 

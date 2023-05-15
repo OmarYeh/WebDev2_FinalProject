@@ -78,7 +78,7 @@ Route::middleware(['auth','verified','role:Cook','approved'])->group(function ()
     Route::get('/Store/Dashboard/Delivery', [StoreDashboardController::class, 'Delivery'])->name('sdindexManageDe');
     Route::put('/UpdateStatue/{id}/{status}', [StoreDashboardController::class, 'UpdateStatus'])->name('updateSD');
 });
-//Route::middleware(['auth','verified','role:Admin'])->group(function () {
+Route::middleware(['auth','verified','role:Admin'])->group(function () {
     Route::get('Dashboard/Controls', [DashboardController::class, 'getStores'])->name('Controls');
     Route::get('Dashboard/userControls', [DashboardController::class, 'userControls'])->name('userControls');
     Route::patch('Dashboard/Controls/Approve/{id}', [DashboardController::class, 'approveStatus'])->name('approve');
@@ -87,7 +87,7 @@ Route::middleware(['auth','verified','role:Cook','approved'])->group(function ()
     Route::delete('Dashboard/Controls/userDeleted/{id}', [DashboardController::class, 'deleteUser'])->name('deleteUser');
     Route::get('Dashboard/userControls/userDetail/{id}' , [DashboardController::class, 'editpage'])->name('editpage');
     Route::put('Dashboard/userControls/userDetails/{id}', [DashboardController::class, 'editUser'])->name('editUser');
-    //});
+    });
 Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
 Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');
 
