@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="box-shadow: 0px 4px 18px 3px rgba(238, 85, 85, 0.21) !important;  position: sticky;top: 0;">
+<nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="z-index: 1;box-shadow: 0px 4px 18px 3px rgba(238, 85, 85, 0.21) !important;  position: sticky;top: 0;">
             <div class="container">
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
