@@ -22,7 +22,14 @@
                           </div>
                           <div>
                             <p>{{$obj->name}}</p>
+                            @if($obj->getOffer)
+                            <div style="display:flex;flex-direction:row;gap:15px">
+                              <p class="price" style=" color:red;text-decoration: line-through;margin-right: -10px;">${{$obj->getOffer->oldprice}}</p>
+                              <p class="price"  style=" color:green">${{$obj->price}}</p>
+                            </div>
+                            @else
                             <p class="price">{{$obj->price}}$</p>
+                            @endif
                           </div>
                           <div>
                             <p>Orders:</p>

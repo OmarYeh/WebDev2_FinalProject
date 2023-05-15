@@ -11,7 +11,8 @@ use App\Http\Controllers\BasketController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\UserOrderController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\chatbotController;
+use App\Http\Controllers\DashboardController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -63,8 +64,7 @@ Route::middleware(['auth','verified','role:Cook','approved'])->group(function ()
     Route::post('/Addfood/{id}', [StoreDashboardController::class, 'store'])->name('storeFood');
     Route::get('/Store/Dashboard/Menu', [StoreDashboardController::class, 'menu'])->name('sdindexMenu');
     Route::get('/Store/Dashboard/offers', [StoreDashboardController::class, 'offer'])->name('sdindexOffers');
-    Route::post('/AddOffer', [StoreDashboardController::class, 'storeoffer'])->name('addoffer');
-    Route::post('/addFoodTooffer', [StoreDashboardController::class, 'addFoodTooffer'])->name('addFoodTooffer');
+    Route::post('/addFoodTooffer/{id}', [StoreDashboardController::class, 'storeoffer'])->name('addoffer');
     Route::get('/updatefood/{id}',[StoreDashboardController::class,'updateItem'])->name('updateItem');
     Route::put('/updatefood/{id}',[StoreDashboardController::class,'update'])->name('updateI');
     Route::delete('/delete/{id}',[StoreDashboardController::class,'deleteItem'])->name('deleteItem');
@@ -79,14 +79,14 @@ Route::middleware(['auth','verified','role:Cook','approved'])->group(function ()
     Route::put('/UpdateStatue/{id}/{status}', [StoreDashboardController::class, 'UpdateStatus'])->name('updateSD');
 });
 //Route::middleware(['auth','verified','role:Admin'])->group(function () {
-    Route::get('/Store/Dashboard/Controls', [StoreDashboardController::class, 'getStores'])->name('Controls');
-    Route::get('/Store/Dashboard/userControls', [StoreDashboardController::class, 'userControls'])->name('userControls');
-    Route::patch('/Store/Dashboard/Controls/Approve/{id}', [StoreDashboardController::class, 'approveStatus'])->name('approve');
-    Route::patch('/Store/Dashboard/Controls/Reject/{id}', [StoreDashboardController::class, 'rejectStatus'])->name('reject');
-    Route::delete('/Store/Dashboard/Controls/Deleted/{id}', [StoreDashboardController::class, 'deleteStore'])->name('deleteStore');
-    Route::delete('/Store/Dashboard/Controls/userDeleted/{id}', [StoreDashboardController::class, 'deleteUser'])->name('deleteUser');
-    Route::get('/Store/Dashboard/userControls/userDetail/{id}' , [StoreDashboardController::class, 'editpage'])->name('editpage');
-    Route::put('/Store/Dashboard/userControls/userDetails/{id}', [StoreDashboardController::class, 'editUser'])->name('editUser');
+    Route::get('Dashboard/Controls', [DashboardController::class, 'getStores'])->name('Controls');
+    Route::get('Dashboard/userControls', [DashboardController::class, 'userControls'])->name('userControls');
+    Route::patch('Dashboard/Controls/Approve/{id}', [DashboardController::class, 'approveStatus'])->name('approve');
+    Route::patch('Dashboard/Controls/Reject/{id}', [DashboardController::class, 'rejectStatus'])->name('reject');
+    Route::delete('Dashboard/Controls/Deleted/{id}', [DashboardController::class, 'deleteStore'])->name('deleteStore');
+    Route::delete('Dashboard/Controls/userDeleted/{id}', [DashboardController::class, 'deleteUser'])->name('deleteUser');
+    Route::get('Dashboard/userControls/userDetail/{id}' , [DashboardController::class, 'editpage'])->name('editpage');
+    Route::put('Dashboard/userControls/userDetails/{id}', [DashboardController::class, 'editUser'])->name('editUser');
     //});
 Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
 Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');

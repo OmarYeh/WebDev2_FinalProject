@@ -106,7 +106,7 @@
     .menuImg{
       height: 200px;
       width: 200px;
-      object-fit: cover;
+      object-fit: contain;
     }
     .name{
       text-decoration: none;
@@ -285,7 +285,7 @@
 
   .left-button3:hover,
   .right-button3:hover {
-      background-color: #000000;
+      background-color: #b3b3b3;
       color: #ffffff;
       cursor: pointer;
   }

@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', $cuisine->name)
 @section('css')
 <link href="{{ asset('css/singularcuisine.css') }}" rel="stylesheet">
 <link href="{{ asset('css/foodsearch.css') }}" rel="stylesheet">

@@ -136,50 +136,31 @@ class StoreDashboardController extends Controller
         return view('StoreDashboad.SDoffers')->with('store',$store);
     }
 
-    public function storeoffer(Request $request){
+    public function storeoffer($id, Request $request){
         $validator = Validator::make($request->all(), [
-            'name' => 'required|min:4',
             'newPrice' => 'required|integer',
-            'imgsrc' => 'required',
-            
         ]);
     
         if ($validator->fails()) {
             return redirect()->route('sdindexOffers')->withErrors($validator);
         } 
+        $food = food::find($id);
         $store = Auth::user()->getstore;
+        if($food->getOffer){
+            return redirect()->route('sdindexOffers')->withErrors('unique','This food item already has an offer');
+        }
         $offer = new offer();
-        $offer->name=$request->name;
         $offer->newPrice = $request->newPrice;
-        $filename= time().'.'.$request->file('imgsrc')->getClientOriginalExtension();
-        $request->file('imgsrc')->storeAs('public/images',$filename);
-        $tosave= 'storage/images/'.$filename;
-        $offer->imgsrc=$tosave;
+        $offer->oldprice = $food->price;
+        $offer->food_id = $food->id;
         $offer->store_id=$store->id;
         $offer->save();
+        $food->price = $food->price * ( 1 -  $offer->newPrice / 100);
+        $food->save();
         return redirect()->route('sdindexOffers');
     }
 
-    public function addFoodTooffer(Request $request){
-        $offer = offer::find($request->offerId);
-        $offerfoods = $offer->getfood;
-        foreach($request->foodIds as $food){
-            $found = false;
-            foreach($offerfoods as $obj){
-                if($obj->id == $food){
-                    $found = true;
-                    break;
-                }
-            }
-            if(!$found){
-                $offerfood = new offerfood();
-                $offerfood->offer_id = $request->offerId;
-                $offerfood->food_id = $food; 
-                $offerfood->save();
-            }
-        }
-        return redirect()->route('sdindexOffers');
-    }
+   
     public function store($id, Request $request){
         $validator = Validator::make($request->all(), [
             'name' => 'required|min:4',
@@ -261,7 +242,10 @@ class StoreDashboardController extends Controller
     }
 
     public function deleteOffer($id){
-        $offer = offer::find($id);
+        $food = food::find($id);
+        $offer = $food->getOffer;
+        $food->price = $offer->oldprice;
+        $food->save();
         $offer->delete();
         return redirect()->route('sdindexOffers');
     }

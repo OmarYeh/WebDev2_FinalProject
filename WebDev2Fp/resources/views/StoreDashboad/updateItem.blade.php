@@ -1,6 +1,6 @@
 @extends('layouts.dashboardStore')
 @section('content')
-<div class="conatiner" style="margin-left: 40%;margin-top: 8%;">
+<div class="conatiner" style="margin-left: 30%;margin-top: 5%;">
 <div class="allfoods">
 
 <div class="AddFood">
@@ -14,7 +14,7 @@
       
         <div style="display:flex;margin-top: 13px;align-items:center;margin-bottom: 15px;">
         <lable for="platdujour" style="font-size: 22px;">Plat du jour: </lable>
-            <input type="checkbox"  id="platdujour"  value="1" name="platdujour" style="margin-top: 8px;margin-left: 14px;"/>
+            <input type="checkbox"  id="platdujour"  value="1" name="platdujour" style="margin-top: 8px;margin-left: 14px;" {{ $food->platdujour == 1 ? 'checked' : '' }}/>
         </div>
         <label for="cuisine" style="font-size: 22px;">Cuisine:</label>
         <select name="cuisine">
@@ -56,14 +56,20 @@
 </div>
 <script>
 $(document).ready(function() {
-  var currentPage = window.location.pathname.split('/').pop();
+    
+    history.pushState(null, null, '/Store/Dashboard');
   $('.sd').each(function() {
-    if ($(this).data('page') === currentPage) {
+   
+    var textWithoutSpaces = $(this).text().replace(/\s+/g, '').toLowerCase();
+    console.log(currentPage,textWithoutSpaces)
+    if (textWithoutSpaces === 'menu') {
+        
       $(this).addClass('clicked');
     }
   });
+
 });
-    history.pushState(null, null, '/Store/Dashboard');
+    
 
     </script>
 </div>

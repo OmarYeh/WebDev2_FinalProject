@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'SearchFood')
+@section('title', 'Browse Food')
 @section('content')
 @section('css')
 <link href="{{ asset('css/foodsearch.css') }}" rel="stylesheet">
@@ -136,12 +136,21 @@
                 @foreach($food as $food)                        
                       <div class="imagedish" style="  display: flex;">
                                 <a href="{{Route('food',['id'=>$food->id])}}" style="color: black;font-weight: 400; text-decoration: none;">
-                                    <img class="imagedishimg" src="{{asset($food->imgsrc)}}" style="" />
-                                    <div class="productinfo" style="gap: 40px;justify-content: center;display: flex;align-items: center;">
-                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;  max-width: 100px;max-height: 157px;}">{{ $food->name }}</p>
-                                            <p style="font-weight:300;">{{ $food->getMenu->getStore->storeName}}</p>
+                                    <img class="imagedishimg" src="{{asset($food->imgsrc)}}"  />
+                                    <div class="productinfo" style="gap: 10px;justify-content: center;display: flex;align-items: center;">
+                                            <p style="text-align:center;font-weight: 700;color: rgb(56, 56, 56);font-size: 20px;  width: 200px;max-height: 157px;}">{{ $food->name }}</p>
                                             
+                                            @if($food->getOffer)
+                                            <p style="font-weight:300;font-size:18px">{{ $food->getMenu->getStore->storeName}}</p>
+                                            <div style="display:flex;flex-direction:row;">
+                                                <p style="font-size: 17px;color:red;text-decoration: line-through;margin-left=250px;">${{$food->getOffer->oldprice}}</p>
+                                                 <p style=" font-size: 17px;color:green;margin-left: 7px;">${{$food->price}}</p>
+                                            </div>
+                                            @else
+                                            <p style="font-weight:300;font-size:18px;position:relative;left:-25px;">{{ $food->getMenu->getStore->storeName}}</p>
                                             <p style="font-size: 24px;">${{ $food->price}}</p>
+                                            @endif
+                                            
                                            
                                         </div>
                                 </a>
@@ -149,30 +158,6 @@
              
                 @endforeach
                 
-                @foreach($offer as $obj)  
-                    @foreach($obj->getFood as $food)
-                    <div class="imagedish" style="  display: flex;">
-                                <a href="{{Route('food',['id'=>$food->id])}}" style="color: black;font-weight: 400; text-decoration: none;">
-                                    <img class="imagedishimg" src="{{asset($food->imgsrc)}}" style="" />
-                                    <div class="productinfo" style="gap: 26px;justify-content: center;display: flex;align-items: center;">
-                                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 27px;  max-width: 100px;max-height: 157px;}">{{ $food->name }}</p>
-                                            <p style="font-weight:300;">{{ $food->getMenu->getStore->storeName}}</p>                    
-                                            <p style="font-size: 24px;color:red;text-decoration: line-through;">${{ $food->price}}</p>
-                                            @php
-                                                $originalPrice = $food->price;
-
-                                                $percentageIncrease = $obj->newPrice;
-
-                                                $newPrice = $originalPrice * (1 - $percentageIncrease/100);
-
-                                            @endphp
-                                            
-                                            <p style="font-size: 24px; color:green">${{$newPrice}}</p>
-                                        </div>
-                                </a>
-                            </div> 
-                    @endforeach
-                @endforeach
             </div>
     @elseif (isset($query))
         <p>No results found for " {{ $query }} "</p>

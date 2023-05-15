@@ -27,35 +27,19 @@
   <div class="gnkdfb" style="display:flex;gap: 55px;margin-top: 12px;">
   <div style="display: flex;overflow-x: hidden;">
     <button class="left-button3">&#8249;</button>
-    <div class="dishesrow3" style="padding-left: 13px;">
+    <div class="dishesrow3" style="padding-left: 25px;min-width:1200px">
     @foreach($store->getOffer as $obj)
-          <div style="display:flex; flex-direction: column;">
-            <p style="font-size: 27px;">{{$obj->name}}</p>
-            <img src="{{asset($obj->imgsrc)}}" style="width: 250px;height: 250px;margin-bottom: 10px;"/>
-            <div style="display:flex; flex-direction: column;font-size: 18px;">
-              
-            @foreach($obj->getFood as $food)
-              <a href="{{Route('food',['id'=>$food->id])}}" style="color: black;text-decoration: none;">         
-              <div class="dassfsdf" style="display:flex;margin-bottom: 10px;"> 
-              
-              <img src="{{asset($food->imgsrc)}}" style="width:70px;height:70px"/>
-              <div style="padding-left: 16px;">
-                <p style="margin-bottom:0">{{$food->name}}</p>
-                <div style="display:flex;">
-                @php
-                  $originalPrice = $food->price;
-                  $percentageIncrease = $obj->newPrice;
-                  $newPrice = $originalPrice * (1 - $percentageIncrease/100);
-                @endphp
-                  <p style="margin-bottom:0;color:red;text-decoration: line-through;">${{$food->price}}</p>
-                  <p style="margin-bottom:0; color:green;margin-left: 10px;">${{$newPrice}}</p>
-                </div>
-              </div>
-              </div>
-              </a>
-              @endforeach
+    <div style="">
+        <a href="{{Route('food',['id'=>$obj->getfood->id])}}" style="color: black;font-weight: 400;text-decoration: none; ">
+            <img  src="{{asset($obj->getfood->imgsrc)}}" width="350" height="200" />
+            <div class="productinfo" style="gap: 5px;justify-content: center;display: flex;align-items: center;">
+                <p style="text-align:center;font-weight: 700;color: rgb(56, 56, 56);font-size: 20px;  max-height: 157px;}">{{ $obj->getfood->name }}</p>
+                <p style="font-size: 17px; color:red;text-decoration: line-through;margin-left: 3px;margin-right: 5px;">${{$obj->oldprice}}</p>                               
+                 <p style="font-size: 17px; color:green">${{$obj->getfood->price}}</p>
+            
             </div>
-        </div>
+         </a>
+     </div>             
 
     @endforeach
     </div>
@@ -102,7 +86,16 @@
            
           <td style="display: flex;width: 100%;justify-content: center;"><img src="{{asset($m->imgsrc)}}" style="border-radius: 5px;margin-top: 5px;" class="menuImg" /></td>
             <td style="text-align: center;"><a href="{{Route('food',$m->id)}}" class="name" style="font-size: 28px;">{{ $m->name }}</a></td>
-            <td style="text-align: center;font-size: 28px;" >{{ $m->price}}$</td>
+            <td style="text-align: center;font-size: 28px;" >
+              @if($m->getOffer)
+              <div style="display:flex;flex-direction:row;margin-left:150px">
+                <p style="font-size: 25px; color:red;text-decoration: line-through;margin-right: 15px;">${{$m->getOffer->oldprice}}</p>                               
+                <p style="font-size: 25px; color:green">${{$m->price}}</p>
+              </div>
+              @else
+            <p>{{ $m->price}}$</p>
+            @endif
+          </td>
             <td ><form method="post" action="{{ Route('AddBasket') }}" enctype="multipart/form-data" >
           @csrf
           <input type="hidden" name="food_name" value="{{ $m->name }}">

@@ -74,7 +74,14 @@
                             <img src="{{asset($food->imgsrc)}}" style="width:50px;height:50px;border-radius: 5px;"/>
                             <p style="color:black;margin-left:20px;">{{$food->name}}</p>
                             <p style="color:black;margin-left: 20%;">Quantity: {{$food->pivot->quantity}}</p>
-                            <p style="color:black;margin-left: 20%;">Price: ${{$food->price}}</p>
+                            @if($food->getOffer)
+                                <p style="color:black;margin-left: 17%;">Price: </p>
+                                <p style="color:red;text-decoration: line-through;margin-left: 10px;">${{$food->getOffer->oldprice}}</p>
+                                <p style=" color:green;margin-left: 1%;">${{$food->price}}</p>
+                            @else
+                                <p style="color:black;margin-left: 20%;">Price: ${{$food->price}}</p>
+                            @endif
+                           
                         </div>
                         @endforeach
                     </div>

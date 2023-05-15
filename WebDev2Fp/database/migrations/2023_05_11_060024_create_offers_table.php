@@ -13,11 +13,12 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('imgsrc');
             $table->integer('newPrice');
+            $table->float('oldprice');
             $table->unsignedBigInteger('store_id');
             $table->foreign('store_id')->references('id')->on('stores')->onDelete('cascade');
+            $table->unsignedBigInteger('food_id');
+            $table->foreign('food_id')->references('id')->on('food')->onDelete('cascade');
             $table->timestamps();
         });
     }

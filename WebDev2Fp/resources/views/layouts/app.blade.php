@@ -8,13 +8,13 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>@yield('title')</title>
-    
-    <!-- Fonts -->
+   
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/satoshi" rel="stylesheet">
     <link href="https://fonts.cdnfonts.com/css/recoleta" rel="stylesheet">
-    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -109,8 +109,118 @@
         margin-left: 118%;
         gap: 28px;
         display: flex;
+     
         }
         
+        .supbot{
+            border-radius:10px;
+            width:380px;
+            height:450px;
+            display:none;
+            justify-content:space-between;
+            flex-direction: column;
+            background:#f8f8ff;
+            position:fixed;
+            bottom:45px;
+            right: 35px;
+            border:2px solid lightgray;
+  }
+  #chat-history{
+    padding:15px 10px;
+    height:400px;
+    width:380px;
+    display:flex;
+    flex-direction:column;
+    gap:10px; 
+    overflow: auto;
+    
+  }
+  .titlesupc{
+    border-radius:10px;
+    background-color:#e55;
+    color:white;
+    padding-left:15px;
+    display:flex;
+    justify-content:space-between;
+        flex-direction:row;
+        align-items:center;
+        cursor:pointer;
+  }
+
+  .user-message{
+    align-self: flex-end;
+    color:white;
+    background-color:green;
+    border-radius:17px;
+    padding:10px;
+    max-width:250px;
+    min-width:75px;
+  }
+  
+  .bot-message{
+    align-self: flex-start;
+    max-width:350px;
+    color:white;
+    background-color:#e55;
+    border-radius:17px;
+    float:left;
+    padding:10px;
+  }
+  .bot-message a{
+    color:white;
+    text-decoration:none;
+  }
+  .bot-message a:hover{
+    color:lightgray;
+  }
+  #input-form{
+    margin-bottom:5px;
+}
+  #input-form button{
+    padding:5px;
+    outline:none;
+    background:#e55;
+    border:none;
+    border-radius:8px;
+    margin-left:5px;
+    color:white;
+    width:75px;
+    height: 40px;
+  }
+  #input-form input{
+    margin-left:10px;
+    width: 250px;
+    height: 40px;
+    padding:9px; 
+    font-family: "Gilroy", "Helvetica", "Arial", "sans-serif";
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 18px;
+    border-style: hidden;
+
+    border-radius: 8px;
+    border: 1px solid rgb(184, 184, 184);
+    cursor: text;
+  }
+  .supbtn{
+    position: fixed;
+    width:50px;
+    height:50px;
+    border-radius:50%;
+    background-color:#e55;
+    color:white;
+    bottom:45px;
+    right:35px;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    padding-left:10px;
+    cursor:pointer;
+  }
+  #chat-history::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
     </style>
     @yield('css')
 
@@ -220,72 +330,32 @@
     </script>
 </head>
 <body>
+<input type="hidden" id="auth-user" value="{{ auth()->id() }}" />
+
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm" style="box-shadow: 0px 4px 18px 3px rgba(238, 85, 85, 0.21) !important;  position: sticky;top: 0;">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-                        <div style="display:flex;align-items: center;gap: 14px;" >
-                        <a href="{{ route('home') }}"><img src="{{asset('storage\images\Foodies.png')}}" style="width:100px;height:30px;"/></a>
-                            <div class="titles">
-                                <a href="{{ route('home') }}" class="homeheader" >Home</a>
-                                <a href="{{ route('searchFood') }}" class="foodheader" >Food</a>
-                                <a href="{{ route('Allcusisnes') }}" class="cuisineheader" >Cuisines</a>
-                            </div>
-                        </div>
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item" >
-                                    <a class="nav-link" href="{{ route('login') }}" style="color: #e55;">{{ __('Login') }}</a>
-                                </li>
-                            @endif
-
-                            @if (Route::has('register'))
-                                <li class="nav-item" >
-                                    <a class="nav-link" href="{{ route('register') }}" style="color: #e55;">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown" >
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: #e55;">
-                                    {{ Auth::user()->name }}
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('profile.edit') }}">
-                                      Profile
-                                    </a>
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
+       
+    @include('layouts.navigation')
         <main class="py">
             @yield('content')
         </main>
-
+        <div class="supbot">
+            <div class="titlesupc">
+            <h1>Support</h1>
+            <div class="close">
+            <i class="material-icons">&#xe5c9;</i>
+             </div>
+            </div>
+            <div id="chat-history">
+            
+            </div>
+            <form id="input-form">
+                <input id="userinput" type="text" placeholder="Type your message here...">
+                <button type="submit" >send</button>
+            </form>
+            </div>
+        <div class="supbtn">
+        <i class="material-icons">&#xe0b7;</i>
+        </div>
         <footer>
             <div class="container">
                 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
@@ -304,4 +374,28 @@
     </div>
 </body>
 @yield('js')
+<script>
+
+
+$(document).ready(function() {
+    $('.supbtn').click(function() {
+  const sup = document.querySelector('.supbot');
+  const btn = document.querySelector('.supbtn');
+  console.log('clicked')
+  sup.style.display = 'flex';
+  btn.style.display = 'none';
+
+});
+$('.close').click(function() {
+  const sup = document.querySelector('.supbot');
+  const btn = document.querySelector('.supbtn');
+  console.log('clicked')
+  sup.style.display = 'none';
+  btn.style.display = 'flex';
+});
+      
+
+  });
+ 
+    </script>
 </html>
