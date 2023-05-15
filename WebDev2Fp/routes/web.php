@@ -78,7 +78,16 @@ Route::middleware(['auth','verified','role:Cook','approved'])->group(function ()
     Route::get('/Store/Dashboard/Delivery', [StoreDashboardController::class, 'Delivery'])->name('sdindexManageDe');
     Route::put('/UpdateStatue/{id}/{status}', [StoreDashboardController::class, 'UpdateStatus'])->name('updateSD');
 });
-
+//Route::middleware(['auth','verified','role:Admin'])->group(function () {
+    Route::get('/Store/Dashboard/Controls', [StoreDashboardController::class, 'getStores'])->name('Controls');
+    Route::get('/Store/Dashboard/userControls', [StoreDashboardController::class, 'userControls'])->name('userControls');
+    Route::patch('/Store/Dashboard/Controls/Approve/{id}', [StoreDashboardController::class, 'approveStatus'])->name('approve');
+    Route::patch('/Store/Dashboard/Controls/Reject/{id}', [StoreDashboardController::class, 'rejectStatus'])->name('reject');
+    Route::delete('/Store/Dashboard/Controls/Deleted/{id}', [StoreDashboardController::class, 'deleteStore'])->name('deleteStore');
+    Route::delete('/Store/Dashboard/Controls/userDeleted/{id}', [StoreDashboardController::class, 'deleteUser'])->name('deleteUser');
+    Route::get('/Store/Dashboard/userControls/userDetail/{id}' , [StoreDashboardController::class, 'editpage'])->name('editpage');
+    Route::put('/Store/Dashboard/userControls/userDetails/{id}', [StoreDashboardController::class, 'editUser'])->name('editUser');
+    //});
 Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
 Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');
 
