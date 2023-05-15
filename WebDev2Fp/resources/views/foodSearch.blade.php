@@ -10,7 +10,6 @@
     const foodCheckbox = document.querySelector('#foodCheckbox');
     const submitButton = document.querySelector('#submitButton');
     const offersList = document.querySelector('#offersList');
-
     submitButton.addEventListener('click', (event) => {
     event.preventDefault();
     const filteredOffers = Array.from(offersList.children).filter((offer) => {
@@ -25,7 +24,6 @@
         offersList.appendChild(offer);
     });
     });
-
          $(function () {
         var CatePress;
         var priceLabels = {
@@ -50,26 +48,21 @@
             95: 'Under 95$',
             100: 'Under 100$',
         };
-
   // Get the value of the PriceRange query parameter from the URL
     const params = new URLSearchParams(window.location.search);
     const priceRange = params.get('PriceRange');
-
     // Set the value of the slider input to the priceRange variable
         $('#Ps').val(priceRange);
     
     // Trigger the input event to update the price label
         $('#Ps').trigger('input');
-
         
         $('#Ps').on('input', function () {
             var priceRange = parseInt($(this).val()); 
             var label = priceLabels[priceRange] || priceRange + '$';
             $('#priceLabel').text(label);
             
-
         });
-
         $('form').on('submit', function () {
             var priceRange = $('#Ps').val();
             var label = priceLabels[priceRange] || priceRange + '$';
@@ -78,8 +71,7 @@
        
      
     });
-
-</script>
+</script>   
 <div class="contains">
 
     

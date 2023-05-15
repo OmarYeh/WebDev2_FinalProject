@@ -46,7 +46,8 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('removefromBasket/{id}',[BasketController::class,'removefromBasket'])->name('removefromBasket');
     Route::post('clearBasket',[BasketController::class,'clearBasket'])->name('clearBasket');
     Route::get('orders',[UserOrderController::class,'index'])->name('orders');
-
+    Route::get('checkout',[UserOrderController::class,'checkout'])->name('orders');
+    Route::post('placeorder', [UserOrderController::class, 'place'])->name('placeorder');
     Route::get('pending/approval', [storeController::class, 'pendingS'])->name('pendingStore');
 });
 Route::middleware(['auth','verified','store'])->group(function () {
@@ -94,5 +95,8 @@ Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood'
 Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');
 Route::get('/DownloadPrivacy',[HomeController::class,'getPrivacy'])->name('downloadPrivacy');
 Route::get('/DownloadTerms',[HomeController::class,'getTermsOfService'])->name('downloadTerms');
+Route::post('orders/{id}/{orderId}',[chatbotController::class,'orderstatue']);
+Route::get('chatoffers',[chatbotController::class,'offers']);
+
 require __DIR__.'/auth.php';
 
