@@ -23,6 +23,13 @@
                         <p style="margin-left: 20%;margin-right: 6%;">{{ $user->name }}:</p>
                         @foreach($user->getRole as $role)
                         <p style="margin-right:5px;">{{$role->name}}</p>
+                        <form method="post" action = "{{ Route( 'revoke' )}}" >
+@csrf
+    @method('DELETE')
+    <input type="hidden" name="user_id" value="{{$user->id}}" />
+    <input type="hidden" name="role_id" value="{{$role->id}}" />
+    <button type="submit">Revoke</button>
+</form>
                         @endforeach
                         
                     </div>

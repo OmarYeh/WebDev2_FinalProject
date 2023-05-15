@@ -21,11 +21,11 @@ class DashboardController extends Controller
         $category = category::All();
         $cuisine = cuisine::all();
         $diet = diet::all();
-        return view('Dashborad.SDmenu')->with(['store'=>$store,'cuisine'=>$cuisine,'diet'=>$diet,'category'=>$category]);
+        return view('Dashboard.SDmenu')->with(['store'=>$store,'cuisine'=>$cuisine,'diet'=>$diet,'category'=>$category]);
     }
     public function getStores(){
         $stores=store::all();
-        return view('Dashborad.SDAdminControl')->with('stores',$stores);
+        return view('Dashboard.SDAdminControl')->with('stores',$stores);
     }
       public function approveStatus(Request $request, $id){
 
@@ -56,7 +56,7 @@ class DashboardController extends Controller
 
       public function userControls(){
         $users = User::All();
-        return view('Dashborad.SDAdminUserControl')->with('users',$users);
+        return view('Dashboard.SDAdminUserControl')->with('users',$users);
       }
       public function deleteUser($id){
 
@@ -68,15 +68,11 @@ class DashboardController extends Controller
       public function editpage($id){
         $user = User::find($id);
         $allroles = role::All();
-        return view('Dashborad.SDAdminUserDetails')->with('user' , $user)->with('allroles' , $allroles);
+        return view('Dashboard.SDAdminUserDetails')->with('user' , $user)->with('allroles' , $allroles);
       }
      public function editUser(Request $request, $id){
 
          $user = User::find($id);
-         $user->fill($request->all());
-         if($user->isClean()){
-             return ('userControls');
-         }
          $user->name = $request->input('name');
          $user->email = $request->input('mail');
          $user->gender = $request->input('gender');
@@ -89,5 +85,15 @@ class DashboardController extends Controller
          $user->save();
          $userrole->save();
          return redirect()->route('userControls');
+     }
+     public function revokeRole(Request $request){
+
+      $user_id = $request->input('user_id');
+      $role_id = $request->input('role_id');
+      $userrole = userroles::where('user_id', $user_id)->where('role_id', $role_id)->first();
+      $userrole->delete();
+
+      return back();
+
      }
 }
