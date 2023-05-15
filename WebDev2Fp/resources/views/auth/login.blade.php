@@ -139,11 +139,11 @@
               </div>
                 <p class="mt-6 text-xs text-gray-600 text-center">
                 I agree to abide by Foodies's
-                <a href="#" class="border-b border-gray-500 border-dotted">
+                <a href="{{Route('downloadTerms')}}" class="border-b border-gray-500 border-dotted">
                   Terms of Service
                 </a>
                 and its
-                <a href="#" class="border-b border-gray-500 border-dotted">
+                <a href="{{Route('downloadPrivacy')}}" class="border-b border-gray-500 border-dotted">
                   Privacy Policy
                 </a>
               </p>

@@ -9,17 +9,14 @@ use App\Models\menu;
 use App\Models\User;
 use App\Models\userroles;
 use App\Models\role;
-use App\Models\review;
 use Illuminate\Support\Facades\Auth;
 class storeController extends Controller
 {
     public function index($id){
         $store = store::find($id);
-        $user_id = Auth::id();
-        $user = User::find($user_id);
         $reviews = $store->getReviews;
         $foodP = $store->getMenu->getfood->where('platdujour',1);
-        return view('store')->with('store',$store)->with('reviews',$reviews)->with('foodP',$foodP)->with('user', $user);
+        return view('store')->with('store',$store)->with('reviews',$reviews)->with('foodP',$foodP);
     }
     public function AllStores(){
         $stores = store::all();
@@ -76,11 +73,6 @@ class storeController extends Controller
     public function pendingS(){
         $store = Auth::user()->getstore;
         return view('pending')->with('store',$store);
-    }
-    public function deleteReview($id){
-         $review= review::find($id);
-         $review->delete();
-         return back();
     }
     
 }
