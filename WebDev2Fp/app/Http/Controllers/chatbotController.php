@@ -7,6 +7,8 @@ use App\Models\order;
 use App\Models\offer;
 use App\Models\store;
 use App\Models\food;
+use App\Models\cuisine;
+use App\Models\menu;
 use Illuminate\Support\Facades\Auth;
 class chatbotController extends Controller
 {
@@ -23,6 +25,8 @@ class chatbotController extends Controller
 
   public function offers(){
     $offers = offer::all();
+    $cuisine = cuisine::all();
+    $menu= menu::all();
     $response = [];
     foreach($offers as $obj){
         $id=$obj->getfood->id;
@@ -38,7 +42,32 @@ class chatbotController extends Controller
             'oldprice' => $oldprice
         ];
     }
-    
-    return response()->json(['offers' => $response]);
+    $cuisines= [];
+    foreach($cuisine as $c){
+        $id= $c->id;
+        $name = $c->name;
+        $Description = $c->Description;
+        $cuisines[] = [
+            'id'=> $id,
+            'name'=> $name,
+            'Description'=> $Description,
+        ];
+    }
+  $menuAverage= [];
+  foreach($menu as $m){
+    $averagePrice = $m->getFood->map(function ($foodItems){
+        $totalPrice = $foodItems->sum('price');
+        $totcount= $foodItems->count();
+        $average = $totalPrice / $totalcount;
+        $store = $m->getstore;
+        $menuAverage[]= [
+            'id'=> $m->id,
+            'average'=> $average,
+            'store'=> $store
+        ];
+    });
+  }
+
+    return response()->json(['offers' => $response , 'cuisines'=>$cuisines , 'menuAverage'=>$menuAverage]);
 }
 }
