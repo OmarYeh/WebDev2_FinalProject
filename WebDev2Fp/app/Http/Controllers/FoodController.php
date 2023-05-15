@@ -32,7 +32,7 @@ class FoodController extends Controller
         if ($diet_id) {
             $foods->where('diet_id', $diet_id);
         }
-        
+
         switch ($priceRange) {
             case 10:
                 $foods->where('price', '<=', 10);
@@ -91,13 +91,12 @@ class FoodController extends Controller
             case 100:
                 $foods->where('price', '>', 95);
                 break;
-            default:
+            default:          
                 break;
         }
         
-        
         $food = $foods->get();
-        
+
         return view('foodSearch')->with(['food'=>$food,'allcuisine'=>$allcuisine,'alldiet'=>$alldiet,'offer'=>$offer]);
     }
 }

@@ -19,11 +19,12 @@ class CuisineController extends Controller
         $diet_id = $request->input('diet_id');
         
         $stores = store::where('storeName', 'like', '%' . $query . '%');
-        
+    
         
         
         if ($diet_id) {
-            $stores->where('diet_id', $diet_id);
+            $stores->getMenu->getFood->where('cuisine_id', $cuisine_id);
+
         }
         
         $storeresult = $stores->get();
