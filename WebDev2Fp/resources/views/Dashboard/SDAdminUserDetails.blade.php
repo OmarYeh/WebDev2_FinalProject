@@ -22,8 +22,7 @@
                 <input type="email" name="mail" value="{{ $user->email }}" required style="margin-bottom: 15px;height: 35px;border: none;background: #ebebef;border-radius: 6px;padding: 7px;">
 
                 <label for="gender" style="margin-bottom:5px;font-size:20px;">Gender:</label>
-                <select name="gender" required style="margin-bottom: 15px;height: 35px;border: none;background: #ebebef;border-radius: 6px;padding: 7px;">
-                    <option value="">Select gender</option>
+                <select name="gender" style="margin-bottom: 15px;height: 35px;border: none;background: #ebebef;border-radius: 6px;padding: 7px;">
                     <option value="male" {{ $user->gender === 'male' ? 'selected' : '' }}>Male</option>
                     <option value="female" {{ $user->gender === 'female' ? 'selected' : '' }}>Female</option>
                 </select>
@@ -35,7 +34,9 @@
                 <select name="role" required style="margin-bottom: 15px;height: 35px;border: none;background: #ebebef;border-radius: 6px;padding: 7px;">
                     <option value="">Select role</option>
                     @foreach($allroles as $role)
+                        @if(!$user->hasRole($role->name))
                         <option value="{{ $role->id }}">{{ $role->name }}</option>
+                        @endif
                     @endforeach
                 </select>
 

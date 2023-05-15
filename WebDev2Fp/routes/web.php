@@ -87,7 +87,9 @@ Route::middleware(['auth','verified','role:Admin'])->group(function () {
     Route::delete('Dashboard/Controls/userDeleted/{id}', [DashboardController::class, 'deleteUser'])->name('deleteUser');
     Route::get('Dashboard/userControls/userDetail/{id}' , [DashboardController::class, 'editpage'])->name('editpage');
     Route::put('Dashboard/userControls/userDetails/{id}', [DashboardController::class, 'editUser'])->name('editUser');
-    });
+    Route::delete('Dashboard/userControls/revokeRole', [DashboardController::class, 'revokeRole'])->name('revoke');
+    Route::delete('store/review/{id}', [storeController::class, 'deleteReview'])->name('deleteReview');
+});
 Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
 Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');
 
