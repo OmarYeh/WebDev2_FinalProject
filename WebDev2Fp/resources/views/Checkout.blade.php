@@ -1,5 +1,7 @@
 @extends('layouts.app')
 @section('css')
+<link href="{{ asset('css/basket.css') }}" rel="stylesheet">
+
 <style>
 	#map{
 		position:fixed;
@@ -20,25 +22,51 @@
 @endsection
 @section('content')
 
-<div>
-	<form method="post" id="formll" action="{{route('placeorder')}}">
+<div class="backbackgroundarea">
+    <div class="backgroundarea">
+		<div id="map" style="width: 75%; height: 600px;margin-top:100px"></div>
+		<button id="close" onclick="" style="border:none;padding:9px;background:white;width:150px;height:50px;font-size:20px;border-radius:5px;left:76%;position: fixed;margin-top: 47px;">Close Map</button>    
+		<div id="getllA" style="right: 70%;margin-top: 60px;">
+			<input type="text" id="add" placeholder="Address..." style="margin-left: 5px;width: 184px;height: 28px;padding: 6px;border: medium none;border-radius: 4px;"/>
+			<button onclick="getAddress()" style="border: none;padding: 6px;margin-left: 10px;border-radius: 4px;background: #e55;color: white;font-size: 17px;">getAddress</button>
+		</div> 
+        <div class="imgiconthing">
+            <img src="https://img.icons8.com/bubbles/100/purchase-order.png"  alt="shopping-basket-2" style="width: 100px;height: 100px;margin-top: 54px;"/>
+        </div> 
+
+        <p class="baskettitle" style="text-align: center;font-style: normal;font-size: 57px;font-weight: 500;color: white;letter-spacing: 4px;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);">Location for Delivery:</p>
+		<div style="display:flex; justify-content:center;margin-bottom: 63px;">
+		<div class="sdkhjfgb" style="width:50%;height:70%;background:white;padding: 20px;border-radius: 9px;">
+		
+
+		<form method="post" id="formll" action="{{route('placeorder')}}">
 		@csrf
-		<label for="lng"></label>
-		<input type="text" id="lng" name="lng" placeholder="lng:33.22" disabled/>
-		<label for="lat"></label>
-		<input type="text" id="lat" name="lat" placeholder="lat:33.22" disabled />
-		<label for="address"></label>
-		<input type="text" id="address" name="address" placeholder="address" disabled/>
-		<button type="submit">place Order</button>
-	</form>
-	<button id="gl" onclick="getLocation()">Get Current loaction</button>
-	<button id="show" onclick="initMap()">show map</button>
-		<button id="close" onclick="">close map</button>
-		<div id="map" style="width: 75%; height: 600px;"></div>
-		<div id="getllA">
-			<input type="text" id="add" placeholder="Address..."/>
-			<button onclick="getAddress()">getAddress</button>
+		<div >
+			<div style="padding-left: 16px;">
+		<label for="lng" style="font-size: 21px;">Longitude:</label>
+		<input type="text" id="lng" name="lng" placeholder="lng:33.22" disabled style="margin-left:5px;width: 155px;height: 28px;padding: 6px;"/>
+		<label for="lat" style="font-size: 21px;margin-left:20px;">Latitude:</label>
+		<input type="text" id="lat" name="lat" placeholder="lat:33.22" disabled style="margin-left:5px;width: 155px;height: 28px;padding: 6px;"/>
 		</div>
+		<div style="padding-left: 16px;">
+		<label for="address" style="font-size: 21px;margin-top:20px">Address</label>
+		</div>
+		<input type="text" id="address" name="address" placeholder="Address" disabled style="margin-left: 16px;margin-top:5px;width: 280px;height: 28px;padding: 6px; margin-bottom:30px;"/>
+		
+		</div>
+		<div style="display:flex;justify-content:center;">
+		<button type="submit" style="border: none;padding: 9px;width: 288px;height: 51px;font-size: 20px;color: white;background: #e55;border-radius: 9px;font-weight: 600;">Place Order</button>
+		</div>
+	</form>
+		<div style="display: flex;justify-content: flex-end;margin-top: 42px;">
+			<button id="gl" onclick="getLocation()" style="margin-right:30px;border: none;padding: 9px;width: 174px;height: 36px;font-size: 15px;color: white;background: rgb(142, 134, 134);border-radius: 9px;font-weight: 600;">Get Current Location</button>
+			<button id="show" onclick="initMap()" style="border: none;padding: 9px;width: 174px;height: 36px;font-size: 15px;color: white;background: rgb(142, 134, 134);border-radius: 9px;font-weight: 600;">Show Map</button>
+		</div>
+	
+	</div>
+	</div>
+</div>
+</div>
 @endsection
 @section('js')
 <script src="https://cdn.jsdelivr.net/npm/ol/dist/ol.js"></script>
