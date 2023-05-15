@@ -28,15 +28,7 @@
                     <input type="text" class="formControl" name="query" id="query" value="{{ request()->query('query') }}" style="margin-top: 5px;border: none;height: 27px;" />
                 </div>
                                
-                <div class="formGroup">
-            <label for="diet" style="color: white;font-size: 18px;">Filter by diet:</label><br>   
-                    <select class="formControl" name="diet_id" id="diet" style="margin-top: 5px;border: none;height: 27px;background:white;">
-                        <option value="" >All diets</option>
-                        @foreach($alldiet as $diet)
-                            <option value="{{ $diet->id }}" {{ (request()->query('diet') == $diet->id) ? 'selected' : '' }}>{{ $diet->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
+             
                 <div style="display:flex; justify-content:center">
                 <button type="submit" class="btn" style="height: 50px;background: white;font-size: 20px;font-weight: 500;">Search</button>
                 </div>
