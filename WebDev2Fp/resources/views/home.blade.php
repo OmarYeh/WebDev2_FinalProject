@@ -32,24 +32,7 @@
                 </a>
             @endforeach
 
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">Mediterannian</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">British</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">Italian</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">Japanese</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">German</p>
-            </button>
-            <button class="buttonforcat">
-                <p style="margin-bottom: 0;">Greek</p>
-            </button>
+           
 
         </div>
     </div>
