@@ -69,19 +69,6 @@ class chatbotController extends Controller
     ];
 }
 
-  foreach($menu as $m){
-    $averagePrice = $m->getFood->map(function ($foodItems){
-        $totalPrice = $foodItems->sum('price');
-        $totcount= $foodItems->count();
-        $average = $totalPrice / $totalcount;
-        $store = $m->getstore;
-        $menuAverage[]= [
-            'id'=> $m->id,
-            'average'=> $average,
-            'store'=> $store
-        ];
-    });
-  }
 
     return response()->json(['offers' => $response , 'cuisines'=>$cuisines , 'menuAverage'=>$menuAverage]);
 }
