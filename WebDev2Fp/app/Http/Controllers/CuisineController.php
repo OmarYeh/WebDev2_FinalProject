@@ -43,29 +43,33 @@ class CuisineController extends Controller
     $alldiet = Diet::all();
     $lat = floatval($request->lat);
     $lng = floatval($request->lng);
-    $radius = 10000;
+    $radius = 10;
 
     $stores = Store::selectRaw('*, X(point) as longitude, Y(point) as latitude')
         ->where('cuisine_id', $request->id)
         ->get();
 
-       /* function distanceCalculation($point1_lat, $point1_long, $point2_lat, $point2_long)
-        {
-            $f = $point2_lat - $point1_lat;
-            $s = $point2_long - $point1_long;
-            
-            $distance = sqrt(($f*$f) + ($s*$s));
-            dd($distance);
-            return $distance;
-        }*/
         function distanceCalculation($lat1, $lon1, $lat2, $lon2, $decimals = 2)
         {
-            $theta = $lon1 - $lon2;
-            $dist = sin(deg2rad($lat1)) * sin(deg2rad($lat2)) + cos(deg2rad($lat1)) * cos(deg2rad($lat2)) * cos(deg2rad($theta));
-            $dist = acos($dist);
-            $dist = rad2deg($dist);
-            $miles = $dist * 60 * 1.1515;
-            $distance = ($miles * 1.609344);
+            $earthRadius = 6371; // Radius of the Earth in kilometers
+    
+            $lat1Rad = deg2rad($lat1);
+            $lon1Rad = deg2rad($lon1);
+            $lat2Rad = deg2rad($lat2);
+            $lon2Rad = deg2rad($lon2);
+    
+            $deltaLon = $lon2Rad - $lon1Rad;
+    
+            $numerator1 = cos($lat2Rad) * sin($deltaLon);
+            $numerator2 = cos($lat1Rad) * sin($lat2Rad) - sin($lat1Rad) * cos($lat2Rad) * cos($deltaLon);
+            $numerator = sqrt($numerator1 * $numerator1 + $numerator2 * $numerator2);
+    
+            $denominator = sin($lat1Rad) * sin($lat2Rad) + cos($lat1Rad) * cos($lat2Rad) * cos($deltaLon);
+    
+            $centralAngle = atan2($numerator, $denominator);
+    
+            $distance = $earthRadius * $centralAngle;
+    
             return round($distance, $decimals);
         }
     

@@ -93,7 +93,7 @@ function getAddress() {
   Promise.all([getCoordinatesFromAddress(address)])
     .then(function(results) {
 		console.log(results)
-      var lng = results[0].lng;
+      /*var lng = results[0].lng;
       var lat = results[0].lat;
       document.getElementById("lng").value = lng;
       document.getElementById("lat").value = lat;
@@ -102,7 +102,7 @@ function getAddress() {
 			var current_address = results[0];
 			console.log(current_address);
 			document.getElementById("Location").value = current_address;
-			});
+			});*/
 
     });
 }
@@ -223,8 +223,8 @@ function filter(){
       type: 'POST',
       url: '/nearlocation',
       data: { 
-        lat: document.getElementById("lng").value,
-        lng: document.getElementById("lat").value,
+        lat: document.getElementById("lat").value,
+        lng: document.getElementById("lng").value,
         address: document.getElementById("Location").value,
         id:document.getElementById("cuid").value,
       },
