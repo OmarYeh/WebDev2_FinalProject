@@ -26,7 +26,7 @@ class ContactController extends Controller
             'message' =>$message,
             'phone' =>$phone
         ];
-        Mail::to('foodies@mail.com')->send(new MailableName($data));
+        Mail::to(env('MAIL_USERNAME'))->send(new MailableName($data));
         return redirect()->back()->with('success', 'Your message has been sent successfully!');
     }
 }

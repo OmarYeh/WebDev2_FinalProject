@@ -6,11 +6,11 @@
 
 @section('content')
 <div class="cusmain">
-<div class="AllCuisines" style="flex-wrap: wrap;">
+<div class="AllCuisines" style="flex-wrap: wrap;width:1000px">
     
     @foreach($cuisines as $obj)
     <a href="{{Route('cuisine',['id'=>$obj->id])}}">
-        <div class="Cusi" style="background-image:url('{{$obj->imgsrc}}')">
+        <div class="Cusi" style="background-image:url('{{$obj->imgsrc}}');background-size:cover;">
             <p>{{$obj->name}}</p>
         </div>
     </a>

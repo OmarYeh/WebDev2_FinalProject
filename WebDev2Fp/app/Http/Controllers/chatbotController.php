@@ -26,7 +26,7 @@ class chatbotController extends Controller
   public function offers(){
     $offers = offer::all();
     $cuisine = cuisine::all();
-    $menu= menu::all();
+    $menu = menu::all();
     $response = [];
     foreach($offers as $obj){
         $id=$obj->getfood->id;
@@ -42,7 +42,7 @@ class chatbotController extends Controller
             'oldprice' => $oldprice
         ];
     }
-    $cuisines= [];
+   $cuisines= [];
     foreach($cuisine as $c){
         $id= $c->id;
         $name = $c->name;
@@ -65,11 +65,13 @@ class chatbotController extends Controller
     $menuAverage[] = [
         'id' => $id,
         'average' => $average,
-        'store' => $store
+        'store_id' => $store->id,
+        'store_name' => $store->storeName
     ];
 }
 
 
     return response()->json(['offers' => $response , 'cuisines'=>$cuisines , 'menuAverage'=>$menuAverage]);
+   
 }
 }

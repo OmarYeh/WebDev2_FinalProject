@@ -532,7 +532,7 @@ function handleUserMessage(userMessage) {
         if (price < result.menuAverage[av].average) {
             i++;
             if (i < 4) {
-                store += `<a href="/store/${result.menuAverage[av].store.id}">${i} ${result.menuAverage[av].store.storeName}</a><br>`;
+                store += `<a href="/store/${result.menuAverage[av].store_id}">${i} ${result.menuAverage[av].store_name}</a><br>`;
             }
         }
     }
@@ -558,7 +558,7 @@ function handleUserMessage(userMessage) {
         if (price > result.menuAverage[av].average) {
             i++;
             if (i < 4) {
-                store += `<a href="/store/${result.menuAverage[av].store.id}">${i} ${result.menuAverage[av].store.storeName}</a><br>`;
+                store += `<a href="/store/${result.menuAverage[av].store_id}">${i} ${result.menuAverage[av].store_name}</a><br>`;
             }
         }
     }
