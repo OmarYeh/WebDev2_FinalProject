@@ -372,7 +372,7 @@
                         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Features</a></li>
                         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Pricing</a></li>
                         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">FAQs</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">About</a></li>
+                        <li class="nav-item"><a href="/aboutUs" class="nav-link px-2 text-body-secondary" style="color:black;">About</a></li>
                     </ul>
                 </footer>
             </div>
