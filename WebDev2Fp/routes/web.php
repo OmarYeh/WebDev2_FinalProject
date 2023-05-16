@@ -13,6 +13,7 @@ use App\Http\Controllers\UserOrderController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\chatbotController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ContactController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,7 +50,12 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('checkout',[UserOrderController::class,'checkout'])->name('checkOut');
     Route::post('placeorder', [UserOrderController::class, 'place'])->name('placeorder');
     Route::get('pending/approval', [storeController::class, 'pendingS'])->name('pendingStore');
+
+    Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
+    Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');
+
     Route::post('nearlocation', [CuisineController::class, 'searchStoresNearby'])->name('nearlocation');
+
 });
 Route::middleware(['auth','verified','store'])->group(function () {
 Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
@@ -92,12 +98,17 @@ Route::middleware(['auth','verified','role:Admin'])->group(function () {
     Route::delete('Dashboard/userControls/revokeRole', [DashboardController::class, 'revokeRole'])->name('revoke');
     Route::delete('store/review/{id}', [storeController::class, 'deleteReview'])->name('deleteReview');
 });
-Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
-Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');
+
 Route::get('/DownloadPrivacy',[HomeController::class,'getPrivacy'])->name('downloadPrivacy');
 Route::get('/DownloadTerms',[HomeController::class,'getTermsOfService'])->name('downloadTerms');
 Route::post('orders/{id}/{orderId}',[chatbotController::class,'orderstatue']);
 Route::get('chatoffers',[chatbotController::class,'offers']);
-
+Route::get('aboutUs', function(){
+    return view('aboutUs');
+});
+Route::get('contactUs', function(){
+    return view('contactUs');
+});
+Route::post('contactUs/contact', [ContactController::class,'sendEmail'])->name('contact.send');
 require __DIR__.'/auth.php';
 
