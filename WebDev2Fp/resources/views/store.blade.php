@@ -130,11 +130,13 @@
 
   @endfor 
    <p class="published">Published: {{$review->created_at->format('Y-m-d')}}</p>
+   @if(auth()->user()->hasRole("Admin"))
    <form method="POST" action="{{ Route('deleteReview' ,['id'=> $review->id]) }}" style="margin-left: 4%;" >
                             @csrf
                             @method('DELETE')
                             <button type="submit" style="height: 40px;width: 40px;border: none;padding:0;cursor: pointer;background: none;"><img src="https://img.icons8.com/ios-glyphs/60/filled-trash.png"style="width:40px;height:40px;"/></button>
                         </form>
+                        @endif
     <hr style="margin:0" /></div>
   @endforeach
   
