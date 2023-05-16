@@ -78,70 +78,7 @@
                             @endif              
                 @endforeach
 
-                <div class="imagedish">
-                    
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
+                
 
             </div>
         <button class="right-button">&#8250;</button>
@@ -182,70 +119,7 @@
                
                 @endforeach
 
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo" style="gap: 50px;">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p style="color:red;text-decoration: line-through;margin-right: -33px;">$50</p>
-                            <p style="color:green">$40</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://images.pexels.com/photos/376464/pexels-photo-376464.jpeg" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="productinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Pancakes</p>
-                            <p>$50</p>
-                        </div>
-                    </a>
-                </div>
+                
 
             </div>
         <button class="right-button">&#8250;</button>
@@ -273,71 +147,7 @@
                     </div>
                 @endforeach
 
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://media.istockphoto.com/id/1271897466/photo/empty-restaurant.jpg?s=170667a&w=0&k=20&c=TF-QkbZZ078d6DEZYqHPhX1opIy9I_QTiFplT7-E0H0=" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="storeinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Abo Ali</p>
-                            <p>4.5 Stars</p>
-                            <p style="font-size: 15px;">Beirut, Lebanon</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://media.istockphoto.com/id/1271897466/photo/empty-restaurant.jpg?s=170667a&w=0&k=20&c=TF-QkbZZ078d6DEZYqHPhX1opIy9I_QTiFplT7-E0H0=" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="storeinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Abo Ali</p>
-                            <p>4.5 Stars</p>
-                            <p style="font-size: 15px;">Beirut, Lebanon</p>
-                        </div>
-                    </a>
-                </div><div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://media.istockphoto.com/id/1271897466/photo/empty-restaurant.jpg?s=170667a&w=0&k=20&c=TF-QkbZZ078d6DEZYqHPhX1opIy9I_QTiFplT7-E0H0=" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="storeinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Abo Ali</p>
-                            <p>4.5 Stars</p>
-                            <p style="font-size: 15px;">Beirut, Lebanon</p>
-                        </div>
-                    </a>
-                </div><div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://media.istockphoto.com/id/1271897466/photo/empty-restaurant.jpg?s=170667a&w=0&k=20&c=TF-QkbZZ078d6DEZYqHPhX1opIy9I_QTiFplT7-E0H0=" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="storeinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Abo Ali</p>
-                            <p>4.5 Stars</p>
-                            <p style="font-size: 15px;">Beirut, Lebanon</p>
-                        </div>
-                    </a>
-                </div><div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://media.istockphoto.com/id/1271897466/photo/empty-restaurant.jpg?s=170667a&w=0&k=20&c=TF-QkbZZ078d6DEZYqHPhX1opIy9I_QTiFplT7-E0H0=" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="storeinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Abo Ali</p>
-                            <p>4.5 Stars</p>
-                            <p style="font-size: 15px;">Beirut, Lebanon</p>
-                        </div>
-                    </a>
-                </div><div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://media.istockphoto.com/id/1271897466/photo/empty-restaurant.jpg?s=170667a&w=0&k=20&c=TF-QkbZZ078d6DEZYqHPhX1opIy9I_QTiFplT7-E0H0=" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="storeinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Abo Ali</p>
-                            <p>4.5 Stars</p>
-                            <p style="font-size: 15px;">Beirut, Lebanon</p>
-                        </div>
-                    </a>
-                </div><div class="imagedish">
-                    <a >
-                        <img class="imagedishimg"src="https://media.istockphoto.com/id/1271897466/photo/empty-restaurant.jpg?s=170667a&w=0&k=20&c=TF-QkbZZ078d6DEZYqHPhX1opIy9I_QTiFplT7-E0H0=" style="width:300px; height:250px; border-radius: 18px;margin-left: 8px;" />
-                        <div class="storeinfo">
-                            <p style="font-weight: 700;color: rgb(56, 56, 56);font-size: 23px;">Abo Ali</p>
-                            <p>4.5 Stars</p>
-                            <p style="font-size: 15px;">Beirut, Lebanon</p>
-                        </div>
-                    </a>
-                </div>
+                
 
             </div>
             <button class="right-button2">&#8250;</button>

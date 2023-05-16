@@ -365,21 +365,14 @@
         <footer>
             <div class="container">
                 <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-                    <p class="col-md-4 mb-0 text-body-secondary">© 2023 Company, Inc</p>
+                    <p class="col-md-4 mb-0 text-body-secondary">© Foodies 2023 Company, Inc</p>
                     <img src="https://img.icons8.com/ios/50/null/kawaii-sushi.png" style="height:50px; width:50px;"/>
                     <ul class="nav col-md-4 justify-content-end">
-
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Features</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Pricing</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">FAQs</a></li>
-                        <li class="nav-item"><a href="/aboutUs" class="nav-link px-2 text-body-secondary" style="color:black;">About</a></li>
-
                         <li class="nav-item"><a href="{{Route('home')}}" class="nav-link px-2 text-body-secondary" style="color:black;">Home</a></li>
                         <li class="nav-item"><a href="{{Route('searchFood')}}" class="nav-link px-2 text-body-secondary" style="color:black;">Food</a></li>
                         <li class="nav-item"><a href="{{Route('Allcusisnes')}}" class="nav-link px-2 text-body-secondary" style="color:black;">Cuisines</a></li>
                         <li class="nav-item"><a href="{{Route('RstoreInput')}}" class="nav-link px-2 text-body-secondary" style="color:black;">Add Store</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">About Us</a></li>
+                        <li class="nav-item"><a href="{{Route('aboutUs')}}" class="nav-link px-2 text-body-secondary" style="color:black;">About Us</a></li>
 
                     </ul>
                 </footer>
