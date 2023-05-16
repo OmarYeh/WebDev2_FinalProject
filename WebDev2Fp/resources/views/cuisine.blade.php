@@ -38,25 +38,27 @@
     <div class="bottomsection">
         <input type="text" id="cuid" value="{{$cuisine->id}}"style="display:none"/>
         <div class="filters" style="width: 224px;width: 236px;margin-left: 9px;">
-                <form method="GET" action="{{ route('cuisine',['id'=>$cuisine->id]) }}" style="height: 400px;border-radius: 16px;width: 100%;background: #e55;">
+                <form method="GET" action="{{ route('cuisine',['id'=>$cuisine->id]) }}" style="height: 457px;border-radius: 16px;width: 100%;background: #e55;gap: 148px;">
                 <h1 class="title" style="margin-top: 16px;color: white;font-weight: 200;text-align: center;padding-left: 0;">Search Store</h1>
-                <div class="formGroup">
+                <div class="formGroup" style="margin-top: -129px;">
                     <label for="query" style="color: white;font-size: 18px;">Search by store name:</label><br>
                     <input type="text" class="formControl" name="query" id="query" value="{{ request()->query('query') }}" style="margin-top: 5px;border: none;height: 27px;" />
                 </div>
                                
              
-                <div style="display:flex; justify-content:center">
+                <div style="display:flex; justify-content:center;margin-top: 86px;">
                 <button type="submit" class="btn" style="height: 50px;background: white;font-size: 20px;font-weight: 500;">Search</button>
                 </div>
             </form>
+            <div style="position: inherit;margin-top: -316px;margin-left: 20px;">
             <input type="text" id="lat" name="lat" style="display:none"/>
             <input type="text" id="lng" name="lng" style="display:none"/>
-            <label for="Location">Location</label>
-            <input type="text" id="Location" name="Location" value="{{old('Location')}}" placeholder="Downtown , Beirut Lebanon" />
-            <button id="gl" onclick="getLocation()" style="margin-right:30px;border: none;padding: 9px;width: 174px;height: 36px;font-size: 15px;color: white;background: rgb(142, 134, 134);border-radius: 9px;font-weight: 600;">Get Current Location</button>
-			<button id="show" onclick="initMap()" style="border: none;padding: 9px;width: 174px;height: 36px;font-size: 15px;color: white;background: rgb(142, 134, 134);border-radius: 9px;font-weight: 600;">Show Map</button>
-            <button onclick="filter()">show near</button>
+            <label for="Location" style="color: white;font-size: 18px;margin-bottom:5px;">Location</label>
+            <input type="text" id="Location" name="Location" value="{{old('Location')}}" placeholder="Downtown , Beirut Lebanon" style="margin-bottom:15px;margin-top: 5px;border: medium none;height: 31px;width: 191px;border-radius: 5px;padding: 5px;"/>
+            <button id="gl" onclick="getLocation()" style="margin-right:30px;border: none;padding: 9px;width: 191px;height: 36px;font-size: 15px;color: white;background: rgb(142, 134, 134);border-radius: 9px;font-weight: 600;margin-bottom: 8px;">Get Current Location</button>
+			    <button id="show" onclick="initMap()" style="border: none;padding: 9px;width: 191px;height: 36px;font-size: 15px;color: white;background: rgb(142, 134, 134);border-radius: 9px;font-weight: 600;margin-bottom: 8px;">Show Map</button>
+            <button onclick="filter()" style="width: 191px;height: 38px;border: none;background: white;font-size: 19px;font-weight: 500;border-radius: 6px;">show near</button>
+      </div>
         </div>
         
         <div class="imagesthings" style="height: 100%;">
@@ -89,7 +91,7 @@
 <script src="https://cdn.jsdelivr.net/npm/ol/dist/ol.js"></script>
 <script>
 function getAddress() {
-  var address = document.getElementById("add").value;
+  var address = document.getElementById("add").value; 
   Promise.all([getCoordinatesFromAddress(address)])
     .then(function(results) {
 		console.log(results)
