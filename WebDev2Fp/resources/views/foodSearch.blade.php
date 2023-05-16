@@ -65,7 +65,7 @@
                                 <a href="{{Route('food',['id'=>$food->id])}}" style="color: black;font-weight: 400; text-decoration: none;">
                                     <img class="imagedishimg" src="{{asset($food->imgsrc)}}"  style="width:300px;height:300px"/>
                                     <div class="productinfo" style="gap: 10px;justify-content: center;display: flex;align-items: center;">
-                                            <p style="text-align:center;font-weight: 700;color: rgb(56, 56, 56);font-size: 20px;  width: 200px;max-height: 157px;}">{{ $food->name }}</p>
+                                            <p style="text-align:center;font-weight: 700;color: rgb(56, 56, 56);font-size: 20px;  width: 200px;max-height: 157px;padding-right: 86px;}">{{ $food->name }}</p>
                                             
                                             @if($food->getOffer)
                                             <p style="font-weight:300;font-size:18px">{{ $food->getMenu->getStore->storeName}}</p>
@@ -74,8 +74,8 @@
                                                  <p style=" font-size: 17px;color:green;margin-left: 7px;">${{$food->price}}</p>
                                             </div>
                                             @else
-                                            <p style="font-weight:300;font-size:18px;position:relative;left:-25px;">{{ $food->getMenu->getStore->storeName}}</p>
-                                            <p style="font-size: 24px;">${{ $food->price}}</p>
+                                            <p style="font-weight:300;font-size:18px;position:relative;left: -70px;">{{ $food->getMenu->getStore->storeName}}</p>
+                                            <p style="font-size: 24px;left: -31px;position: relative;">${{ $food->price}}</p>
                                             @endif
                                             
                                            

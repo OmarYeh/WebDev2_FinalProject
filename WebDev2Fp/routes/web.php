@@ -46,7 +46,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('removefromBasket/{id}',[BasketController::class,'removefromBasket'])->name('removefromBasket');
     Route::post('clearBasket',[BasketController::class,'clearBasket'])->name('clearBasket');
     Route::get('orders',[UserOrderController::class,'index'])->name('orders');
-    Route::get('checkout',[UserOrderController::class,'checkout'])->name('orders');
+    Route::get('checkout',[UserOrderController::class,'checkout'])->name('checkOut');
     Route::post('placeorder', [UserOrderController::class, 'place'])->name('placeorder');
     Route::get('pending/approval', [storeController::class, 'pendingS'])->name('pendingStore');
 });

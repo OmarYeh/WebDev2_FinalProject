@@ -341,7 +341,7 @@
     <div id="app">
        
     @include('layouts.navigation')
-        <main class="py">
+        <main class="py" style="min-height: 79vh;">
             @yield('content')
         </main>
         <div class="supbot">
@@ -372,7 +372,7 @@
                         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Features</a></li>
                         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Pricing</a></li>
                         <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">FAQs</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">About</a></li>
+                        <li class="nav-item"><a href="{{Route('RstoreInput')}}" class="nav-link px-2 text-body-secondary" style="color:black;">Add Store</a></li>
                     </ul>
                 </footer>
             </div>
