@@ -168,7 +168,7 @@
      
 
 
-        <form method="get" action="">
+        <form method="get" action="{{Route('checkOut') }}">
             <div class="checkoutbutton">
                     <button>Checkout</button>
             </div>

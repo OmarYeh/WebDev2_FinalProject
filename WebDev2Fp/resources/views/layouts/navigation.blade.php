@@ -9,10 +9,12 @@
                     <ul class="navbar-nav me-auto">
                         <div style="display:flex;align-items: center;gap: 14px;" >
                         <a class="logoa" href="{{ route('home') }}"><img src="{{asset('storage\images\Foodies.png')}}" style="width:100px;height:30px;"/></a>
-                            <div class="titles">
+                            <div class="titles" style="margin-left: 85%;">
                                 <a href="{{ route('home') }}" class="homeheader" >Home</a>
                                 <a href="{{ route('searchFood') }}" class="foodheader" >Food</a>
                                 <a href="{{ route('Allcusisnes') }}" class="cuisineheader" >Cuisines</a>
+                                <a href="{{ route('orders') }}" class="cuisineheader" style="width: 106px;">Your Orders</a>
+
                             </div>
                         </div>
                     </ul>
@@ -33,8 +35,10 @@
                                 </li>
                             @endif
                         @else
-                            <li class="nav-item dropdown" >
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: #e55;">
+                        <a href="{{Route('basket')}}" style="margin-right:7px;">
+                            <img src="https://img.icons8.com/plasticine/100/shopping-basket-2.png" style="width:45px;height:45px"/></a>
+                            <li class="nav-item dropdown" style="margin-top: 1px;">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre style="color: #e55;font-size: 19px;">
                                     {{ Auth::user()->name }}
                                 </a>
 
