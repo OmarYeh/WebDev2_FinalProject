@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="cusmain">
-<div class="AllCuisines">
+<div class="AllCuisines" style="flex-wrap: wrap;">
     
     @foreach($cuisines as $obj)
     <a href="{{Route('cuisine',['id'=>$obj->id])}}">
