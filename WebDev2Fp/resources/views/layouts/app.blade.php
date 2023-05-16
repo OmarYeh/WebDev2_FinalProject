@@ -368,11 +368,11 @@
                     <p class="col-md-4 mb-0 text-body-secondary">© 2023 Company, Inc</p>
                     <img src="https://img.icons8.com/ios/50/null/kawaii-sushi.png" style="height:50px; width:50px;"/>
                     <ul class="nav col-md-4 justify-content-end">
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Home</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Features</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">Pricing</a></li>
-                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">FAQs</a></li>
+                        <li class="nav-item"><a href="{{Route('home')}}" class="nav-link px-2 text-body-secondary" style="color:black;">Home</a></li>
+                        <li class="nav-item"><a href="{{Route('searchFood')}}" class="nav-link px-2 text-body-secondary" style="color:black;">Food</a></li>
+                        <li class="nav-item"><a href="{{Route('Allcusisnes')}}" class="nav-link px-2 text-body-secondary" style="color:black;">Cuisines</a></li>
                         <li class="nav-item"><a href="{{Route('RstoreInput')}}" class="nav-link px-2 text-body-secondary" style="color:black;">Add Store</a></li>
+                        <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary" style="color:black;">About Us</a></li>
                     </ul>
                 </footer>
             </div>
@@ -458,7 +458,7 @@ function handleUserMessage(userMessage) {
 }
 }
             else if(userMessage.includes('help')|| userMessage.includes('commands')){
-                let message = 'orderID: - your order\'s id<br>offers - to display the offers';
+                let message = '1-orderID: - your order\'s id<br>2-offers - to display the offers<br>3-cuisine [name] - to display cuisine<br>4-Greater than [num] - to display stores with greater than [num]$ items<br>5-Lesser than [num] - to display stores with less than [num]$ items';
               displayBotMessage(message);
             }
             else if(userMessage === 'hi'  || userMessage === 'hello' || userMessage ===' Hello' || userMessage ===' Hey' || userMessage ===' howdie' ){
@@ -495,7 +495,7 @@ function handleUserMessage(userMessage) {
       }
     });
         }
-        else if(userMessage.includes('cuisine')){
+        else if(userMessage.includes('cuisine')|| userMessage.includes('Cuisine')){
     $.ajax({
         type: 'get',
         url:'/chatoffers',
@@ -505,7 +505,7 @@ function handleUserMessage(userMessage) {
                 
                 if(userMessage.includes(result.cuisines[c].name) || userMessage.includes(result.cuisines[c].name.toLowerCase())){
                     let cuisine = '';
-                    cuisine +=`<p>You can look more at this cuisine</p><a href="/cuisine/${result.cuisines[c].id}">here</a>`;
+                    cuisine +=`<p>You can look more at this cuisine</p><a href="/cuisine/${result.cuisines[c].id}">${result.cuisines[c].name}</a>`;
                     displayBotMessage(cuisine);
                 }
                 else{
