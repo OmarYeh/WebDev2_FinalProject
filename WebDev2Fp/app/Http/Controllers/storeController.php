@@ -10,6 +10,7 @@ use App\Models\User;
 use App\Models\userroles;
 use App\Models\role;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 class storeController extends Controller
 {
     public function index($id){
@@ -37,16 +38,18 @@ class storeController extends Controller
             'opened'=>'required|integer|min:4',
             'imgsrc'=>'required',
             'cuisine'=>'required',
-            'logo'=>'required'
+            'logo'=>'required',
+            'lat' =>'required|numeric',
+            'lng' =>'required|numeric'
         ]);
-
+        $point = DB::raw("POINT($request->lng, $request->lat)");
         $store =  new store();
         $store->storeName =$request->storeName;
         $store->Location =$request->Location;
         $store->Description =$request->Description;
         $store->phone_number =$request->phone_number;
         $store->opened =$request->opened;
-
+        $store->point = $point;
         $filename= time().'.'.$request->file('imgsrc')->getClientOriginalExtension();
         $request->file('imgsrc')->storeAs('public/images',$filename);
         $tosave= 'storage/images/'.$filename;
