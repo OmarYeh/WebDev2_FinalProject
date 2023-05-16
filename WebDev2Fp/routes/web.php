@@ -105,7 +105,7 @@ Route::post('orders/{id}/{orderId}',[chatbotController::class,'orderstatue']);
 Route::get('chatoffers',[chatbotController::class,'offers']);
 Route::get('aboutUs', function(){
     return view('aboutUs');
-});
+})->name('aboutUs');
 Route::get('contactUs', function(){
     return view('contactUs');
 });
