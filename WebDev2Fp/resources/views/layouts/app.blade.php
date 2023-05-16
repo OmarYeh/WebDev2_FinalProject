@@ -341,7 +341,7 @@
     <div id="app">
        
     @include('layouts.navigation')
-        <main class="py" style="min-height: 79vh;">
+        <main class="py" style="min-height: 120vh;">
             @yield('content')
         </main>
         <div class="supbot">
