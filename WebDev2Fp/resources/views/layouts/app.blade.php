@@ -495,14 +495,23 @@ function handleUserMessage(userMessage) {
       }
     });
         }
+
         else if(userMessage.includes('cuisine')){
+
+        if(userMessage.includes('cuisine')){
+
     $.ajax({
         type: 'get',
         url:'/chatoffers',
         success: function(result){
+
             
             for(let c in result.cuisines){
                 
+
+            for(let c in result.cuisines){
+                console.log(result.cuisines[c].name);
+
                 if(userMessage.includes(result.cuisines[c].name) || userMessage.includes(result.cuisines[c].name.toLowerCase())){
                     let cuisine = '';
                     cuisine +=`<p>You can look more at this cuisine</p><a href="/cuisine/${result.cuisines[c].id}">here</a>`;
@@ -566,6 +575,18 @@ function handleUserMessage(userMessage) {
 }
 
          });
+
+            success: function(result){
+                for(let av in result.menuAverage){
+                    if(price > menuAverage){
+                        let store ='';
+                        store +=`<a href="/store/${result.store[av].id}">${result.store[av].name}</a>`;
+                        displayBotMessage(store[0]);
+                    }
+                }
+            }
+         })
+
       }
             else {
                 
