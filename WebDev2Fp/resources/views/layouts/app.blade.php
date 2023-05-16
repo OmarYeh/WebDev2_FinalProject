@@ -157,15 +157,19 @@
     padding:10px;
     max-width:250px;
     min-width:75px;
+    font-size:16px;
+    height:fit-content;
   }
   
   .bot-message{
     align-self: flex-start;
-    max-width:350px;
+    max-width:230px;
     color:white;
     background-color:#e55;
     border-radius:17px;
     float:left;
+    font-size:16px;
+    height:fit-content;
     padding:10px;
   }
   .bot-message a{
@@ -491,13 +495,14 @@ function handleUserMessage(userMessage) {
       }
     });
         }
-        if(userMessage.includes('cuisine')){
+        else if(userMessage.includes('cuisine')){
     $.ajax({
         type: 'get',
         url:'/chatoffers',
         success: function(result){
+            
             for(let c in result.cuisines){
-                console.log(result.cuisines[c].name);
+                
                 if(userMessage.includes(result.cuisines[c].name) || userMessage.includes(result.cuisines[c].name.toLowerCase())){
                     let cuisine = '';
                     cuisine +=`<p>You can look more at this cuisine</p><a href="/cuisine/${result.cuisines[c].id}">here</a>`;
@@ -515,16 +520,52 @@ function handleUserMessage(userMessage) {
          $.ajax({
             type:'get',
             url:'/chatoffers',
-            success: function(result){
-                for(let av in result.menuAverage){
-                    if(price > menuAverage){
-                        let store ='';
-                        store +=`<a href="/store/${result.store[av].id}">${result.store[av].name}</a>`;
-                        displayBotMessage(store[0]);
-                    }
-                }
+            success: function(result) {
+    console.log(result.menuAverage);
+    console.log(price);
+    let store = `<p>Here's 3 recommended restaurants based on your choice:</p>`; // Initialize store outside the loop
+    let i = 0;
+
+    for (let av in result.menuAverage) {
+        console.log(result.menuAverage[av].average);
+        if (price < result.menuAverage[av].average) {
+            i++;
+            if (i < 4) {
+                store += `<a href="/store/${result.menuAverage[av].store.id}">${i} ${result.menuAverage[av].store.storeName}</a><br>`;
             }
-         })
+        }
+    }
+
+    displayBotMessage(store); // Display the store chat message
+}
+
+         });
+      }
+      else if(containsNumber(userMessage) && userMessage.includes('lesser') || userMessage.includes('Lesser') || userMessage.includes('Lower') || userMessage.includes('lower') || userMessage.includes('under')){
+         const price = parseInt(userMessage.match(/\d+/)[0], 10);
+         $.ajax({
+            type:'get',
+            url:'/chatoffers',
+            success: function(result) {
+    console.log(result.menuAverage);
+    console.log(price);
+    let store = `<p>Here's 3 recommended restaurants based on your choice:</p>`; // Initialize store outside the loop
+    let i = 0;
+
+    for (let av in result.menuAverage) {
+        console.log(result.menuAverage[av].average);
+        if (price > result.menuAverage[av].average) {
+            i++;
+            if (i < 4) {
+                store += `<a href="/store/${result.menuAverage[av].store.id}">${i} ${result.menuAverage[av].store.storeName}</a><br>`;
+            }
+        }
+    }
+
+    displayBotMessage(store); // Display the store chat message
+}
+
+         });
       }
             else {
                 
