@@ -39,24 +39,24 @@
 		<div class="sdkhjfgb" style="width:50%;height:70%;background:white;padding: 20px;border-radius: 9px;">
 		
 
-		<form method="post" id="formll" action="{{route('placeorder')}}">
+		<form  id="formll" method="post" action="{{Route('placeorder')}}" >
 		@csrf
 		<div >
 			<div style="padding-left: 16px;">
 		<label for="lng" style="font-size: 21px;">Longitude:</label>
-		<input type="text" id="lng" name="lng" placeholder="lng:33.22" disabled style="margin-left:5px;width: 155px;height: 28px;padding: 6px;"/>
+		<input type="text" id="lng" name="lng" placeholder="lng:33.22"  style="margin-left:5px;width: 155px;height: 28px;padding: 6px;"/>
 		<label for="lat" style="font-size: 21px;margin-left:20px;">Latitude:</label>
-		<input type="text" id="lat" name="lat" placeholder="lat:33.22" disabled style="margin-left:5px;width: 155px;height: 28px;padding: 6px;"/>
+		<input type="text" id="lat" name="lat" placeholder="lat:33.22"  style="margin-left:5px;width: 155px;height: 28px;padding: 6px;"/>
 		</div>
 		<div style="padding-left: 16px;">
 		<label for="address" style="font-size: 21px;margin-top:20px">Address</label>
 		</div>
-		<input type="text" id="address" name="address" placeholder="Address" disabled style="margin-left: 16px;margin-top:5px;width: 280px;height: 28px;padding: 6px; margin-bottom:30px;"/>
+		<input type="text" id="address" name="address" placeholder="Address"  style="margin-left: 16px;margin-top:5px;width: 280px;height: 28px;padding: 6px; margin-bottom:30px;"/>
 		
 		</div>
-		<div style="display:flex;justify-content:center;">
+		
 		<button type="submit" style="border: none;padding: 9px;width: 288px;height: 51px;font-size: 20px;color: white;background: #e55;border-radius: 9px;font-weight: 600;">Place Order</button>
-		</div>
+		
 	</form>
 		<div style="display: flex;justify-content: flex-end;margin-top: 42px;">
 			<button id="gl" onclick="getLocation()" style="margin-right:30px;border: none;padding: 9px;width: 174px;height: 36px;font-size: 15px;color: white;background: rgb(142, 134, 134);border-radius: 9px;font-weight: 600;">Get Current Location</button>
@@ -92,9 +92,6 @@ function getAddress() {
 }
 
  function initMap() {
-	$('#formll').submit(function(event) {
-				event.preventDefault();
-			});
 	$("#map").show();
 	$("#show").hide();
 	$("#close").show()
@@ -160,9 +157,6 @@ function getAddress() {
     
 
 		function getLocation() {
-			$('#formll').submit(function(event) {
-				event.preventDefault();
-			});
 		  if ("geolocation" in navigator) {
 			navigator.geolocation.getCurrentPosition(function(position) {
   var lat = position.coords.latitude;

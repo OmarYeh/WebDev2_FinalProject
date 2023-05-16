@@ -71,6 +71,6 @@ class RegisteredUserController extends Controller
         $basket->save();
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect(RouteServiceProvider::EmV);
     }
 }

@@ -49,6 +49,7 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::get('checkout',[UserOrderController::class,'checkout'])->name('checkOut');
     Route::post('placeorder', [UserOrderController::class, 'place'])->name('placeorder');
     Route::get('pending/approval', [storeController::class, 'pendingS'])->name('pendingStore');
+    Route::post('nearlocation', [CuisineController::class, 'searchStoresNearby'])->name('nearlocation');
 });
 Route::middleware(['auth','verified','store'])->group(function () {
 Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
