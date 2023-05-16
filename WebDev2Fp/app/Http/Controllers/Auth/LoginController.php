@@ -137,7 +137,7 @@ class LoginController extends Controller
 
             Auth::login($newUser, true);
 
-            return redirect('/');
+            return redirect(RouteServiceProvider::EmV);
         }
     
 }

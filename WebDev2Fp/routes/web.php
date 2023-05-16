@@ -47,11 +47,15 @@ Route::middleware(['auth','verified'])->group(function () {
     Route::post('removefromBasket/{id}',[BasketController::class,'removefromBasket'])->name('removefromBasket');
     Route::post('clearBasket',[BasketController::class,'clearBasket'])->name('clearBasket');
     Route::get('orders',[UserOrderController::class,'index'])->name('orders');
-    Route::get('checkout',[UserOrderController::class,'checkout'])->name('orders');
+    Route::get('checkout',[UserOrderController::class,'checkout'])->name('checkOut');
     Route::post('placeorder', [UserOrderController::class, 'place'])->name('placeorder');
     Route::get('pending/approval', [storeController::class, 'pendingS'])->name('pendingStore');
+
     Route::get('searchFood',[FoodController::class,'searchFood'])->name('searchFood');
     Route::post('makeReview',[ReviewController::class,'review'])->name('makeReview');
+
+    Route::post('nearlocation', [CuisineController::class, 'searchStoresNearby'])->name('nearlocation');
+
 });
 Route::middleware(['auth','verified','store'])->group(function () {
 Route::post('storeCook', [storeController::class, 'store'])->name('storeCook');
